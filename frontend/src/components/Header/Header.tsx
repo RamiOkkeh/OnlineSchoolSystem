@@ -12,6 +12,7 @@ import {
 
 const styles = makeStyles({
   flex: {
+    zIndex: 6,
     display: `flex`,
     justifyContent: `space-between`,
   },
@@ -29,14 +30,14 @@ const nav = [
 function Header() {
   const classes = styles();
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar>
         <Container className={classes.flex}>
           <Link to="/">
             <img
-              src="./logo1.png"
+              src="./logo2.png"
               alt="logo"
-              style={{ width: "40px", margin: "10px" }}
+              style={{ width: "50px", margin: "5px" }}
             />
           </Link>
           <List
