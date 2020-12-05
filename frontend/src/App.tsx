@@ -1,4 +1,6 @@
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import green from "@material-ui/core/colors/green";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { changeState } from "./actions/actions";
 import Header from "./components/Header/Header";
 import { State } from "./reducers/rootReducer";
@@ -10,6 +12,13 @@ import { Dispatch } from "redux";
 import React from "react";
 import "./App.css";
 
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+    secondary: green,
+  },
+});
+
 interface Props {
   test23: Array<String>;
   changeState: Function;
@@ -17,16 +26,18 @@ interface Props {
 
 const App: React.FC<Props> = ({ test23, changeState }) => {
   return (
-    <div className="App">
-      <Router>
-        <Header />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/signin" component={SignIn} />
-        </Switch>
-      </Router>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Router>
+          <Header />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/signin" component={SignIn} />
+          </Switch>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 };
 
