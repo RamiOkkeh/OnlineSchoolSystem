@@ -5,7 +5,7 @@ function Header() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <img src="./logo.png" alt="logo" style={{ width: "100px" }} />
+        <img src='./logo.png' alt="logo" style={{ width: "70px" }} />
       </Toolbar>
     </AppBar>
   );
