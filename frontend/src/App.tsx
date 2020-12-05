@@ -39,12 +39,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     changeState: (newState: State) => { dispatch(changeState(newState)) }
   }
+}
 
-
-  const mapStateToProps = (state: State) => {
-    return {
-      test23: state.test
-    }
+const mapStateToProps = (state: State) => {
+  return {
+    test23: state.test
   }
+}
 
-  export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
