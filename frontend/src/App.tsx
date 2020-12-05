@@ -2,6 +2,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import green from "@material-ui/core/colors/green";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { changeState } from "./actions/actions";
+import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import { State } from "./reducers/rootReducer";
 import SignUp from "./pages/Signup/Signup";
@@ -30,6 +31,7 @@ const App: React.FC<Props> = ({ test23, changeState }) => {
       <div className="App">
         <Router>
           <Header />
+          <Navbar />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/signup" component={SignUp} />
