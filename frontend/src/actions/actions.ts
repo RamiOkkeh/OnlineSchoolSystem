@@ -1,8 +1,6 @@
-import { State } from "../reducers/rootReducer"
-
-export const changeState = (newState: State) => {
-    return {
-        type: "ADD_NOTE",
-        payload: newState,
-    }
-}
+export const setUser = (newState: object) => {
+  return {
+    type: "SET_USER",
+    payload: newState,
+  };
+};

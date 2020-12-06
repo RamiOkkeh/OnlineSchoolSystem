@@ -1,7 +1,7 @@
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import green from "@material-ui/core/colors/green";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { changeState } from "./actions/actions";
+import Classes from "./pages/Classes/Classes";
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import { State } from "./reducers/rootReducer";
@@ -20,12 +20,7 @@ const theme = createMuiTheme({
   },
 });
 
-interface Props {
-  test23: Array<String>;
-  changeState: Function;
-}
-
-const App: React.FC<Props> = ({ test23, changeState }) => {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -36,6 +31,7 @@ const App: React.FC<Props> = ({ test23, changeState }) => {
             <Route path="/" exact component={Home} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
+            <Route path="/classes" component={Classes} />
           </Switch>
         </Router>
       </div>
@@ -43,18 +39,14 @@ const App: React.FC<Props> = ({ test23, changeState }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    changeState: (newState: State) => {
-      dispatch(changeState(newState));
-    },
-  };
-};
+// const mapDispatchToProps = (dispatch: Dispatch) => {
+//   return {
+//     changeState: (newState: State) => {},
+//   };
+// };
 
 const mapStateToProps = (state: State) => {
-  return {
-    test23: state.test,
-  };
+  return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
