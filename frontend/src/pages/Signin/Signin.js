@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -52,6 +52,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
+
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    console.log(email, password, remember);
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    };
+    let path =
+      process.env.NODE_ENV === "production"
+        ? "/auth/jwt/create"
+        : "http://localhost:8000/auth/jwt/create";
+    fetch(path, options)
+      .then((data) => data.json())
+      .then((data) => console.log(data));
+  };
 
   return (
     <Container className={classes.BG} component="main" maxWidth="xs">
@@ -74,6 +94,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -85,9 +106,16 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={
+              <Checkbox
+                value="remember"
+                color="primary"
+                onChange={(e) => setRemember(e.target.checked)}
+              />
+            }
             label="Remember me"
           />
           <Button
@@ -96,6 +124,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handelSubmit}
           >
             Sign In
           </Button>
