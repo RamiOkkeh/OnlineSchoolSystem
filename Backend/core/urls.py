@@ -21,5 +21,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", include("djoser.urls")),
     path("auth/", include("djoser.urls.jwt")),
+    path("users/", include("users.urls")),
     path("teacher/", include("teachers.urls")),
+    path("student/", include("students.urls")),
+    path("school/", include("schools.urls")),
+    path("classroom/", include("classrooms.urls")),
+    path("subject/", include("subjects.urls")),
 ]

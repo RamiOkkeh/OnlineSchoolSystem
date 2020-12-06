@@ -1,7 +1,6 @@
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import green from "@material-ui/core/colors/green";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { changeState } from "./actions/actions";
 import Classes from "./pages/Classes/Classes";
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
@@ -40,16 +39,14 @@ const App = () => {
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    changeState: (newState: State) => {
-      dispatch(changeState(newState));
-    },
-  };
-};
+// const mapDispatchToProps = (dispatch: Dispatch) => {
+//   return {
+//     changeState: (newState: State) => {},
+//   };
+// };
 
 const mapStateToProps = (state: State) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

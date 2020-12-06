@@ -65,15 +65,22 @@ export default function SignUp() {
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, lastName, email, pass, marketing }),
+      body: JSON.stringify({
+        name: firstName + " " + lastName,
+        email,
+        password: pass,
+        marketing,
+      }),
     };
     let path =
       process.env.NODE_ENV === "production"
-        ? "/auth/jwt/create"
-        : "http://localhost:8000/auth/users";
+        ? "/auth/jwt/create/"
+        : "http://localhost:8000/auth/users/";
     fetch(path, options)
       .then((data) => data.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        localStorage.setItem("Authorization", `JWT ${data.access}`);
+      });
   };
 
   return (

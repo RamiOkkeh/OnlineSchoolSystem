@@ -12,6 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { setUser } from "../../actions/actions";
+import { connect } from "react-redux";
 
 function Copyright() {
   return (
@@ -50,12 +52,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+function SignIn({ user }) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
-
+  console.log(user);
   const handelSubmit = (e) => {
     e.preventDefault();
     console.log(email, password, remember);
@@ -66,8 +68,8 @@ export default function SignIn() {
     };
     let path =
       process.env.NODE_ENV === "production"
-        ? "/auth/jwt/create"
-        : "http://localhost:8000/auth/jwt/create";
+        ? "/auth/jwt/create/"
+        : "http://localhost:8000/auth/jwt/create/";
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => console.log(data));
@@ -148,3 +150,10 @@ export default function SignIn() {
     </Container>
   );
 }
+const mapSateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapSateToProps)(SignIn);
