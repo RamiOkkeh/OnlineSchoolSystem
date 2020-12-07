@@ -1,11 +1,21 @@
 from django.db import models
 from users.models import UserAccount
+from schools.models import School
+from subjects.models import Subject
+from classrooms.models import Classroom
 
 # Create your models here.
 class Teacher(models.Model):
-    userID = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
-    school = models.CharField(max_length=30)
-    subject = models.CharField(max_length=30)
+    userID = models.OneToOneField(UserAccount, on_delete=models.CASCADE)
+    schoolID = models.ForeignKey(School, on_delete=models.CASCADE)
+    subjectID = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.userID.name
+
+class Teacher_Classroom(models.Model):
+    teacherID = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='subjects')
+    classroomID = models.ForeignKey(Classroom,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "%s %s" % (self.teacherID.userID.name, self.classroomID.name)

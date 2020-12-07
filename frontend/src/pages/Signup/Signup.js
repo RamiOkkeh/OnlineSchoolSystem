@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -44,13 +44,47 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  BG: {
+    backgroundColor: "#fef3f3",
+    marginTop: "100px",
+  },
 }));
 
 export default function SignUp() {
   const classes = useStyles();
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [marketing, setMarketing] = useState(false);
+
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: firstName + " " + lastName,
+        email,
+        password: pass,
+        marketing,
+      }),
+    };
+    let path =
+      process.env.NODE_ENV === "production"
+        ? "/auth/jwt/create/"
+        : "http://localhost:8000/auth/users/";
+    fetch(path, options)
+      .then((data) => data.json())
+      .then((data) => {
+        localStorage.setItem("Authorization", `JWT ${data.access}`);
+      });
+  };
+
   return (
-    <Container component="main" maxWidth="xs">
+    <Container className={classes.BG} component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -71,6 +105,10 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                  console.log(firstName);
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -82,6 +120,10 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                  console.log(lastName);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,6 +135,10 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  console.log(email);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -105,11 +151,24 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => {
+                  setPass(e.target.value);
+                  console.log(pass);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={
+                  <Checkbox
+                    value="allowExtraEmails"
+                    color="primary"
+                    onChange={(e) => {
+                      setMarketing(e.target.checked);
+                      console.log(marketing);
+                    }}
+                  />
+                }
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
@@ -119,6 +178,7 @@ export default function SignUp() {
             fullWidth
             variant="contained"
             color="primary"
+            onClick={submit}
             className={classes.submit}
           >
             Sign Up
