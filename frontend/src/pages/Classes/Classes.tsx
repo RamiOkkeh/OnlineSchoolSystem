@@ -60,11 +60,11 @@ function Classes({ classes, user, createClass }: any) {
         setName("");
       });
   };
-
+  console.log(classes);
   return (
     <div className={classess.flex}>
       {classes.map((elem: any, i: number) => {
-        return <Class data={elem} key={i} />;
+        return <Class data={elem} key={i} id={i} />;
       })}
       <CreateClassDialog
         submit={submit}
