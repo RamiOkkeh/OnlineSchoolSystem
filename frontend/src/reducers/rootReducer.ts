@@ -7,7 +7,7 @@ export interface State {
 }
 
 const initState = {
-  classes: ["#99ff66", "#99ff66", "#99ff66", "#99ff66", "#99ff66"],
+  classes: [],
   isLogged: false,
   user: {},
 };
@@ -18,6 +18,10 @@ const rootReducers = (state: State = initState, action: Actions) => {
       ...state,
       user: action.payload,
     };
+  }
+  if (action.type === "CREATE_CLASS") {
+    state.classes.push(action.payload);
+    return state;
   }
   return state;
 };
