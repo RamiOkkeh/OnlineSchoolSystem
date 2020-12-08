@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "classrooms",
     "subjects",
     'corsheaders',
+    'payments',
 ]
 
 MIDDLEWARE = [
