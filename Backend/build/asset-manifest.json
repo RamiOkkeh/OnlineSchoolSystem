@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6892bd32.chunk.css",
+    "main.js": "/static/js/main.dcafec8c.chunk.js",
+    "main.js.map": "/static/js/main.dcafec8c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a5497feb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a5497feb.js.map",
+    "static/js/2.7d18befd.chunk.js": "/static/js/2.7d18befd.chunk.js",
+    "static/js/2.7d18befd.chunk.js.map": "/static/js/2.7d18befd.chunk.js.map",
+    "static/js/3.768243ba.chunk.js": "/static/js/3.768243ba.chunk.js",
+    "static/js/3.768243ba.chunk.js.map": "/static/js/3.768243ba.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.6892bd32.chunk.css.map": "/static/css/main.6892bd32.chunk.css.map",
+    "static/js/2.7d18befd.chunk.js.LICENSE.txt": "/static/js/2.7d18befd.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/microbe_background2_cm-.965e21b6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a5497feb.js",
+    "static/js/2.7d18befd.chunk.js",
+    "static/css/main.6892bd32.chunk.css",
+    "static/js/main.dcafec8c.chunk.js"
+  ]
+}
