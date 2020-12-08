@@ -14,7 +14,7 @@ class Teacher(models.Model):
         return self.userID.name
 
 class Teacher_Classroom(models.Model):
-    teacherID = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='subjects')
+    teacherID = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='classrooms')
     classroomID = models.ForeignKey(Classroom,on_delete=models.CASCADE)
 
     def __str__(self):

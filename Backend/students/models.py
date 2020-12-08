@@ -7,8 +7,8 @@ from subjects.models import Subject
 # Create your models here.
 class Student(models.Model):
     userID = models.OneToOneField(UserAccount, on_delete=models.CASCADE)
-    schoolID = models.ForeignKey(School, on_delete=models.CASCADE)
-    classroomID = models.ForeignKey(Classroom, on_delete=models.CASCADE)
+    schoolID = models.ForeignKey(School, on_delete=models.CASCADE, related_name='students')
+    classroomID = models.ForeignKey(Classroom, on_delete=models.CASCADE, related_name='students')
 
     def __str__(self):
         return self.userID.name
