@@ -1,50 +1,56 @@
-import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
-import SignUp from './Signup/Signup'
-import { connect } from 'react-redux'
-import { State } from './reducers/rootReducer'
-import { Dispatch } from 'redux';
-import { changeState } from './actions/actions'
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import green from "@material-ui/core/colors/green";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Classes from "./pages/Classes/Classes";
+import Navbar from "./components/Navbar/Navbar";
+import Header from "./components/Header/Header";
+import { State } from "./reducers/rootReducer";
+import SignUp from "./pages/Signup/Signup";
+import SignIn from "./pages/Signin/Signin";
+import Home from "./pages/Home/Home";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import React from "react";
+import Bills from "./pages/bills/Bills"
+import ProfilePage from "./pages/profile/profilePage"
+import "./App.css";
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+    secondary: green,
+  },
+});
 
-interface Props {
-  test23: Array<String>;
-  changeState: Function
-}
-
-
-const App: React.FC<Props> = ({ test23, changeState }) => {
-
-  const handleClick = () => {
-    console.log('clicked');
-    console.log(changeState);
-    console.log(test23);
-    changeState(['works?'])
-    console.log(test23);
-  }
+const App = () => {
   return (
-    <div className="App">
-      <SignUp />
-      {test23.map((test, i) => {
-        return <div>{test}{i}</div>
-      })}
-      <button onClick={handleClick}>change state</button>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Router>
+          <Header />
+          <Navbar /> 
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/classes" component={Classes} />
+            <Route exact path="/bills" component={Bills} />
+            <Route exact path="/profile" component={ProfilePage} />
+
+          </Switch>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
+};
 
-}
-
-
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    changeState: (newState: State) => { dispatch(changeState(newState)) }
-  }
-}
+// const mapDispatchToProps = (dispatch: Dispatch) => {
+//   return {
+//     changeState: (newState: State) => {},
+//   };
+// };
 
 const mapStateToProps = (state: State) => {
-  return {
-    test23: state.test
-  }
-}
+  return {};
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

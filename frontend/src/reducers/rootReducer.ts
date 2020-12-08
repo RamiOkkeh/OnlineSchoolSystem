@@ -1,22 +1,30 @@
-export type Actions = { type: string; payload: String[] };
-
+export type Actions = { type: string; payload: any };
 
 export interface State {
-    test: Array<String>
+  classes: any[];
+  isLogged: boolean;
+  user: object;
+  role :String;
 }
 
 const initState = {
-    test: ['test1', 'test2', 'test3']
-}
+  classes: ["#99ff66", "#99ff66", "#99ff66", "#99ff66", "#99ff66"],
+  isLogged: false,
+  user: {},
+  role:"Principal"
+};  
+
+//Principal
+//Teacher
+//Student
 
 const rootReducers = (state: State = initState, action: Actions) => {
-    if (action.type === 'ADD_NOTE') {
-        console.log('hi');
-        return {
-            ...state,
-            test: action.payload
-        }
-    }
-    return state
-}
-export default rootReducers
+  if (action.type === "SET_USER") { 
+    return {
+      ...state,
+      user: action.payload,
+    };
+  }
+  return state;
+};
+export default rootReducers;

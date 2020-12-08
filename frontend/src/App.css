@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+body {
+  /* background-image: url("./microbe_background2_cm-.jpg"); */
+  background-size: 300px 200px;
+}
