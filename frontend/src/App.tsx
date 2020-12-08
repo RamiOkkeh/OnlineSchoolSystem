@@ -5,12 +5,13 @@ import Classes from "./pages/Classes/Classes";
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import { State } from "./reducers/rootReducer";
-import SignUp from "./pages/Signup/Signup";
+import SignupForm from "./pages/SignupForm/SignupForm";
 import SignIn from "./pages/Signin/Signin";
 import Home from "./pages/Home/Home";
 import { connect } from "react-redux";
+import { createClass } from "./actions/actions";
 import { Dispatch } from "redux";
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 
 const theme = createMuiTheme({
@@ -20,7 +21,26 @@ const theme = createMuiTheme({
   },
 });
 
-const App = () => {
+const App = ({ user, importClass }: any) => {
+  useEffect(() => {
+    if (user.schoolID) {
+      let options = {
+        method: "get",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ schoolID: user.schoolID }),
+      };
+      let path =
+        process.env.NODE_ENV === "production"
+          ? "/classroom/getSchoolClasses/"
+          : "http://localhost:8000/classroom/getSchoolClasses/";
+      fetch(path, options)
+        .then((data) => data.json())
+        .then((data) => {
+          console.log(data);
+          importClass(data);
+        });
+    }
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -29,7 +49,7 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/signup" component={SignUp} />
+            <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
             <Route path="/classes" component={Classes} />
           </Switch>
@@ -45,8 +65,16 @@ const App = () => {
 //   };
 // };
 
-const mapStateToProps = (state: State) => {
-  return {};
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    importClass: (z: any) => dispatch(createClass(z)),
+  };
 };
 
-export default connect(mapStateToProps)(App);
+const mapStateToProps = (state: State) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
