@@ -13,8 +13,8 @@ import { State } from "../../reducers/rootReducer"
     //       };
     //       let path =
     //         process.env.NODE_ENV === "production"
-    //           ? "/auth/jwt/create/"
-    //           : "http://localhost:8000/auth/users/";
+    //           ? "/payment/"
+    //           : "http://localhost:8000/payment/";
     //       fetch(path, options)
     //         .then((data) => data.json())
     //         .then((data) => {
