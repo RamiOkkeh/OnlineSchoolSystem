@@ -11,8 +11,9 @@ import Home from "./pages/Home/Home";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import React from "react";
+import Bills from "./pages/bills/Bills"
+import ProfilePage from "./pages/profile/profilePage"
 import "./App.css";
-
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -26,12 +27,15 @@ const App = () => {
       <div className="App">
         <Router>
           <Header />
-          <Navbar />
+          <Navbar /> 
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
             <Route path="/classes" component={Classes} />
+            <Route exact path="/bills" component={Bills} />
+            <Route exact path="/profile" component={ProfilePage} />
+
           </Switch>
         </Router>
       </div>
