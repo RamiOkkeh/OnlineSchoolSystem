@@ -2,14 +2,14 @@ export type Actions = { type: string; payload: any };
 
 export interface State {
   classes: any[];
-  isLogged: boolean;
   user: object;
+  schoolID: number;
 }
 
 const initState = {
   classes: [],
-  isLogged: false,
   user: {},
+  schoolID: 0,
 };
 
 const rootReducers = (state: State = initState, action: Actions) => {
@@ -20,6 +20,10 @@ const rootReducers = (state: State = initState, action: Actions) => {
     };
   }
   if (action.type === "CREATE_CLASS") {
+    if (Array.isArray(action.payload)) {
+      state.classes = action.payload;
+      return state;
+    }
     state.classes.push(action.payload);
     return state;
   }

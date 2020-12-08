@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -50,11 +51,11 @@ function Navbar() {
           className={classes.flex}
         >
           {navItems.map(({ title, path }) => (
-            <a href={path} key={title} className={classes.links}>
+            <Link to={path} key={title} className={classes.links}>
               <ListItem button>
                 <ListItemText primary={title} />
               </ListItem>
-            </a>
+            </Link>
           ))}
         </List>
       </Toolbar>

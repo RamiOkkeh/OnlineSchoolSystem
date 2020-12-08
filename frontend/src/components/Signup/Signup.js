@@ -74,7 +74,7 @@ export default function SignUp() {
     };
     let path =
       process.env.NODE_ENV === "production"
-        ? "/auth/jwt/create/"
+        ? "/auth/users/"
         : "http://localhost:8000/auth/users/";
     fetch(path, options)
       .then((data) => data.json())

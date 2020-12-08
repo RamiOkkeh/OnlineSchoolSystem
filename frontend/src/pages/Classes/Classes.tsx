@@ -60,7 +60,6 @@ function Classes({ classes, user, createClass }: any) {
         setName("");
       });
   };
-  console.log(classes);
   return (
     <div className={classess.flex}>
       {classes.map((elem: any, i: number) => {
