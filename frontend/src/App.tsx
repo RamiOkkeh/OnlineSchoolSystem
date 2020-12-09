@@ -13,6 +13,7 @@ import { Dispatch } from "redux";
 import React from "react";
 import Bills from "./pages/bills/Bills"
 import ProfilePage from "./pages/profile/profilePage"
+import DashboardPage from "./pages/dashboardPage/DashboardPage"
 import "./App.css";
 const theme = createMuiTheme({
   palette: {
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/classes" component={Classes} />
             <Route exact path="/bills" component={Bills} />
             <Route exact path="/profile" component={ProfilePage} />
+            <Route exact path="/dashboard" component={DashboardPage} />
 
           </Switch>
         </Router>
