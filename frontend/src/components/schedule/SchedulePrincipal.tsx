@@ -49,7 +49,7 @@ export default function SchedulePrincipal() {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} style={{width:"800px" , marginLeft:"20rem" , marginTop:"4rem"}} aria-label="customized table">
+      <Table className={classes.table} style={{width:"800px" , marginLeft:"20rem" , marginTop:"8rem"}} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Day </StyledTableCell>

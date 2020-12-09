@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard({data}:any) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -49,6 +49,17 @@ export default function RecipeReviewCard() {
 
   const [favourite , setFavourite]= useState("")
 
+//   const Post = (userID:any,text:any) => {
+//     fetch('/bsy3mloElzameel', {
+//         method: 'POST',
+//         body: JSON.stringify({userID,text}),
+//       }).then(response => {
+//         response.json().then(data => {
+//         });
+//       });
+// };
+
+console.log(data)
   return (
       <div >
     <Card className={classes.root} style={{marginLeft:"13rem",marginTop:"5rem",width:"65rem" ,marginBottom:"3rem"}} >
