@@ -12,7 +12,7 @@ import { State } from "../../reducers/rootReducer";
             <Schedule />  :
             role ==="Principal" ?
             <SchedulePrincipal /> :
-            <div> </div>
+            <Schedule />
             }
             
         </div>

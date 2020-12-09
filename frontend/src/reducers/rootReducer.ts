@@ -5,13 +5,15 @@ export interface State {
   isLogged: boolean;
   user: object;
   role :String;
+  post:any[];
 }
 
 const initState = {
   classes: ["#99ff66", "#99ff66", "#99ff66", "#99ff66", "#99ff66"],
   isLogged: false,
   user: {},
-  role:"Principal"
+  role:"Student",
+  post:[{username:'rami',data:'December:12:2020',messege:"lasjfksagfkkjdvfjhsad"},{username:'rami',data:'December:12:2020',messege:"lasjfksagfkkjdvfjhsad"}]
 };  
 
 //Principal
