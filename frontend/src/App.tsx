@@ -14,6 +14,7 @@ import React from "react";
 import Bills from "./pages/bills/Bills"
 import ProfilePage from "./pages/profile/profilePage"
 import DashboardPage from "./pages/dashboardPage/DashboardPage"
+import SchedulePage from './pages/schedulePage/SchedulePage'
 import "./App.css";
 const theme = createMuiTheme({
   palette: {
@@ -37,6 +38,7 @@ const App = () => {
             <Route exact path="/bills" component={Bills} />
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/dashboard" component={DashboardPage} />
+            <Route exact path="/schedule" component={SchedulePage} />
 
           </Switch>
         </Router>
