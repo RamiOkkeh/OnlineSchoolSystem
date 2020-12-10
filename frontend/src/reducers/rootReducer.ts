@@ -6,6 +6,7 @@ export interface State {
   schoolID: number;
   schools: any[];
   role: String;
+  subjects: any[];
   post: any[];
 }
 
@@ -15,6 +16,7 @@ const initState = {
   schoolID: 0,
   schools: [],
   role: "Student",
+  subjects: [],
   post: [
     {
       username: "rami",
@@ -49,6 +51,14 @@ const rootReducers = (state: State = initState, action: Actions) => {
     return state;
   }
   if (action.type === "SCHOOLS") {
+    if (Array.isArray(action.payload)) {
+      state.schools = action.payload;
+      return state;
+    }
+    state.schools.push(action.payload);
+    return state;
+  }
+  if (action.type === "SUBJECTS") {
     if (Array.isArray(action.payload)) {
       state.schools = action.payload;
       return state;

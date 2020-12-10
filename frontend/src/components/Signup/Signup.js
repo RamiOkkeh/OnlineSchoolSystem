@@ -71,14 +71,15 @@ const schoolCoder = function (string) {
   return Math.abs(hash);
 };
 
-const SignUp = function ({ role, schools, setUser, user }) {
+const SignUp = function ({ role, schools, setUser, user, subjects }) {
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [School, setSchool] = useState("");
+  const [School, setSchool] = useState({});
+  const [Subject, setSubject] = useState({});
   const [schoolCode, setSchoolCode] = useState("");
   const [marketing, setMarketing] = useState(false);
 
@@ -90,7 +91,8 @@ const SignUp = function ({ role, schools, setUser, user }) {
     e.preventDefault();
     let userInfo;
     if (role === "Teacher") {
-      let choice = schoolCoder(School);
+      let choice = schoolCoder(School.name);
+      console.log(choice);
       if (choice !== Number(schoolCode)) {
         alert("incorrect ID");
         return;
@@ -160,11 +162,15 @@ const SignUp = function ({ role, schools, setUser, user }) {
                     role === "Student"
                       ? {
                           userID: userInfo.id,
-                          schoolID: 2,
+                          schoolID: School.id,
                           classroomID: 1,
                         }
                       : role === "Teacher"
-                      ? { userID: userInfo.id, schoolID: 2, subjectID: 1 }
+                      ? {
+                          userID: userInfo.id,
+                          schoolID: School.id,
+                          subjectID: Subject.id,
+                        }
                       : { userID: userInfo.id }
                   ),
                 };
@@ -263,15 +269,15 @@ const SignUp = function ({ role, schools, setUser, user }) {
               <Grid>
                 <InputLabel id="School">School</InputLabel>
                 <Select
-                  value={School}
+                  value={School.name}
                   labelId="School"
                   color="primary"
                   className={classes.school}
                   onChange={(e) => setSchool(e.target.value)}
                 >
                   <MenuItem value="">----</MenuItem>
-                  {schools.map((elem) => (
-                    <MenuItem value={elem.name}>{elem.name}</MenuItem>
+                  {subjects.map((elem) => (
+                    <MenuItem value={elem}>{elem.name}</MenuItem>
                   ))}
                 </Select>
               </Grid>
@@ -280,6 +286,21 @@ const SignUp = function ({ role, schools, setUser, user }) {
             )}
             {role === "Teacher" ? (
               <Grid>
+                <InputLabel id="School">Subject</InputLabel>
+                <Select
+                  value={Subject.name}
+                  labelId="Subject"
+                  color="primary"
+                  // className={classes.school}
+                  onChange={(e) => {
+                    setSubject(e.target.value);
+                  }}
+                >
+                  <MenuItem value="">----</MenuItem>
+                  {subjects.map((elem) => (
+                    <MenuItem value={elem}>{elem.name}</MenuItem>
+                  ))}
+                </Select>
                 <TextField
                   variant="outlined"
                   required
@@ -348,6 +369,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     schools: state.schools,
+    subjects: state.subjects,
   };
 };
 

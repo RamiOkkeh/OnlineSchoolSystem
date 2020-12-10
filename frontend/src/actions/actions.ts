@@ -16,3 +16,9 @@ export const schools = (newState: object) => {
     payload: newState,
   };
 };
+export const subjects = (newState: object) => {
+  return {
+    type: "SUBJECTS",
+    payload: newState,
+  };
+};

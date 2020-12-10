@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 import SignUp from "../../components/Signup/Signup";
-import { schools } from "../../actions/actions";
+import { schools, subjects } from "../../actions/actions";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { State } from "../../reducers/rootReducer";
@@ -42,7 +42,7 @@ function getSteps() {
   ];
 }
 
-function SignupForm({ importSchools, user }: any) {
+function SignupForm({ importSchools, user, importSubjects }: any) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [role, setRole] = React.useState("Student");
@@ -59,7 +59,25 @@ function SignupForm({ importSchools, user }: any) {
         : "http://localhost:8000/school/";
     fetch(path, options)
       .then((data) => data.json())
-      .then((data) => importSchools(data));
+      .then((data) => {
+        console.log(data);
+        importSchools(data);
+      });
+
+    let options2 = {
+      method: "get",
+      headers: { "Content-Type": "application/json" },
+    };
+    let path2 =
+      process.env.NODE_ENV === "production"
+        ? "/subject/"
+        : "http://localhost:8000/subject/";
+    fetch(path2, options2)
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(data);
+        importSubjects(data);
+      });
   });
 
   const handleNext = () => {
@@ -146,6 +164,7 @@ function SignupForm({ importSchools, user }: any) {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     importSchools: (z: any) => dispatch(schools(z)),
+    importSubjects: (z: any) => dispatch(subjects(z)),
   };
 };
 
