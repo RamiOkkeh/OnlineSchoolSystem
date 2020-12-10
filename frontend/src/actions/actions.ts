@@ -10,3 +10,9 @@ export const createClass = (newState: object) => {
     payload: newState,
   };
 };
+export const schools = (newState: object) => {
+  return {
+    type: "SCHOOLS",
+    payload: newState,
+  };
+};

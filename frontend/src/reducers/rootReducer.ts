@@ -4,12 +4,14 @@ export interface State {
   classes: any[];
   user: object;
   schoolID: number;
+  schools: any[];
 }
 
 const initState = {
   classes: [],
   user: {},
   schoolID: 0,
+  schools: [],
 };
 
 const rootReducers = (state: State = initState, action: Actions) => {
@@ -25,6 +27,14 @@ const rootReducers = (state: State = initState, action: Actions) => {
       return state;
     }
     state.classes.push(action.payload);
+    return state;
+  }
+  if (action.type === "SCHOOLS") {
+    if (Array.isArray(action.payload)) {
+      state.schools = action.payload;
+      return state;
+    }
+    state.schools.push(action.payload);
     return state;
   }
   return state;

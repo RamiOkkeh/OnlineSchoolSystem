@@ -8,10 +8,16 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { connect } from "react-redux";
+import { setUser } from "../../actions/actions";
+import { Redirect } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -48,19 +54,48 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fef3f3",
     marginTop: "100px",
   },
+  school: {
+    width: "100px",
+  },
 }));
 
-export default function SignUp() {
+const schoolCoder = function (string) {
+  var hash = 0;
+  if (string.length === 0) {
+    return hash;
+  }
+  for (var i = 0; i < string.length; i++) {
+    var char = string.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+  }
+  return Math.abs(hash);
+};
+
+const SignUp = function ({ role, schools, setUser, user }) {
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [School, setSchool] = useState("");
+  const [schoolCode, setSchoolCode] = useState("");
   const [marketing, setMarketing] = useState(false);
+
+  // useEffect(() => {
+  //   console.log(schools);
+  // }, []);
 
   const submit = (e) => {
     e.preventDefault();
+    let userInfo;
+    if (role === "Teacher") {
+      let choice = schoolCoder(School);
+      if (choice !== Number(schoolCode)) {
+        alert("incorrect ID");
+        return;
+      }
+    }
     console.log(e.target);
     let options = {
       method: "POST",
@@ -70,6 +105,8 @@ export default function SignUp() {
         email,
         password: pass,
         marketing,
+        role,
+        // School,
       }),
     };
     let path =
@@ -79,10 +116,75 @@ export default function SignUp() {
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
-        localStorage.setItem("Authorization", `JWT ${data.access}`);
+        console.log(data);
+        userInfo = data;
+        let options = {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            password: pass,
+          }),
+        };
+        let path =
+          process.env.NODE_ENV === "production"
+            ? "/auth/jwt/create/"
+            : "http://localhost:8000/auth/jwt/create/";
+        fetch(path, options)
+          .then((data) => data.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("Authorization", `JWT ${data.access}`);
+            let options = {
+              method: "get",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `JWT ${data.access}`,
+              },
+            };
+            let path =
+              process.env.NODE_ENV === "production"
+                ? "/auth/users/me/"
+                : "http://localhost:8000/auth/users/me/";
+            fetch(path, options)
+              .then((data) => data.json())
+              .then((data) => {
+                console.log(data);
+                let options = {
+                  method: "post",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: localStorage.getItem("Authorization"),
+                  },
+                  body: JSON.stringify(
+                    role === "Student"
+                      ? {
+                          userID: userInfo.id,
+                          schoolID: 2,
+                          classroomID: 1,
+                        }
+                      : role === "Teacher"
+                      ? { userID: userInfo.id, schoolID: 2, subjectID: 1 }
+                      : { userID: userInfo.id }
+                  ),
+                };
+                let path =
+                  process.env.NODE_ENV === "production"
+                    ? `/${role.toLowerCase()}/`
+                    : `http://localhost:8000/${role.toLowerCase()}/`;
+                fetch(path, options)
+                  .then((data) => data.json())
+                  .then((data) => {
+                    console.log(data);
+                    setUser(data);
+                  });
+              });
+          });
       });
   };
-
+  if (role !== "Principal" && user.userID) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <Container className={classes.BG} component="main" maxWidth="xs">
       <CssBaseline />
@@ -157,6 +259,44 @@ export default function SignUp() {
                 }}
               />
             </Grid>
+            {role !== "Principal" ? (
+              <Grid>
+                <InputLabel id="School">School</InputLabel>
+                <Select
+                  value={School}
+                  labelId="School"
+                  color="primary"
+                  className={classes.school}
+                  onChange={(e) => setSchool(e.target.value)}
+                >
+                  <MenuItem value="">----</MenuItem>
+                  {schools.map((elem) => (
+                    <MenuItem value={elem.name}>{elem.name}</MenuItem>
+                  ))}
+                </Select>
+              </Grid>
+            ) : (
+              ""
+            )}
+            {role === "Teacher" ? (
+              <Grid>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="schoolID"
+                  label="schoolID"
+                  type="schoolID"
+                  id="schoolID"
+                  onChange={(e) => {
+                    setSchoolCode(e.target.value);
+                    console.log("id");
+                  }}
+                />
+              </Grid>
+            ) : (
+              ""
+            )}
             <Grid item xs={12}>
               <FormControlLabel
                 control={
@@ -197,4 +337,18 @@ export default function SignUp() {
       </Box>
     </Container>
   );
-}
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUser: (z) => dispatch(setUser(z)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    schools: state.schools,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
