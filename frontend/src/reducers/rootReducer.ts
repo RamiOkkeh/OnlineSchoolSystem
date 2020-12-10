@@ -4,7 +4,9 @@ export interface State {
   classes: any[];
   user: object;
   schoolID: number;
+  schools: any[];
   role: String;
+  subjects: any[];
   post: any[];
 }
 
@@ -12,8 +14,21 @@ const initState = {
   classes: [],
   user: {},
   schoolID: 0,
+  schools: [],
   role: "Student",
-  post: [{ username: 'rami', data: 'December:12:2020', messege: "lasjfksagfkkjdvfjhsad" }, { username: 'rami', data: 'December:12:2020', messege: "lasjfksagfkkjdvfjhsad" }]
+  subjects: [],
+  post: [
+    {
+      username: "rami",
+      data: "December:12:2020",
+      messege: "lasjfksagfkkjdvfjhsad",
+    },
+    {
+      username: "rami",
+      data: "December:12:2020",
+      messege: "lasjfksagfkkjdvfjhsad",
+    },
+  ],
 };
 
 //Principal
@@ -33,6 +48,22 @@ const rootReducers = (state: State = initState, action: Actions) => {
       return state;
     }
     state.classes.push(action.payload);
+    return state;
+  }
+  if (action.type === "SCHOOLS") {
+    if (Array.isArray(action.payload)) {
+      state.schools = action.payload;
+      return state;
+    }
+    state.schools.push(action.payload);
+    return state;
+  }
+  if (action.type === "SUBJECTS") {
+    if (Array.isArray(action.payload)) {
+      state.schools = action.payload;
+      return state;
+    }
+    state.schools.push(action.payload);
     return state;
   }
   return state;

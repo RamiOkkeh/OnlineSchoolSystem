@@ -9,7 +9,7 @@ import SignupForm from "./pages/SignupForm/SignupForm";
 import SignIn from "./pages/Signin/Signin";
 import Home from "./pages/Home/Home";
 import { connect } from "react-redux";
-import { createClass } from "./actions/actions";
+import { createClass, setUser } from "./actions/actions";
 import { Dispatch } from "redux";
 import React, { useEffect } from "react";
 import Bills from "./pages/bills/Bills"
@@ -24,8 +24,25 @@ const theme = createMuiTheme({
   },
 });
 
-const App = ({ user, importClass }: any) => {
+const App = ({ user, importClass, setUser }: any) => {
   useEffect(() => {
+    let token = localStorage.getItem("Authorization");
+    if (token) {
+      let options = {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      };
+      let path =
+        process.env.NODE_ENV === "production"
+          ? "/auth/users/me/"
+          : "http://localhost:8000/auth/users/me/";
+      fetch(path, options)
+        .then((data) => data.json())
+        .then((data) => setUser(data));
+    }
     if (user.schoolID) {
       let options = {
         method: "get",
@@ -76,6 +93,7 @@ const App = ({ user, importClass }: any) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     importClass: (z: any) => dispatch(createClass(z)),
+    setUser: (z: any) => dispatch(setUser(z)),
   };
 };
 
