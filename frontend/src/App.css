@@ -36,10 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
 body {
   background-image: url("./BG.png");
   background-size: 250px 200px;
 }
+
 .hide {
   display: none;
 }

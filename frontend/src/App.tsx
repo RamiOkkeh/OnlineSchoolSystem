@@ -12,8 +12,11 @@ import { connect } from "react-redux";
 import { createClass } from "./actions/actions";
 import { Dispatch } from "redux";
 import React, { useEffect } from "react";
+import Bills from "./pages/bills/Bills"
+import ProfilePage from "./pages/profile/profilePage"
+import DashboardPage from "./pages/dashboardPage/DashboardPage"
+import SchedulePage from './pages/schedulePage/SchedulePage'
 import "./App.css";
-
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -52,6 +55,11 @@ const App = ({ user, importClass }: any) => {
             <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
             <Route path="/classes" component={Classes} />
+            <Route exact path="/bills" component={Bills} />
+            <Route exact path="/profile" component={ProfilePage} />
+            <Route exact path="/dashboard" component={DashboardPage} />
+            <Route exact path="/schedule" component={SchedulePage} />
+
           </Switch>
         </Router>
       </div>
