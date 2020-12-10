@@ -106,6 +106,7 @@ const Quiz = ()=>{
       ];
       
       const [current,setCurrent] = useState(0);
+      // eslint-disable-next-line no-unused-vars
       const [dataSet1,setDataSet] = useState(dataSet);
       const [correct,setCorrect] = useState(0);
       const [incorrect,setIncorrect] = useState(0); 
@@ -114,21 +115,30 @@ const Quiz = ()=>{
      // end constructor
     
     const handleClick = (choice)=> {
-      if (choice == dataSet[current].correct) {
+      console.log('cc',choice)
+      console.log('cb',dataSet)
+      console.log('current',current)
+
+
+      if (choice === dataSet[current].correct) {
         setCorrect(correct + 1)
+        // console.log('tosecorrect',correct)
       } else {
         setIncorrect(incorrect + 1)
       }
       
-      if (current == 9) {
+      if (current === 9) {
+        // eslint-disable-next-line no-const-assign
         setCurrent(current= 0)
+        // eslint-disable-next-line no-const-assign
         setIncorrect(incorrect= 0)
+        // eslint-disable-next-line no-const-assign
         setCorrect(correct=0)
       } else {
         setCurrent(current + 1) 
       }
     }
-   
+  
     
       return (
 
@@ -154,7 +164,8 @@ const Quiz = ()=>{
       height: 50,
       color: "blue"
     }
-    console.log(props)
+    
+    console.log('answer',props)
     return(
       <div>
         <button style={style} onClick={() => props.handleClick(props.choice)}>{props.answer}</button>

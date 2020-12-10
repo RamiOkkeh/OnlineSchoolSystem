@@ -8,6 +8,7 @@ import { State } from "./reducers/rootReducer";
 import SignUp from "./pages/Signup/Signup";
 import SignIn from "./pages/Signin/Signin";
 import Home from "./pages/Home/Home";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Dispatch } from "redux";
 import React from "react";
 import Bills from "./pages/bills/Bills"
@@ -15,7 +16,8 @@ import ProfilePage from "./pages/profile/profilePage"
 import DashboardPage from "./pages/dashboardPage/DashboardPage"
 import SchedulePage from './pages/schedulePage/SchedulePage'
 import TestPage from './pages/testpage/TestPage'
-import Quiz from './components/Test/Testone'
+import Quiz from './components/test/Testone'
+// import Quizz from './components/test/testtwo'
 import "./App.css";
 import { connect } from "react-redux";
 const theme = createMuiTheme({
@@ -43,6 +45,7 @@ const App = () => {
             <Route exact path="/schedule" component={SchedulePage} />
             <Route exact path="/tests" component={TestPage} />
             <Route exact path="/test1" component={Quiz} />
+            {/* <Route exact path="/test2" component={Quizz} /> */}
 
 
 
