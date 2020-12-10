@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "classrooms",
     "subjects",
     'corsheaders',
+    'payments',
+    'posts',
 ]
 
 MIDDLEWARE = [

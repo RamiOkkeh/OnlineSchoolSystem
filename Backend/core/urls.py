@@ -28,6 +28,8 @@ urlpatterns = [
     path("school/", include("schools.urls")),
     path("classroom/", include("classrooms.urls")),
     path("subject/", include("subjects.urls")),
+    path("payment/", include("payments.urls")),
+    path("post/", include("posts.urls")),
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]

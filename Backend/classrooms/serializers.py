@@ -13,4 +13,4 @@ class ClassroomCreateSerializer(serializers.ModelSerializer):
     students = StudentCreateSerializer(many=True,read_only=True)
     class Meta:
         model = Classroom
-        fields = ('id',"schoolID", "name" ,'subjects', 'students')
+        fields = ('id',"schoolID", "name" ,'subjects', 'students' , 'schedule')

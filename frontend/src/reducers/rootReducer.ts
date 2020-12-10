@@ -5,6 +5,8 @@ export interface State {
   user: object;
   schoolID: number;
   schools: any[];
+  role: String;
+  post: any[];
 }
 
 const initState = {
@@ -12,7 +14,24 @@ const initState = {
   user: {},
   schoolID: 0,
   schools: [],
+  role: "Student",
+  post: [
+    {
+      username: "rami",
+      data: "December:12:2020",
+      messege: "lasjfksagfkkjdvfjhsad",
+    },
+    {
+      username: "rami",
+      data: "December:12:2020",
+      messege: "lasjfksagfkkjdvfjhsad",
+    },
+  ],
 };
+
+//Principal
+//Teacher
+//Student
 
 const rootReducers = (state: State = initState, action: Actions) => {
   if (action.type === "SET_USER") {
