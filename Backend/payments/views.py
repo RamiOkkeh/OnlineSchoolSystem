@@ -38,3 +38,9 @@ def checkout(request):
     print(request.data)
     Payment.objects.filter(studentID=request.data['userID']).update(paid=True, token = request.data['token'],payDate=date.today())
     return Response({"success": True})
+
+@api_view(['POST'])
+def details(request):
+    studentPay = Payment.objects.all().filter(studentID=request.data['studentID'])
+    serializer = PaymentCreateSerializer(studentPay, many=True)
+    return Response(serializer.data)
