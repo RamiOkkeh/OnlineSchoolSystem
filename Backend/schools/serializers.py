@@ -9,4 +9,4 @@ class SchoolCreateSerializer(serializers.ModelSerializer):
     students = StudentCreateSerializer(many=True,read_only=True)
     class Meta:
         model = School
-        fields = ("name", "address", "schoolCode", "classrooms" ,"students")
+        fields = ("id" ,"name", "address", "schoolCode", "classrooms" ,"students")
