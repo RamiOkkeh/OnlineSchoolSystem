@@ -8,14 +8,16 @@ import { State } from "./reducers/rootReducer";
 import SignUp from "./pages/Signup/Signup";
 import SignIn from "./pages/Signin/Signin";
 import Home from "./pages/Home/Home";
-import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import React from "react";
 import Bills from "./pages/bills/Bills"
 import ProfilePage from "./pages/profile/profilePage"
 import DashboardPage from "./pages/dashboardPage/DashboardPage"
 import SchedulePage from './pages/schedulePage/SchedulePage'
+import TestPage from './pages/testpage/TestPage'
+import Quiz from './components/Test/Testone'
 import "./App.css";
+import { connect } from "react-redux";
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -39,6 +41,10 @@ const App = () => {
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/schedule" component={SchedulePage} />
+            <Route exact path="/tests" component={TestPage} />
+            <Route exact path="/test1" component={Quiz} />
+
+
 
           </Switch>
         </Router>
