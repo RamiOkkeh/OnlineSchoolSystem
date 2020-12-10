@@ -178,6 +178,7 @@ const Quiz = ()=>{
     for (let i = 0; i < props.dataSet.answers.length; i++) {
       answers.push(<Answer choice={i} handleClick={props.handleClick} answer={props.dataSet.answers[i]} />)
     }
+    console.log('answerLIST',answers)
     return(
       <div>
         {answers}
