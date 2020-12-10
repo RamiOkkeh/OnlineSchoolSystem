@@ -7,6 +7,7 @@ from schools.models import School
 class Classroom(models.Model):
     schoolID = models.ForeignKey(School, on_delete=models.CASCADE, related_name='classrooms')
     name = models.CharField(max_length=250)
+    schedule = models.JSONField(default=dict)
 
     def __str__(self):
         return self.name

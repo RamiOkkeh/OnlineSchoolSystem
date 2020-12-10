@@ -3,6 +3,7 @@ from payments.models import Payment
 
 
 class PaymentCreateSerializer(serializers.ModelSerializer):
+    studentName = serializers.CharField(source='studentID.userID.name', read_only=True)
     class Meta:
         model = Payment
-        fields = ("studentID", "schoolID", "token", "amount" ,"date")
+        fields = ("studentID", "schoolID", "studentName", "token", "amount", "semester" ,"dueDate", "payDate", "paid")

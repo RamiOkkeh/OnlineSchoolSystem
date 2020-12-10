@@ -20,3 +20,10 @@ def assignClass(request):
     # updateStudent.classroomID = request.data['assign']
     Student.objects.filter(userID=request.data['userID']).update(classroomID=request.data['classroomID'])
     return Response({"success": True})
+
+
+@api_view(['POST'])
+def details(request):
+    student = Student.objects.all().filter(userID=request.data['userID'])
+    serializer = StudentCreateSerializer(student, many=True)
+    return Response(serializer.data)

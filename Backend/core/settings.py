@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "subjects",
     'corsheaders',
     'payments',
+    'posts',
 ]
 
 MIDDLEWARE = [
