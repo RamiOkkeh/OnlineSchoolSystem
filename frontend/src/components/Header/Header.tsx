@@ -46,11 +46,11 @@ function Header() {
             className={classes.flex}
           >
             {nav.map(({ title, path }) => (
-              <a href={path} key={title} className={classes.links}>
+              <Link to={path} key={title} className={classes.links}>
                 <ListItem button>
                   <ListItemText primary={title} />
                 </ListItem>
-              </a>
+              </Link>
             ))}
           </List>
         </Container>
