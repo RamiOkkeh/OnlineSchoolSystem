@@ -6,6 +6,7 @@ export interface State {
   user: object;
   role :String;
   post:any[];
+  profile:any[];
 }
 
 const initState = {
@@ -13,7 +14,8 @@ const initState = {
   isLogged: false,
   user: {},
   role:"Student",
-  post:[{username:'rami',data:'December:12:2020',messege:"lasjfksagfkkjdvfjhsad"},{username:'rami',data:'December:12:2020',messege:"lasjfksagfkkjdvfjhsad"}]
+  post:[{username:'rami',data:'December:12:2020',messege:"lasjfksagfkkjdvfjhsad"},{username:'ameed',data:'December:15:2020',messege:"lasjfksagfkkjdvfjhsad"},{username:'Asem Basher',data:'December:1:2020',messege:"lasjfksagfkkjdvfjhsad"}],
+  profile:[{username:'momenHanbli',Email:"momo123@gmail.com",numofsub:"7"}]
 };  
 
 //Principal

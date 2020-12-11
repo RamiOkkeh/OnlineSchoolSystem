@@ -4,14 +4,21 @@ import ProfileTeacher from "../../components/profile/profileTeacher"
 import ProfilePrincipal from "../../components/profile/profilePrincipal"
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
+import { profile } from 'console';
 
 function ProfilePage({ role }: any) {
-    console.log(role);
+   
     return (
         <div>
 
             {role === "Student" ?
-                <Profile /> :
+
+          
+            
+                <Profile  />
+            
+                 :
+
                 role === "Teacher" ?
                     <ProfileTeacher /> : role === "Principal" ?
                         <ProfilePrincipal /> : <></>
@@ -22,7 +29,12 @@ function ProfilePage({ role }: any) {
 
 const mapStateToProps = (state: State) => {
     return {
-        role: state.role
+        role: state.role,
     };
 };
 export default connect(mapStateToProps)(ProfilePage);
+
+
+// profile.map((el:any,i:any)=>(
+//     <Profile data={el} key={i} />
+//     ))
