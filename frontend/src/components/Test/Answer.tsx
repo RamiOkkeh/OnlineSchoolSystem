@@ -7,7 +7,7 @@ import React from 'react'
       color: "blue"
     }
     
-    console.log('answerssssss',props)
+    // console.log('answerssssss',props)
     return(
       <div>
         <button style={style} onClick={() => props.handleClick(props.choice)}>{props.answer}</button>

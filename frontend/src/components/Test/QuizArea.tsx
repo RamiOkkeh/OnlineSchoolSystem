@@ -24,7 +24,7 @@ const QuizArea=(props:any) =>{
     //   float: "left",
     //   padding: "0 2em"
     // }
-    console.log('aaaaa',props)
+    // console.log('aaaaa',props)
     return(
     //   <div style={style} className="style1">
       <div className="style1">

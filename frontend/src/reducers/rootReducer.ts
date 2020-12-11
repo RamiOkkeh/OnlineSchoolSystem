@@ -13,7 +13,7 @@ const initState = {
   classes: ["#99ff66", "#99ff66", "#99ff66", "#99ff66", "#99ff66"],
   isLogged: false,
   user: {},
-  role:"Teacher",
+  role:"Principal",
   post:[{username:'rami',data:'December:12:2020',messege:"lasjfksagfkkjdvfjhsad"},{username:'ameed',data:'December:15:2020',messege:"lasjfksagfkkjdvfjhsad"},{username:'Asem Basher',data:'December:1:2020',messege:"lasjfksagfkkjdvfjhsad"}],
   profile:[{username:'momenHanbli',Email:"momo123@gmail.com",numofsub:"7"}]
 };  

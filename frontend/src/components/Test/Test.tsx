@@ -18,6 +18,8 @@ function Test(): any {
     question: any;
     answer: string[];
     correct: number;
+    incorrect:string[];
+    // incorrect:number;
 
   }
 
@@ -137,11 +139,14 @@ function Test(): any {
   // end constructor
 
   const handleClick = (choice: any) => {
-    console.log(dataSet1[current],current)
+    // console.log('correct',dataSet1[current].correct)
+    console.log('correct',correct,dataSet1[current].correct,choice)
     if (choice === dataSet1[current].correct) {
       setCorrect(correct + 1)
+      console.log('correct',correct,dataSet1[current].correct,choice)
     } else {
       setIncorrect(incorrect + 1)
+      // console.log("incorrect",incorrect)
     }
 
     if (current === 9) {
@@ -150,7 +155,10 @@ function Test(): any {
       setCorrect(0)
     } else {
       setCurrent(current + 1)
+      // console.log('current',current)
     }}
+
+    // console.log('correct',correct)
     return (
 
       <div style={{ marginLeft: "14rem", marginTop: "3rem" }}>

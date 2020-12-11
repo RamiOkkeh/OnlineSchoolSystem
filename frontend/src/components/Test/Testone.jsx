@@ -115,14 +115,14 @@
 //      // end constructor
     
 //     const handleClick = (choice)=> {
-//       console.log('cc',choice)
-//       console.log('cb',dataSet)
-//       console.log('current',current)
+//       // console.log('cc',choice)
+//       // console.log('cb',dataSet)
+//       // console.log('current',current)
 
 
 //       if (choice === dataSet[current].correct) {
 //         setCorrect(correct + 1)
-//         // console.log('tosecorrect',correct)
+//         console.log('tosecorrect',correct)
 //       } else {
 //         setIncorrect(incorrect + 1)
 //       }
@@ -165,7 +165,7 @@
 //       color: "blue"
 //     }
     
-//     console.log('answer',props)
+//     // console.log('answer',props)
 //     return(
 //       <div>
 //         <button style={style} onClick={() => props.handleClick(props.choice)}>{props.answer}</button>
@@ -178,7 +178,7 @@
 //     for (let i = 0; i < props.dataSet.answers.length; i++) {
 //       answers.push(<Answer choice={i} handleClick={props.handleClick} answer={props.dataSet.answers[i]} />)
 //     }
-//     console.log('answerLIST',answers)
+//     // console.log('answerLIST',answers)
 //     return(
 //       <div>
 //         {answers}

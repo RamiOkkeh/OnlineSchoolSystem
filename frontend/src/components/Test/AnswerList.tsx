@@ -19,11 +19,11 @@ import Answer from './Answer'
 
 const AnswerList=(props:any) =>{
    
-    console.log('moooomo',props)
+    // console.log('moooomo',props)
     return(
       <div>
         {
-          props.dataSet.answers.map( ( answer:any,i:any ) => <Answer key={i} answer={answer} handleClick={props.handleClick}/> )
+          props.dataSet.answers.map( ( answer:any,i:any ) => <Answer choice={i} key={i} answer={answer} handleClick={props.handleClick}/> )
         }
       </div>
     )

@@ -22,7 +22,7 @@ function ScoreArea(props:any) {
     //   float: "left",
     //   padding: "2em"
     // }
-    console.log('ameeed',props)
+    // console.log('ameeed',props)
     return(
     //   <div style={style} >
       <div  className="style2" >

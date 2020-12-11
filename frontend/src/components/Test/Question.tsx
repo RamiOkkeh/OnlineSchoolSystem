@@ -23,7 +23,7 @@ const Question=(props:any)=> {
       height: 50,
       color: "blue"
     }
-    console.log(props)
+    // console.log(props)
     return(
       <div>
         <button style={style} onClick={() => props.handleClick(props.choice)}>{props.answer}</button>
