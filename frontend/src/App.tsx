@@ -16,7 +16,7 @@ import ProfilePage from "./pages/profile/profilePage"
 import DashboardPage from "./pages/dashboardPage/DashboardPage"
 import SchedulePage from './pages/schedulePage/SchedulePage'
 import TestPage from './pages/testpage/TestPage'
-import Quiz from './components/test/Testone'
+// import Quiz from './components/test/Testone'
 // import Quizz from './components/test/testtwo'
 import "./App.css";
 import { connect } from "react-redux";
@@ -44,7 +44,7 @@ const App = () => {
             <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/schedule" component={SchedulePage} />
             <Route exact path="/tests" component={TestPage} />
-            <Route exact path="/test1" component={Quiz} />
+            {/* <Route exact path="/test1" component={Quiz} /> */}
             {/* <Route exact path="/test2" component={Quizz} /> */}
 
 
