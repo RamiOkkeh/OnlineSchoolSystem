@@ -1,4 +1,4 @@
-.style1{
+.style1 {
     width: 25%;
     display: block;
     text-align: center;
@@ -7,10 +7,10 @@
     padding: 0 2em;
 }
 
-.style{
-       width: 100%;
-       display: block;
-       text-align: left;
-       float: left;
-       padding: 2em;
+.style {
+    width: 100%;
+    display: block;
+    text-align: left;
+    float: left;
+    padding: 2em;
 }

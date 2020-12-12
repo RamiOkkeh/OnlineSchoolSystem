@@ -18,8 +18,8 @@ import DashboardPage from "./pages/dashboardPage/DashboardPage"
 import SchedulePage from './pages/schedulePage/SchedulePage'
 import TestPage from './pages/testpage/TestPage'
 import StatsPage from './pages/stats/StatsPage'
-
 import "./App.css";
+
 const theme = createMuiTheme({
   palette: {
     primary: green,
