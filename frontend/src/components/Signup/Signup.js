@@ -152,6 +152,7 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
               .then((data) => data.json())
               .then((data) => {
                 console.log(data);
+                setUser(data);
                 let options = {
                   method: "post",
                   headers: {
@@ -165,25 +166,25 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
                           schoolID: School.id,
                           classroomID: 1,
                         }
-                      : role === "Teacher"
-                      ? {
+                      : {
                           userID: userInfo.id,
                           schoolID: School.id,
                           subjectID: Subject.id,
                         }
-                      : { userID: userInfo.id }
                   ),
                 };
-                let path =
-                  process.env.NODE_ENV === "production"
-                    ? `/${role.toLowerCase()}/`
-                    : `http://localhost:8000/${role.toLowerCase()}/`;
-                fetch(path, options)
-                  .then((data) => data.json())
-                  .then((data) => {
-                    console.log(data);
-                    setUser(data);
-                  });
+                if (role !== "Principal") {
+                  let path =
+                    process.env.NODE_ENV === "production"
+                      ? `/${role.toLowerCase()}/`
+                      : `http://localhost:8000/${role.toLowerCase()}/`;
+                  fetch(path, options)
+                    .then((data) => data.json())
+                    .then((data) => {
+                      console.log(data);
+                      setUser(data);
+                    });
+                }
               });
           });
       });

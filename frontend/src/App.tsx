@@ -61,24 +61,22 @@ const App = ({ user, importClass, setUser }: any) => {
             .then((data) => {
               console.log(data[0]);
               setUser(data[0]);
+              let options = {
+                method: "post",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ schoolID: data[0].schoolID }),
+              };
+              let path =
+                process.env.NODE_ENV === "production"
+                  ? "/classroom/getSchoolClasses"
+                  : "http://localhost:8000/classroom/getSchoolClasses";
+              fetch(path, options)
+                .then((data) => data.json())
+                .then((data) => {
+                  console.log(data);
+                  importClass(data);
+                });
             });
-        });
-    }
-    if (user.schoolID) {
-      let options = {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ schoolID: user.schoolID }),
-      };
-      let path =
-        process.env.NODE_ENV === "production"
-          ? "/classroom/getSchoolClasses"
-          : "http://localhost:8000/classroom/getSchoolClasses";
-      fetch(path, options)
-        .then((data) => data.json())
-        .then((data) => {
-          console.log(data);
-          importClass(data);
         });
     }
   }, []);

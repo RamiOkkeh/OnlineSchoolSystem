@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     position: "relative",
     left: "100px",
-    backgroundColor: "#fef3f3",
+    // backgroundColor: "#fef3f3",
     padding: "100px",
   },
   backButton: {
@@ -81,7 +81,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
   });
 
   const handleNext = () => {
-    if (activeStep === 1 && !user.userID) {
+    if (activeStep === 1 && !localStorage.getItem("Authorization")) {
       alert("you are not signed in");
     } else {
       setActiveStep(activeStep + 1);

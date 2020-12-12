@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'payments',
     'posts',
+    'principals',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +108,7 @@ EMAIL_USE_TLS = True
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    # IsAuthenticated
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
     ],
