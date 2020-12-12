@@ -13,7 +13,6 @@ function Test(): any {
     answer: string[];
     correct: number;
     incorrect: string[];
-
   }
 
 
