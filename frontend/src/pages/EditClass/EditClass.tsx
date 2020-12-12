@@ -3,6 +3,7 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 import EditStudent from "../../components/EditStudent/EditStudent";
+import { Redirect } from "react-router-dom";
 import "./EditCalss.css";
 
 function EditClass({ user, waiting }: any) {
@@ -28,6 +29,9 @@ function EditClass({ user, waiting }: any) {
         });
     });
   };
+  if (!waiting.students) {
+    return <Redirect to="dashboard" />;
+  }
   return (
     <div className="center">
       <Grid container direction="column" justify="center" alignItems="center">
