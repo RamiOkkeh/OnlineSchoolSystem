@@ -1,9 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-redeclare */
-// /* eslint-disable @typescript-eslint/no-unused-vars */
-// /* eslint-disable @typescript-eslint/no-redeclare */
-
-
 import React, { useState } from 'react'
 import './test.css'
 import ScoreArea from './scoreArea'
@@ -14,16 +8,17 @@ import QuizArea from './QuizArea'
 
 function Test(): any {
 
-  type dataSet = {
+  type dataSetType = {
     question: any;
     answer: string[];
     correct: number;
     incorrect:string[];
-    // incorrect:number;
 
   }
 
-  var dataSet = [
+
+  // to do get request fetch exam data
+  var dataSetExample = [
     {
       question: "What is 8 x 1?",
       answers: [
@@ -126,33 +121,25 @@ function Test(): any {
     },
   ];
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [current, setCurrent] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [dataSet1, setDataSet] = useState(dataSet);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [dataSet, setDataSet] = useState(dataSetExample);
   const [correct, setCorrect] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [incorrect, setIncorrect] = useState(0);
 
-
-  // end constructor
-
   const handleClick = (choice: any) => {
-    // console.log('correct',dataSet1[current].correct)
-    console.log('correct',correct,dataSet1[current].correct,choice)
-    if (choice === dataSet1[current].correct) {
+    console.log('correct',correct,dataSet[current].correct,choice)
+    if (choice === dataSet[current].correct) {
       setCorrect(correct + 1)
-      console.log('correct',correct,dataSet1[current].correct,choice)
+      console.log('correct',correct,dataSet[current].correct,choice)
     } else {
       setIncorrect(incorrect + 1)
-      // console.log("incorrect",incorrect)
     }
 
     if (current === 9) {
       setCurrent(0)
       setIncorrect(0)
       setCorrect(0)
+      // to do post request add test result to db
     } else {
       setCurrent(current + 1)
       // console.log('current',current)
@@ -163,19 +150,9 @@ function Test(): any {
 
       <div style={{ marginLeft: "14rem", marginTop: "3rem" }}>
         <ScoreArea correct={correct} incorrect={incorrect} />
-        <QuizArea handleClick={handleClick} dataSet={dataSet1[current]} />
+        <QuizArea handleClick={handleClick} dataSet={dataSet[current]} />
       </div>
     )
   
 }
 export default Test
-
-// import React from 'react'
-
-// export default function Test() {
-//   return (
-//     <div>
-
-//     </div>
-//   )
-// }

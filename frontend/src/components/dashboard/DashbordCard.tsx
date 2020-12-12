@@ -37,12 +37,10 @@ export default function RecipeReviewCard({data}:any) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [favourite , setFavourite]= useState("")
 
 //   const Post = (userID:any,text:any) => {

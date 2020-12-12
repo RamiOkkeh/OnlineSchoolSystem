@@ -7,16 +7,8 @@ import {
     SplineSeries,
 } from '@devexpress/dx-react-chart-material-ui';
 
-
-
-
-
-
-
-
-
 // {console.log('aaa',dataa)}
-const Charttwo = ({testdata}:any) => {
+const ChartComp = ({testdata}:any) => {
 
     const data = [
         //   { argument: 'int', value: 0 },
@@ -43,4 +35,4 @@ const Charttwo = ({testdata}:any) => {
 )};
 
 
-export default Charttwo
+export default ChartComp

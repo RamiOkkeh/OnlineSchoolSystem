@@ -7,18 +7,12 @@ import { State } from "../../reducers/rootReducer";
 import { profile } from 'console';
 
 function ProfilePage({ role }: any) {
-   
+
     return (
         <div>
-
             {role === "Student" ?
-
-          
-            
-                <Profile  />
-            
-                 :
-
+                <Profile />
+                :
                 role === "Teacher" ?
                     <ProfileTeacher /> : role === "Principal" ?
                         <ProfilePrincipal /> : <></>
@@ -33,8 +27,3 @@ const mapStateToProps = (state: State) => {
     };
 };
 export default connect(mapStateToProps)(ProfilePage);
-
-
-// profile.map((el:any,i:any)=>(
-//     <Profile data={el} key={i} />
-//     ))
