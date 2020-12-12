@@ -1,20 +1,14 @@
 import React , {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,6 +55,7 @@ export default function RecipeReviewCard({data}:any) {
 
 console.log(data)
   return (
+    // console.log(post)
       <div >
     <Card className={classes.root} style={{marginLeft:"13rem",marginTop:"5rem",width:"65rem" ,marginBottom:"3rem"}} >
      <div style={{display:"flex" }}>
@@ -72,10 +67,10 @@ console.log(data)
         />
         <div>
         <div style={{paddingTop:"1.7rem"}}>
-      Ameed Asmah 
+      {data.username}
         </div>
         <div>
-      December 9, 2020
+      {data.data}
         </div>
         </div>
       </div>

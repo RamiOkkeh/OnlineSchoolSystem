@@ -3,21 +3,28 @@ export type Actions = { type: string; payload: any };
 export interface State {
   classes: any[];
   user: object;
+  profile:any[];
   schoolID: number;
   schools: any[];
   role: String;
   subjects: any[];
   waiting: object;
   post: any[];
+  test:any[];
 }
 
 const initState = {
   classes: [],
-  user: {},
+  user: {
+    date:"12-dec-2020",
+    semester:"first",
+    totalprice:"125$"
+  },
   schoolID: 0,
   schools: [],
-  role: "Student",
+  role: "Principal",
   subjects: [],
+  profile:[],
   waiting: {},
   post: [
     {
@@ -26,12 +33,59 @@ const initState = {
       messege: "lasjfksagfkkjdvfjhsad",
     },
     {
-      username: "rami",
-      data: "December:12:2020",
+      username: "ameed",
+      data: "December:5:2020",
+      messege: "lasjfksagfkkjdvfjhsad",
+    },
+    {
+      username: "asem",
+      data: "December:5:2020",
       messege: "lasjfksagfkkjdvfjhsad",
     },
   ],
-};
+  test : [{
+    subjectID:1,
+    subjectName:'math',
+    studentID:2,
+    studentName:'Ameed Asmah',
+    schooldID :1,
+    classroomID:1,
+      first:60,
+      second:80,
+      final:85,
+    },{
+    subjectID:2,
+    subjectName:'Arabic',
+    studentID:2,
+    studentName:'Ameed Asmah',
+    schooldID :1,
+    classroomID:1,
+      first:90,
+      second:80,
+      final:100,
+    },{
+    subjectID:3,
+    subjectName:'English',
+    studentID:2,
+    studentName:'Ameed Asmah',
+    schooldID :1,
+    classroomID:1,
+      first:70,
+      second:60,
+      final:70,
+    },
+    {
+      subjectID:4,
+      subjectName:'phyiscs',
+      studentID:2,
+    studentName:'Ameed Asmah',
+      schooldID :1,
+      classroomID:1,
+        first:50,
+        second:80,
+        final:40,
+    }]}
+
 
 //Principal
 //Teacher
