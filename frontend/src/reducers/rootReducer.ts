@@ -60,10 +60,10 @@ const rootReducers = (state: State = initState, action: Actions) => {
   }
   if (action.type === "SUBJECTS") {
     if (Array.isArray(action.payload)) {
-      state.schools = action.payload;
+      state.subjects = action.payload;
       return state;
     }
-    state.schools.push(action.payload);
+    state.subjects.push(action.payload);
     return state;
   }
   return state;
