@@ -4,7 +4,11 @@ import "./Bills.css";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
 
-function Bills({ user }: any) {
+function AssignBills({ user }: any) {
+
+    // for ameed to create 
+    // principal assign bills 
+
     console.log(user);
     const [payments, setPayments] = useState([])
     useEffect(() => {
@@ -58,4 +62,4 @@ const mapStateToProps = (state: State) => {
     return { user: state.user };
 };
 
-export default connect(mapStateToProps)(Bills);
+export default connect(mapStateToProps)(AssignBills);
