@@ -9,6 +9,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import { connect } from "react-redux";
+import { State } from "../../reducers/rootReducer";
+import { setUser } from "../../actions/actions";
+import { Dispatch } from "redux";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,7 +54,7 @@ const schoolCoder = function (string: any) {
   return Math.abs(hash);
 };
 
-function CreateSchool({ role }: any) {
+function CreateSchool({ role, user, setUser }: any) {
   const classes = useStyles();
 
   const [name, setName] = useState("");
@@ -73,7 +78,25 @@ function CreateSchool({ role }: any) {
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
-        console.log(data);
+        console.log(data, user);
+        let options: any = {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("Authorization"),
+          },
+          body: JSON.stringify({ schoolID: data.id, userID: user.id }),
+        };
+        let path =
+          process.env.NODE_ENV === "production"
+            ? "/principal/"
+            : "http://localhost:8000/principal/";
+        fetch(path, options)
+          .then((data) => data.json())
+          .then((data) => {
+            console.log(data);
+            setUser(data);
+          });
       });
   }
   if (role !== "Principal") {
@@ -140,4 +163,16 @@ function CreateSchool({ role }: any) {
   );
 }
 
-export default CreateSchool;
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    setUser: (z: any) => dispatch(setUser(z)),
+  };
+};
+
+const mapPropsToState = (state: State) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapPropsToState, mapDispatchToProps)(CreateSchool);

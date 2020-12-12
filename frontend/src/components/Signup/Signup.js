@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -16,7 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
-import { setUser } from "../../actions/actions";
+import { setUser, subjects } from "../../actions/actions";
 import { Redirect } from "react-router-dom";
 
 function Copyright() {
@@ -71,7 +71,14 @@ const schoolCoder = function (string) {
   return Math.abs(hash);
 };
 
-const SignUp = function ({ role, schools, setUser, user, subjects }) {
+const SignUp = function ({
+  role,
+  schools,
+  setUser,
+  user,
+  subjects,
+  importSubjects,
+}) {
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState("");
@@ -80,12 +87,13 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
   const [pass, setPass] = useState("");
   const [School, setSchool] = useState({});
   const [Subject, setSubject] = useState({});
+  const [Subjects, setSubjects] = useState([]);
   const [schoolCode, setSchoolCode] = useState("");
   const [marketing, setMarketing] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(schools);
-  // }, []);
+  useEffect(() => {
+    console.log(Subject);
+  }, [Subject]);
 
   const submit = (e) => {
     e.preventDefault();
@@ -152,6 +160,7 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
               .then((data) => data.json())
               .then((data) => {
                 console.log(data);
+                setUser(data);
                 let options = {
                   method: "post",
                   headers: {
@@ -165,25 +174,25 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
                           schoolID: School.id,
                           classroomID: 1,
                         }
-                      : role === "Teacher"
-                      ? {
+                      : {
                           userID: userInfo.id,
                           schoolID: School.id,
                           subjectID: Subject.id,
                         }
-                      : { userID: userInfo.id }
                   ),
                 };
-                let path =
-                  process.env.NODE_ENV === "production"
-                    ? `/${role.toLowerCase()}/`
-                    : `http://localhost:8000/${role.toLowerCase()}/`;
-                fetch(path, options)
-                  .then((data) => data.json())
-                  .then((data) => {
-                    console.log(data);
-                    setUser(data);
-                  });
+                if (role !== "Principal") {
+                  let path =
+                    process.env.NODE_ENV === "production"
+                      ? `/${role.toLowerCase()}/`
+                      : `http://localhost:8000/${role.toLowerCase()}/`;
+                  fetch(path, options)
+                    .then((data) => data.json())
+                    .then((data) => {
+                      console.log(data);
+                      setUser(data);
+                    });
+                }
               });
           });
       });
@@ -269,14 +278,32 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
               <Grid>
                 <InputLabel id="School">School</InputLabel>
                 <Select
-                  value={School.name}
+                  value={School}
                   labelId="School"
                   color="primary"
+                  variant="outlined"
                   className={classes.school}
-                  onChange={(e) => setSchool(e.target.value)}
+                  onChange={(e) => {
+                    setSchool(e.target.value);
+                    let options2 = {
+                      method: "post",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ schoolID: e.target.value.id }),
+                    };
+                    let path2 =
+                      process.env.NODE_ENV === "production"
+                        ? "/subject/getSchoolSubjects"
+                        : "http://localhost:8000/subject/getSchoolSubjects";
+                    fetch(path2, options2)
+                      .then((data) => data.json())
+                      .then((data) => {
+                        console.log(data);
+                        setSubjects(data);
+                      });
+                  }}
                 >
                   <MenuItem value="">----</MenuItem>
-                  {subjects.map((elem) => (
+                  {schools.map((elem) => (
                     <MenuItem value={elem}>{elem.name}</MenuItem>
                   ))}
                 </Select>
@@ -286,34 +313,37 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
             )}
             {role === "Teacher" ? (
               <Grid>
-                <InputLabel id="School">Subject</InputLabel>
-                <Select
-                  value={Subject.name}
-                  labelId="Subject"
-                  color="primary"
-                  // className={classes.school}
-                  onChange={(e) => {
-                    setSubject(e.target.value);
-                  }}
-                >
-                  <MenuItem value="">----</MenuItem>
-                  {subjects.map((elem) => (
-                    <MenuItem value={elem}>{elem.name}</MenuItem>
-                  ))}
-                </Select>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="schoolID"
-                  label="schoolID"
-                  type="schoolID"
-                  id="schoolID"
-                  onChange={(e) => {
-                    setSchoolCode(e.target.value);
-                    console.log("id");
-                  }}
-                />
+                <Grid>
+                  <InputLabel id="Subject">Subject</InputLabel>
+                  <Select
+                    value={Subject}
+                    labelId="Subject"
+                    color="primary"
+                    variant="outlined"
+                    className={classes.school}
+                    onChange={(e) => setSubject(e.target.value)}
+                  >
+                    <MenuItem value="">----</MenuItem>
+                    {Subjects.map((elem) => (
+                      <MenuItem value={elem}>{elem.name}</MenuItem>
+                    ))}
+                  </Select>
+                </Grid>
+                <Grid>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="schoolID"
+                    label="schoolID"
+                    type="schoolID"
+                    id="schoolID"
+                    onChange={(e) => {
+                      setSchoolCode(e.target.value);
+                      console.log("id");
+                    }}
+                  />
+                </Grid>
               </Grid>
             ) : (
               ""
@@ -363,6 +393,7 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
 const mapDispatchToProps = (dispatch) => {
   return {
     setUser: (z) => dispatch(setUser(z)),
+    importSubjects: (z) => dispatch(subjects(z)),
   };
 };
 

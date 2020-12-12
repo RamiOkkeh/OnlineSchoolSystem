@@ -39,7 +39,11 @@ function Bills({ user }: any) {
                             <div className="secondtBox"> {user.semester}</div>
                             <div className="thirdtBox"> {user.totalprice}</div>
                         </div>
-                        <StripButton />
+
+                        {
+                            el['paid'] ? <div></div> :
+                                <StripButton price={el['amount']} />
+                        }
                     </div>
                 ))
             }
