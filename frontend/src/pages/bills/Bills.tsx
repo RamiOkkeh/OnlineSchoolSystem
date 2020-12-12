@@ -39,7 +39,11 @@ function Bills({ user }: any) {
                             <div className="secondtBox"> {el['semester']}</div>
                             <div className="thirdtBox"> {el['amount']}</div>
                         </div>
-                        <StripButton />
+
+                        {
+                            el['paid'] ? <div></div> :
+                                <StripButton price={el['amount']} />
+                        }
                     </div>
                 ))
             }
