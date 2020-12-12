@@ -76,7 +76,6 @@ const App = ({ user, importClass, setUser }: any) => {
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/schedule" component={SchedulePage} />
-
           </Switch>
         </Router>
       </div>

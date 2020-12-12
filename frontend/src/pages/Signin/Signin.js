@@ -19,8 +19,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        Online School System
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -73,20 +73,46 @@ function SignIn({ user }) {
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
-        let token = `JWT ${data.access}`;
-        let options = {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "",
-          },
-          body: JSON.stringify({}),
-        };
-        let path =
-          process.env.NODE_ENV === "production"
-            ? "/auth/jwt/create/"
-            : "http://localhost:8000/auth/jwt/create/";
-        fetch(path, options).then((data) => data.json());
+        if (data.access) {
+          localStorage.setItem("Authorization", `JWT ${data.access}`);
+          let token = `JWT ${data.access}`;
+          let options = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+            }
+          };
+          let path =
+            process.env.NODE_ENV === "production"
+              ? "/auth/users/me/"
+              : "http://localhost:8000/auth/users/me/";
+          fetch(path, options)
+            .then((data) => data.json())
+            .then((data) => {
+              console.log("><>", data)
+              let options = {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: localStorage.getItem("Authorization"),
+                },
+                body: JSON.stringify({ userID: data.id }),
+              };
+              let path =
+                process.env.NODE_ENV === "production"
+                  ? `/${data.role.toLowerCase()}/`
+                  : `http://localhost:8000/${data.role.toLowerCase()}/details`;
+              fetch(path, options)
+                .then((data) => data.json())
+                .then((data) => {
+                  console.log(">>", data[0]);
+                  setUser(data[0]);
+                });
+            });
+        } else {
+          alert("incorrect credentials")
+        }
       });
   };
 
@@ -111,7 +137,10 @@ function SignIn({ user }) {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              console.log(e.target.value)
+              setEmail(e.target.value.toLocaleLowerCase())
+            }}
           />
           <TextField
             variant="outlined"
