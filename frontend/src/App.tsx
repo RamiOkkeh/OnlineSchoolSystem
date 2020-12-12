@@ -16,8 +16,11 @@ import Bills from "./pages/bills/Bills";
 import ProfilePage from "./pages/profile/profilePage";
 import DashboardPage from "./pages/dashboardPage/DashboardPage";
 import SchedulePage from "./pages/schedulePage/SchedulePage";
+import TestPage from "./pages/testpage/TestPage";
+import StatsPage from "./pages/stats/StatsPage";
 import EditClass from "./pages/EditClass/EditClass";
 import "./App.css";
+
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -111,6 +114,8 @@ const App = ({ user, importClass, importWaiting, setUser }: any) => {
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/schedule" component={SchedulePage} />
+            <Route exact path="/tests" component={TestPage} />
+            <Route exact path="/stats" component={StatsPage} />
           </Switch>
         </Router>
       </div>
