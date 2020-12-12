@@ -6,6 +6,7 @@ import Class from "../../components/Class/Class";
 import { makeStyles } from "@material-ui/core/styles";
 import { createClass } from "../../actions/actions";
 import CreateClassDialog from "../../components/CreateClass/CreateClass";
+import { Link } from "react-router-dom";
 
 const styles = makeStyles({
   flex: {
@@ -60,6 +61,9 @@ function Classes({ classes, user, createClass }: any) {
         setName("");
       });
   };
+  const handelEdit = (e: any) => {
+    e.preventDefault();
+  };
   return (
     <div className={classess.flex}>
       {classes.map((elem: any, i: number) => {
@@ -71,6 +75,9 @@ function Classes({ classes, user, createClass }: any) {
         setName={setName}
         name={name}
       />
+      <Link to="/editclass" style={{ textDecoration: "none" }}>
+        Edit
+      </Link>
       {/* <form className={add ? classess.form : "hide"}>
         <label htmlFor="className">Class Name</label>
         <input
