@@ -24,10 +24,7 @@ import { State } from "../../reducers/rootReducer"
                        <div> position :Student</div>
                            <div> student Id : 11210385</div>
                        </div>
-                             <div> GPA = {(test.reduce((subject:any, acc:number)=>{ 
-                                 console.log(">>>>>>>",subject)
-                                 return acc+subject.first+subject.second+subject.final
-                                 },0))/3} </div>
+                             <div> GPA = {((test.reduce((acc:number,subject:any)=>acc+subject.first+subject.second+subject.final,0))/(test.length*3)).toFixed(2)}% </div>
                    </div>
                 </div>
                 <div style={{display:'flex',flexWrap:"wrap"}}>
