@@ -12,10 +12,10 @@ import { connect } from "react-redux";
 import { createClass, setUser } from "./actions/actions";
 import { Dispatch } from "redux";
 import React, { useEffect } from "react";
-import Bills from "./pages/bills/Bills"
-import ProfilePage from "./pages/profile/profilePage"
-import DashboardPage from "./pages/dashboardPage/DashboardPage"
-import SchedulePage from './pages/schedulePage/SchedulePage'
+import Bills from "./pages/bills/Bills";
+import ProfilePage from "./pages/profile/profilePage";
+import DashboardPage from "./pages/dashboardPage/DashboardPage";
+import SchedulePage from "./pages/schedulePage/SchedulePage";
 import "./App.css";
 const theme = createMuiTheme({
   palette: {
@@ -41,18 +41,39 @@ const App = ({ user, importClass, setUser }: any) => {
           : "http://localhost:8000/auth/users/me/";
       fetch(path, options)
         .then((data) => data.json())
-        .then((data) => setUser(data));
+        .then((data) => {
+          console.log(data);
+          // setUser(data);
+          let options: any = {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+            },
+            body: JSON.stringify({ userID: data.id }),
+          };
+          let path =
+            process.env.NODE_ENV === "production"
+              ? `/${data.role.toLowerCase()}/details`
+              : `http://localhost:8000/${data.role.toLowerCase()}/details`;
+          fetch(path, options)
+            .then((data) => data.json())
+            .then((data) => {
+              console.log(data[0]);
+              setUser(data[0]);
+            });
+        });
     }
     if (user.schoolID) {
       let options = {
-        method: "get",
+        method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ schoolID: user.schoolID }),
       };
       let path =
         process.env.NODE_ENV === "production"
-          ? "/classroom/getSchoolClasses/"
-          : "http://localhost:8000/classroom/getSchoolClasses/";
+          ? "/classroom/getSchoolClasses"
+          : "http://localhost:8000/classroom/getSchoolClasses";
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
@@ -76,7 +97,6 @@ const App = ({ user, importClass, setUser }: any) => {
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/schedule" component={SchedulePage} />
-
           </Switch>
         </Router>
       </div>
