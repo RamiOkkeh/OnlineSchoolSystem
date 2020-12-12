@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { State } from "../../reducers/rootReducer";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
@@ -22,13 +24,18 @@ const styles = makeStyles({
     color: `white`,
   },
 });
-const nav = [
-  { title: "signup", path: "/signup" },
-  { title: "signin", path: "/signin" },
-  { title: "profile", path: "/profile" },
-];
-function Header() {
+
+function Header({ user }: any) {
   const classes = styles();
+  const nav = user.name
+    ? [{ title: "profile", path: "/profile" }]
+    : [
+        { title: "signup", path: "/signup" },
+        { title: "signin", path: "/signin" },
+      ];
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user]);
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -59,4 +66,10 @@ function Header() {
   );
 }
 
-export default Header;
+const mapStateToProps = (state: State) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

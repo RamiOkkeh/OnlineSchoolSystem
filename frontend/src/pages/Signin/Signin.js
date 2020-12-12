@@ -72,7 +72,22 @@ function SignIn({ user }) {
         : "http://localhost:8000/auth/jwt/create/";
     fetch(path, options)
       .then((data) => data.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        let token = `JWT ${data.access}`;
+        let options = {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "",
+          },
+          body: JSON.stringify({}),
+        };
+        let path =
+          process.env.NODE_ENV === "production"
+            ? "/auth/jwt/create/"
+            : "http://localhost:8000/auth/jwt/create/";
+        fetch(path, options).then((data) => data.json());
+      });
   };
 
   return (
@@ -150,6 +165,7 @@ function SignIn({ user }) {
     </Container>
   );
 }
+
 const mapSateToProps = (state) => {
   return {
     user: state.user,

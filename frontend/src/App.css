@@ -36,7 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
 body {
-  background-image: url("https://github.com/BanderSnatch-oss/OnlineSchoolSystem/blob/payments/frontend/src/BG.png?raw=true");
-  background-size: 300px 200px;
+  background-image: url("./BG.png");
+  background-size: 250px 200px;
+}
+
+.hide {
+  display: none;
 }
