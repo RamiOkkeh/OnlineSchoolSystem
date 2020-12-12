@@ -12,12 +12,13 @@ import { connect } from "react-redux";
 import { createClass, setUser, waiting } from "./actions/actions";
 import { Dispatch } from "redux";
 import React, { useEffect } from "react";
-import Bills from "./pages/bills/Bills"
-import ProfilePage from "./pages/profile/profilePage"
-import DashboardPage from "./pages/dashboardPage/DashboardPage"
-import SchedulePage from './pages/schedulePage/SchedulePage'
-import TestPage from './pages/testpage/TestPage'
-import StatsPage from './pages/stats/StatsPage'
+import Bills from "./pages/bills/Bills";
+import ProfilePage from "./pages/profile/profilePage";
+import DashboardPage from "./pages/dashboardPage/DashboardPage";
+import SchedulePage from "./pages/schedulePage/SchedulePage";
+import TestPage from "./pages/testpage/TestPage";
+import StatsPage from "./pages/stats/StatsPage";
+import EditClass from "./pages/EditClass/EditClass";
 import "./App.css";
 
 const theme = createMuiTheme({
@@ -108,6 +109,7 @@ const App = ({ user, importClass, importWaiting, setUser }: any) => {
             <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
             <Route path="/classes" component={Classes} />
+            <Route path="/editclass" component={EditClass} />
             <Route exact path="/bills" component={Bills} />
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/dashboard" component={DashboardPage} />
