@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -83,9 +83,9 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
   const [schoolCode, setSchoolCode] = useState("");
   const [marketing, setMarketing] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(schools);
-  // }, []);
+  useEffect(() => {
+    console.log(Subject);
+  }, [Subject]);
 
   const submit = (e) => {
     e.preventDefault();
@@ -269,14 +269,15 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
               <Grid>
                 <InputLabel id="School">School</InputLabel>
                 <Select
-                  value={School.name}
+                  value={School}
                   labelId="School"
                   color="primary"
+                  variant="outlined"
                   className={classes.school}
                   onChange={(e) => setSchool(e.target.value)}
                 >
                   <MenuItem value="">----</MenuItem>
-                  {subjects.map((elem) => (
+                  {schools.map((elem) => (
                     <MenuItem value={elem}>{elem.name}</MenuItem>
                   ))}
                 </Select>
@@ -286,34 +287,37 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
             )}
             {role === "Teacher" ? (
               <Grid>
-                <InputLabel id="School">Subject</InputLabel>
-                <Select
-                  value={Subject.name}
-                  labelId="Subject"
-                  color="primary"
-                  // className={classes.school}
-                  onChange={(e) => {
-                    setSubject(e.target.value);
-                  }}
-                >
-                  <MenuItem value="">----</MenuItem>
-                  {subjects.map((elem) => (
-                    <MenuItem value={elem}>{elem.name}</MenuItem>
-                  ))}
-                </Select>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="schoolID"
-                  label="schoolID"
-                  type="schoolID"
-                  id="schoolID"
-                  onChange={(e) => {
-                    setSchoolCode(e.target.value);
-                    console.log("id");
-                  }}
-                />
+                <Grid>
+                  <InputLabel id="Subject">Subject</InputLabel>
+                  <Select
+                    value={Subject}
+                    labelId="Subject"
+                    color="primary"
+                    variant="outlined"
+                    className={classes.school}
+                    onChange={(e) => setSubject(e.target.value)}
+                  >
+                    <MenuItem value="">----</MenuItem>
+                    {subjects.map((elem) => (
+                      <MenuItem value={elem}>{elem.name}</MenuItem>
+                    ))}
+                  </Select>
+                </Grid>
+                <Grid>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="schoolID"
+                    label="schoolID"
+                    type="schoolID"
+                    id="schoolID"
+                    onChange={(e) => {
+                      setSchoolCode(e.target.value);
+                      console.log("id");
+                    }}
+                  />
+                </Grid>
               </Grid>
             ) : (
               ""
