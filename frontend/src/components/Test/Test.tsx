@@ -14,6 +14,7 @@ function Test(): any {
     correct: number;
     incorrect: string[];
 
+
   }
 
 
@@ -131,6 +132,7 @@ function Test(): any {
     if (choice === dataSet[current].correct) {
       setCorrect(correct + 1)
       console.log('correct', correct, dataSet[current].correct, choice)
+
     } else {
       setIncorrect(incorrect + 1)
     }

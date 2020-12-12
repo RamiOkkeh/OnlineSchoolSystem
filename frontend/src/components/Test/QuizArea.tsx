@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React , {useState} from 'react'
 import './test.css'
 import Question from './Question'
@@ -35,5 +34,4 @@ const QuizArea=(props:any) =>{
     )
   }
 
-
-  export default QuizArea
+export default QuizArea
