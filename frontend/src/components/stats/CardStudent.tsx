@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function RecipeReviewCardd({ data }: any) {
+export default function RecipeReviewCardd({ data , testdata}:any) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -48,35 +48,28 @@ export default function RecipeReviewCardd({ data }: any) {
     const [favourite, setFavourite] = useState("")
 
 
-    console.log(data)
+    // console.log(data)
+    console.log('dataaa',testdata)
     return (
         // console.log(post)
         <div >
             <Card className={classes.root} style={{ marginLeft: "2rem", marginTop: "2rem", width: "22rem", height: "600px", marginBottom: "3rem" }} >
                 <div style={{ display: "flex" }}>
-                    <CardHeader
-                        avatar={
-                            <Avatar aria-label="recipe" className={classes.avatar}>
-                            </Avatar>
-                        }
-                    />
+                    <CardHeader />
 
                     <div style={{ display: "flex" }}>
                         <div>
-                            <div style={{ paddingTop: "1.7rem" }}>
-                                Ameed Asmah
-                            </div>
-                            <div>
-                                Subject : math
+                            <div  style={{ paddingTop: "2rem" }}>
+                                Subject : {testdata.subjectName}
                             </div>
                         </div>
-                        <div style={{ paddingTop: "2rem", paddingLeft: "1.5rem" }}> avgMark = 76%</div>
+    <div style={{ paddingTop: "2rem", paddingLeft: "1.5rem" }}> avgMark = {((testdata.first+testdata.second+testdata.final)/3).toFixed(2)}%</div>
                     </div>
                 </div>
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">
                         <div >
-                            <Charttwo />
+                            <Charttwo testdata={testdata}/>
                         </div>
                     </Typography>
                 </CardContent>

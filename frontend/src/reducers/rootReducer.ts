@@ -9,7 +9,7 @@ export interface State {
   role: String;
   subjects: any[];
   post: any[];
-  subject:object;
+  test:any[];
 }
 
 const initState = {
@@ -41,10 +41,49 @@ const initState = {
       messege: "lasjfksagfkkjdvfjhsad",
     },
   ],
-  subject : {
+  test : [{
+    subjectID:1,
+    subjectName:'math',
+    studentID:2,
+    studentName:'Ameed Asmah',
+    schooldID :1,
+    classroomID:1,
+      first:60,
+      second:80,
+      final:85,
+    },{
+    subjectID:2,
+    subjectName:'Arabic',
+    studentID:2,
+    studentName:'Ameed Asmah',
+    schooldID :1,
+    classroomID:1,
+      first:90,
+      second:80,
+      final:100,
+    },{
+    subjectID:3,
+    subjectName:'English',
+    studentID:2,
+    studentName:'Ameed Asmah',
+    schooldID :1,
+    classroomID:1,
+      first:70,
+      second:60,
+      final:70,
+    },
+    {
+      subjectID:4,
+      subjectName:'phyiscs',
+      studentID:2,
+    studentName:'Ameed Asmah',
+      schooldID :1,
+      classroomID:1,
+        first:50,
+        second:80,
+        final:40,
+    }]}
 
-  }
-};
 
 //Principal
 //Teacher

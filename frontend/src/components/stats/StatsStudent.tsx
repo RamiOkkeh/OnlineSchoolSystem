@@ -1,8 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import RecipeReviewCardd from './CardStudent'
+import { connect } from "react-redux";
+import { State } from "../../reducers/rootReducer"
 
-export default function StatsStudent() {
+
+ function StatsStudent({test,post}:any) {
+     console.log('test',test)
     return (
         
         <div style={{backgroundColor:"white" ,display:"flex",flexWrap:"wrap",flexDirection:"column" , marginTop:"5rem",marginLeft:"17rem", marginRight:"10rem"}}>
@@ -20,11 +24,30 @@ export default function StatsStudent() {
                        <div> position :Student</div>
                            <div> student Id : 11210385</div>
                        </div>
+                             <div> GPA = {(test.reduce((subject:any, acc:number)=>{ 
+                                 console.log(">>>>>>>",subject)
+                                 return acc+subject.first+subject.second+subject.final
+                                 },0))/3} </div>
                    </div>
                 </div>
-                <div>
-                   <RecipeReviewCardd />
+                <div style={{display:'flex',flexWrap:"wrap"}}>
+                {  test.map((el:any,i:any)=>(
+                    <RecipeReviewCardd  testdata={el} key={i}/>
+
+                ))
+                }
+                    
+                    
                 </div>
         </div>
     )
 }
+
+
+const mapStateToProps = (state: State) => {
+    return { test: state.test,
+                post:state.post };
+};
+
+export default connect(mapStateToProps)(StatsStudent);
+

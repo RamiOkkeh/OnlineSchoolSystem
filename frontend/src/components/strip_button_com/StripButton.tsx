@@ -25,7 +25,7 @@ const StripButton = ({ price }: any) => {
             billingAddress
             shippingAddress
             image='https://svgshare.com/i/CUz.svg'
-            description={`Your total is $${price}`}
+            description={`Your total is 100$`}
             amount={priceForStripe}
             panelLabel='Pay Now'
             token={onToken}

@@ -9,15 +9,25 @@ import {
 
 
 
-const data = [
-    //   { argument: 'int', value: 0 },
-    { argument: 'first', value: 90 },
-    { argument: 'second', value: 75 },
-    { argument: 'final', value: 84 },
-    //   { argument: 'ff', value: 100 },
-];
 
-const Charttwo = () => (
+
+
+
+
+
+// {console.log('aaa',dataa)}
+const Charttwo = ({testdata}:any) => {
+
+    const data = [
+        //   { argument: 'int', value: 0 },
+        { argument: 'first', value: testdata.first },
+        { argument: 'second', value: testdata.second },
+        { argument: 'final', value: testdata.final },
+        //   { argument: 'ff', value: 100 },
+    ];
+
+    console.log('aaaaa',testdata)
+    return(
     <div >
         <Paper >
             <Chart
@@ -30,7 +40,7 @@ const Charttwo = () => (
             </Chart>
         </Paper>
     </div>
-);
+)};
 
 
 export default Charttwo
