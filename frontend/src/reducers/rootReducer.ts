@@ -7,6 +7,7 @@ export interface State {
   schools: any[];
   role: String;
   subjects: any[];
+  waiting: object;
   post: any[];
 }
 
@@ -17,6 +18,7 @@ const initState = {
   schools: [],
   role: "Student",
   subjects: [],
+  waiting: {},
   post: [
     {
       username: "rami",
@@ -65,6 +67,12 @@ const rootReducers = (state: State = initState, action: Actions) => {
     }
     state.subjects.push(action.payload);
     return state;
+  }
+  if (action.type === "WAITING") {
+    return {
+      ...state,
+      waiting: action.payload,
+    };
   }
   return state;
 };

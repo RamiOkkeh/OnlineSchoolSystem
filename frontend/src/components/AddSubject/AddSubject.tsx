@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { State } from "../../reducers/rootReducer";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CreateSchool({ role }: any) {
+function AddSubject({ role, user }: any) {
   const classes = useStyles();
 
   const [name, setSubject] = useState("");
@@ -51,7 +53,7 @@ function CreateSchool({ role }: any) {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("Authorization"),
       },
-      body: JSON.stringify({ name, schoolID: 2 }),
+      body: JSON.stringify({ name, schoolID: user.schoolID }),
     };
     let path =
       process.env.NODE_ENV === "production"
@@ -113,4 +115,10 @@ function CreateSchool({ role }: any) {
   );
 }
 
-export default CreateSchool;
+const mapPropsToState = (state: State) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapPropsToState)(AddSubject);
