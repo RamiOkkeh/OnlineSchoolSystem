@@ -12,7 +12,8 @@ function Test(): any {
     question: any;
     answer: string[];
     correct: number;
-    incorrect:string[];
+    incorrect: string[];
+
 
   }
 
@@ -127,10 +128,11 @@ function Test(): any {
   const [incorrect, setIncorrect] = useState(0);
 
   const handleClick = (choice: any) => {
-    console.log('correct',correct,dataSet[current].correct,choice)
+    console.log('correct', correct, dataSet[current].correct, choice)
     if (choice === dataSet[current].correct) {
       setCorrect(correct + 1)
-      console.log('correct',correct,dataSet[current].correct,choice)
+      console.log('correct', correct, dataSet[current].correct, choice)
+
     } else {
       setIncorrect(incorrect + 1)
     }
@@ -143,16 +145,17 @@ function Test(): any {
     } else {
       setCurrent(current + 1)
       // console.log('current',current)
-    }}
+    }
+  }
 
-    // console.log('correct',correct)
-    return (
+  // console.log('correct',correct)
+  return (
 
-      <div style={{ marginLeft: "14rem", marginTop: "3rem" }}>
-        <ScoreArea correct={correct} incorrect={incorrect} />
-        <QuizArea handleClick={handleClick} dataSet={dataSet[current]} />
-      </div>
-    )
-  
+    <div style={{ marginLeft: "14rem", marginTop: "3rem" }}>
+      <ScoreArea correct={correct} incorrect={incorrect} />
+      <QuizArea handleClick={handleClick} dataSet={dataSet[current]} />
+    </div>
+  )
+
 }
 export default Test
