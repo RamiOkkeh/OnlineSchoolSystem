@@ -27,7 +27,7 @@ const styles = makeStyles({
 
 function Header({ user }: any) {
   const classes = styles();
-  const nav = user.name
+  const nav = user.userID
     ? [{ title: "profile", path: "/profile" }]
     : [
         { title: "signup", path: "/signup" },

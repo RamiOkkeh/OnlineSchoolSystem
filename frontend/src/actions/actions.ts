@@ -22,3 +22,9 @@ export const subjects = (newState: object) => {
     payload: newState,
   };
 };
+export const waiting = (newState: object) => {
+  return {
+    type: "WAITING",
+    payload: newState,
+  };
+};

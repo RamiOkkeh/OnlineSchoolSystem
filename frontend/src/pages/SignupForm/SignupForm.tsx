@@ -63,25 +63,10 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
         console.log(data);
         importSchools(data);
       });
-
-    let options2 = {
-      method: "get",
-      headers: { "Content-Type": "application/json" },
-    };
-    let path2 =
-      process.env.NODE_ENV === "production"
-        ? "/subject/"
-        : "http://localhost:8000/subject/";
-    fetch(path2, options2)
-      .then((data) => data.json())
-      .then((data) => {
-        console.log(data);
-        importSubjects(data);
-      });
   });
 
   const handleNext = () => {
-    if (activeStep === 1 && !user.userID) {
+    if (activeStep === 1 && !localStorage.getItem("Authorization")) {
       alert("you are not signed in");
     } else {
       setActiveStep(activeStep + 1);
@@ -138,24 +123,24 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
             <Button onClick={handleReset}>Reset</Button>
           </div>
         ) : (
+          <div>
+            <Typography className={classes.instructions}>
+              {getStepContent(activeStep)}
+            </Typography>
             <div>
-              <Typography className={classes.instructions}>
-                {getStepContent(activeStep)}
-              </Typography>
-              <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  className={classes.backButton}
-                >
-                  Back
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.backButton}
+              >
+                Back
               </Button>
-                <Button variant="contained" color="primary" onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                </Button>
-              </div>
+              <Button variant="contained" color="primary" onClick={handleNext}>
+                {activeStep === steps.length - 1 ? "Finish" : "Next"}
+              </Button>
             </div>
-          )}
+          </div>
+        )}
       </div>
     </div>
   );
