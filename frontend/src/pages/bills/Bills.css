@@ -1,11 +1,11 @@
-.Bills{
+.Bills {
     display: flexbox;
     width: 300px;
-    margin:200px;
-    padding-left:280px;
-
+    margin: 200px;
+    padding-left: 280px;
 }
-.main{
+
+.main {
     display: flex;
     justify-content: space-between;
     width: 300px;
@@ -13,20 +13,26 @@
     border: 1px solid red;
     /* padding-right: 20rem;
    margin-left: 22rem; */
-   background-color: white;
-}           
+    background-color: white;
+}
 
-.firstBox{
+.firstBox {
     flex: .8;
     border-right: 1px solid red;
 }
 
-.secondtBox{
+.secondtBox {
     flex: .80;
-}   
+}
 
-
-.thirdtBox{
+.thirdtBox {
     flex: .80;
     border-left: 1px solid red;
+}
+
+.fourthtBox {
+    flex: .80;
+    border-left: 1px solid red;
+    display: flex;
+    align-items: center;
 }

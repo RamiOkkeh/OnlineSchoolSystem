@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard({data}:any) {
+export default function RecipeReviewCard({ data }: any) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -41,62 +41,63 @@ export default function RecipeReviewCard({data}:any) {
     setExpanded(!expanded);
   };
 
-  const [favourite , setFavourite]= useState("")
+  const [favourite, setFavourite] = useState("")
 
-//   const Post = (userID:any,text:any) => {
-//     fetch('/bsy3mloElzameel', {
-//         method: 'POST',
-//         body: JSON.stringify({userID,text}),
-//       }).then(response => {
-//         response.json().then(data => {
-//         });
-//       });
-// };
+  //   const Post = (userID:any,text:any) => {
+  //     fetch('/bsy3mloElzameel', {
+  // method: 'POST',
+  // headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({userID,text}),
+  //       }).then(response => {
+  //         response.json().then(data => {
+  //         });
+  //       });
+  // };
 
-console.log(data)
+  console.log(data)
   return (
     // console.log(post)
-      <div >
-    <Card className={classes.root} style={{marginLeft:"13rem",marginTop:"5rem",width:"65rem" ,marginBottom:"3rem"}} >
-     <div style={{display:"flex" }}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-          </Avatar>
-        }
-        />
-        <div>
-        <div style={{paddingTop:"1.7rem"}}>
-      {data.username}
+    <div >
+      <Card className={classes.root} style={{ marginLeft: "13rem", marginTop: "5rem", width: "65rem", marginBottom: "3rem" }} >
+        <div style={{ display: "flex" }}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+              </Avatar>
+            }
+          />
+          <div>
+            <div style={{ paddingTop: "1.7rem" }}>
+              {data.username}
+            </div>
+            <div>
+              {data.data}
+            </div>
+          </div>
         </div>
-        <div>
-      {data.data}
-        </div>
-        </div>
-      </div>
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-        Hey Hey Hackers
-It's time to write some blogging :grin:
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Hey Hey Hackers
+            It's time to write some blogging :grin:
 so today we will ask you some questions <br /> "good ones "
-questions that need deep thinking from you 
-so grab your coffee  and answer these questions <br/>
-What are your current goals in life? 
+questions that need deep thinking from you
+so grab your coffee  and answer these questions <br />
+What are your current goals in life?
 How do you plan to reach your goals?
-How often do you set goals for yourself?<br/>
+How often do you set goals for yourself?<br />
 What goals have you set and achieved in the past?
-How do you feel when you reach your goals?<br/>
-:pushpin:always remember to HAVE FUN and add your links here 
+How do you feel when you reach your goals?<br />
+:pushpin:always remember to HAVE FUN and add your links here
         </Typography>
-      </CardContent>
-      <CardActions disableSpacing> 
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-        </IconButton>
+        </CardContent>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+          </IconButton>
         </CardActions>
-    </Card>
+      </Card>
     </div>
   );
 }

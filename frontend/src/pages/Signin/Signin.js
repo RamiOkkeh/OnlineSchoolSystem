@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignIn({ user }) {
+function SignIn({ user, setUser }) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -91,6 +91,7 @@ function SignIn({ user }) {
             .then((data) => data.json())
             .then((data) => {
               console.log("><>", data)
+              setUser(data);
               let options = {
                 method: "POST",
                 headers: {
@@ -195,10 +196,16 @@ function SignIn({ user }) {
   );
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUser: (z) => dispatch(setUser(z)),
+  };
+};
+
 const mapSateToProps = (state) => {
   return {
     user: state.user,
   };
 };
 
-export default connect(mapSateToProps)(SignIn);
+export default connect(mapSateToProps, mapDispatchToProps)(SignIn);

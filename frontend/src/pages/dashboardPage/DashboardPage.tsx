@@ -2,12 +2,12 @@ import React from 'react'
 import Dashboard from '../../components/dashboard/Dashboard'
 
 
- function DashboardPage() {
+function DashboardPage() {
     return (
-<div>
- <Dashboard />
-</div>
-)
+        <div>
+            <Dashboard />
+        </div>
+    )
 }
 
 
