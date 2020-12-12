@@ -29,7 +29,7 @@ function Bills({ user }: any) {
         <div className="Bills">
             <div className="main">
                 <div className="firstBox"> date </div>
-                <div className="secondtBox"> semster</div>
+                <div className="secondtBox"> semester</div>
                 <div className="thirdtBox"> total price</div>
                 <div className="thirdtBox"> Status </div>
             </div>
@@ -44,7 +44,7 @@ function Bills({ user }: any) {
                                 el['paid'] ?
                                     <div className="thirdtBox"> Paid </div>
                                     :
-                                    <div className="fourthtBox"> <StripButton price={el['amount']} user={user} /> </div>
+                                    <div className="fourthtBox"> <StripButton semester={el['semester']} price={el['amount']} user={user} /> </div>
                             }
                         </div>
                     </div>

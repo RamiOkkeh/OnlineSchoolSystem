@@ -3,7 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 
 
 
-const StripButton = ({ price, user }: any) => {
+const StripButton = ({ semester, price, user }: any) => {
   const priceForStripe = price * 100;
   const publishableKey = 'pk_test_51Hvqw3ASQssJP6zDtUuTQJ7m7cOyFq12H8MASIIXz87Qp6JgWYTRSXNG1eM68U5w1oudm4y7ZFFt6D1tVvomKSd300ciFLLTlP';
   const onToken = (token: any) => {
@@ -11,10 +11,11 @@ const StripButton = ({ price, user }: any) => {
       process.env.NODE_ENV === "production"
         ? "/payment/checkout"
         : "http://127.0.0.1:8000/payment/checkout";
+    console.log({ userID: user.userID, semester });
     fetch(path, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userID: user.userID, token }),
+      body: JSON.stringify({ userID: user.userID, semester, token }),
     }).then(response => {
       response.json()
         .then(data => {
@@ -27,10 +28,10 @@ const StripButton = ({ price, user }: any) => {
   return (
     <StripeCheckout
       label='Pay Now'
-      name='Green Feid SChool.'
+      name='Online School System'
       billingAddress
       shippingAddress
-      image='https://svgshare.com/i/CUz.svg'
+      image='https://image.flaticon.com/icons/png/512/81/81566.png'
       description={`Your total is $${price}`}
       amount={priceForStripe}
       panelLabel='Pay Now'
