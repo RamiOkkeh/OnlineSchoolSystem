@@ -16,7 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
-import { setUser } from "../../actions/actions";
+import { setUser, subjects } from "../../actions/actions";
 import { Redirect } from "react-router-dom";
 
 function Copyright() {
@@ -71,7 +71,14 @@ const schoolCoder = function (string) {
   return Math.abs(hash);
 };
 
-const SignUp = function ({ role, schools, setUser, user, subjects }) {
+const SignUp = function ({
+  role,
+  schools,
+  setUser,
+  user,
+  subjects,
+  importSubjects,
+}) {
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState("");
@@ -80,6 +87,7 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
   const [pass, setPass] = useState("");
   const [School, setSchool] = useState({});
   const [Subject, setSubject] = useState({});
+  const [Subjects, setSubjects] = useState([]);
   const [schoolCode, setSchoolCode] = useState("");
   const [marketing, setMarketing] = useState(false);
 
@@ -275,7 +283,24 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
                   color="primary"
                   variant="outlined"
                   className={classes.school}
-                  onChange={(e) => setSchool(e.target.value)}
+                  onChange={(e) => {
+                    setSchool(e.target.value);
+                    let options2 = {
+                      method: "post",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ schoolID: e.target.value.id }),
+                    };
+                    let path2 =
+                      process.env.NODE_ENV === "production"
+                        ? "/subject/getSchoolSubjects"
+                        : "http://localhost:8000/subject/getSchoolSubjects";
+                    fetch(path2, options2)
+                      .then((data) => data.json())
+                      .then((data) => {
+                        console.log(data);
+                        setSubjects(data);
+                      });
+                  }}
                 >
                   <MenuItem value="">----</MenuItem>
                   {schools.map((elem) => (
@@ -299,7 +324,7 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
                     onChange={(e) => setSubject(e.target.value)}
                   >
                     <MenuItem value="">----</MenuItem>
-                    {subjects.map((elem) => (
+                    {Subjects.map((elem) => (
                       <MenuItem value={elem}>{elem.name}</MenuItem>
                     ))}
                   </Select>
@@ -368,6 +393,7 @@ const SignUp = function ({ role, schools, setUser, user, subjects }) {
 const mapDispatchToProps = (dispatch) => {
   return {
     setUser: (z) => dispatch(setUser(z)),
+    importSubjects: (z) => dispatch(subjects(z)),
   };
 };
 

@@ -63,21 +63,6 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
         console.log(data);
         importSchools(data);
       });
-
-    let options2 = {
-      method: "get",
-      headers: { "Content-Type": "application/json" },
-    };
-    let path2 =
-      process.env.NODE_ENV === "production"
-        ? "/subject/"
-        : "http://localhost:8000/subject/";
-    fetch(path2, options2)
-      .then((data) => data.json())
-      .then((data) => {
-        console.log(data);
-        importSubjects(data);
-      });
   });
 
   const handleNext = () => {
