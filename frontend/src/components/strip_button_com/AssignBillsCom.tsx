@@ -54,16 +54,52 @@ const useStyles = makeStyles((theme) => ({
 function CustomizedSelects({ schoolID, user }: any) {
     const classes = useStyles();
     const [age, setAge] = React.useState('');
-    const [classroom, setClassroom] = useState('');
+    const [classroom, setClassroom] = useState([]);
+    const [price, setPrice] = useState();
+    const [semester, setSemester] = useState('');
+    const [students, setStudents] = useState('');
+
+
+
 
     const handleChange = (event: any) => {
-        setClassroom(event.target.value);
+        setStudents(event.target.value);
     };
+
+    const handlePrice = (event: any) => {
+        console.log('price', price)
+        setPrice(event.target.value);
+    };
+    const handlesemester = (event: any) => {
+        console.log('semester', semester)
+        setSemester(event.target.value);
+    };
+
     useEffect(() => {
         let options = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ schoolID })
+            body: JSON.stringify({ schoolID: user.schoolID })
+        };
+        let path =
+            process.env.NODE_ENV === "production"
+                ? "/payment/"
+                : "http://localhost:8000/classroom/getSchoolClasses";
+        fetch(path, options)
+            .then((data) => data.json())
+            .then((data) => {
+                console.log("mydata", data);
+                setClassroom(data);
+            });
+    }, [user])
+    console.log('role', classroom);
+
+    const handelSubmit = (e: any) => {
+        e.preventDefault();
+        let options = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ schoolID: user.schoolID, students, price, semester })
         };
         let path =
             process.env.NODE_ENV === "production"
@@ -72,16 +108,15 @@ function CustomizedSelects({ schoolID, user }: any) {
         fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
-                console.log("mydata", data);
-                setClassroom(data);
+                console.log("mydata1", data);
             });
-    }, [user])
-    console.log('role', schoolID);
+    }
+    // console.log('role', classroom);
+
+
+
     return (
         <div>
-            <FormControl className={classes.margin}>
-                <InputLabel id="demo-customized-select-label">Age</InputLabel>
-            </FormControl>
             <FormControl className={classes.margin}>
                 <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
                 <NativeSelect
@@ -91,20 +126,24 @@ function CustomizedSelects({ schoolID, user }: any) {
                     input={<BootstrapInput />}
                 >
                     <option aria-label="None" value="" />
-                    <option value={10}>Ten</option>
-                    <option value={20}>Twenty</option>
-                    <option value={30}>Thirty</option>
+
+                    {
+                        classroom.map((el: any, key: any) => (
+                            <option value={el}>{el.name}</option>
+
+                        ))}
+
                 </NativeSelect>
             </FormControl>
             <FormControl className={classes.margin}>
-                <InputLabel htmlFor="totalAmount">Age</InputLabel>
-                <BootstrapInput id="demo-customized-textbox" />
+                <InputLabel htmlFor="totalAmount" ></InputLabel>
+                <BootstrapInput id="demo-customized-textbox" onChange={handlePrice} />
             </FormControl>
             <FormControl className={classes.margin}>
-                <InputLabel htmlFor="input semster">Age</InputLabel>
-                <BootstrapInput id="demo-customized-textbox" />
+                <InputLabel htmlFor="input semester">Age</InputLabel>
+                <BootstrapInput id="demo-customized-textbox" onChange={handlesemester} />
             </FormControl>
-            <button style={{ marginTop: "8.2rem", fontSize: "24px" }} >select</button>
+            <button style={{ marginTop: "8.2rem", fontSize: "24px" }} onClick={handelSubmit}>select</button>
         </div>
     );
 }

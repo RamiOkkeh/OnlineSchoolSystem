@@ -91,7 +91,7 @@ const App = ({ user, importClass, importWaiting, setUser }: any) => {
                   fetch(path, options)
                     .then((data) => data.json())
                     .then((data) => {
-                      console.log(data[0]);
+                      // console.log(data[0]);
                       importWaiting(data[0]);
                     });
                 });

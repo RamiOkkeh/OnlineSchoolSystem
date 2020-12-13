@@ -21,7 +21,7 @@ function Bills({ user, role }: any) {
         fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
-                console.log(">>>>>>", data);
+                // console.log(">>>>>>", data);
                 setPayments(data)
             });
     }, [user])
