@@ -31,6 +31,7 @@ urlpatterns = [
     path("payment/", include("payments.urls")),
     path("post/", include("posts.urls")),
     path("principal/", include("principals.urls")),
+    path("exam/", include("exams.urls")),
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
