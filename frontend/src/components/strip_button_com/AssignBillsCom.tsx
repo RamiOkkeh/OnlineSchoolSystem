@@ -115,7 +115,7 @@ function CustomizedSelects({ schoolID, user }: any) {
             });
         // console.log(path)
     }
-    // console.log('classroom', classroom);
+    console.log('classroom', classroom);
 
     return (
 
