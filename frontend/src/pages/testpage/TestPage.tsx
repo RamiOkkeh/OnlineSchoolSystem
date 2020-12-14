@@ -1,12 +1,26 @@
 import React from 'react'
 // import Quizz from '../../components/Test/Testone'
 import Test from '../../components/Test/Test'
+import { connect } from "react-redux";
+import { State } from "../../reducers/rootReducer";
+import CreateTest from '../../components/Test/CreateTest';
 
 function TestPage() {
     return (
         <div>
-            <Test />
+            {/* {
+                user.role ?
+            } */}
+            {/* <Test /> */}
+            <CreateTest />
         </div>
     )
 }
-export default TestPage
+
+const mapStateToProps = (state: State) => {
+    return {
+        user: state.user,
+    };
+};
+
+export default connect(mapStateToProps)(TestPage)
