@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import Profile from "../../components/profile/profileStudent"
 import ProfileTeacher from "../../components/profile/profileTeacher"
