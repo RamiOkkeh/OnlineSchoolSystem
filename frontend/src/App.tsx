@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import green from "@material-ui/core/colors/green";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -12,15 +13,15 @@ import { connect } from "react-redux";
 import { createClass, setUser, waiting } from "./actions/actions";
 import { Dispatch } from "redux";
 import React, { useEffect } from "react";
-import Bills from "./pages/bills/Bills";
-import ProfilePage from "./pages/profile/profilePage";
-import DashboardPage from "./pages/dashboardPage/DashboardPage";
-import SchedulePage from "./pages/schedulePage/SchedulePage";
-import TestPage from "./pages/testpage/TestPage";
-import StatsPage from "./pages/stats/StatsPage";
-import EditClass from "./pages/EditClass/EditClass";
+import Bills from "./pages/bills/Bills"
+import ProfilePage from "./pages/profile/profilePage"
+import DashboardPage from "./pages/dashboardPage/DashboardPage"
+import SchedulePage from './pages/schedulePage/SchedulePage'
+import TestPage from './pages/testpage/TestPage'
+import StatsPage from './pages/stats/StatsPage'
+// import Quiz from './components/test/Testone'
+// import Quizz from './components/test/testtwo'
 import "./App.css";
-
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -46,7 +47,7 @@ const App = ({ user, importClass, importWaiting, setUser }: any) => {
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           // setUser(data);
           let options: any = {
             method: "post",
@@ -63,7 +64,7 @@ const App = ({ user, importClass, importWaiting, setUser }: any) => {
           fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
-              console.log(data[0]);
+              // console.log(data[0]);
               setUser(data[0]);
               let options = {
                 method: "post",
@@ -77,7 +78,7 @@ const App = ({ user, importClass, importWaiting, setUser }: any) => {
               fetch(path, options)
                 .then((data) => data.json())
                 .then((data) => {
-                  console.log(data);
+                  // console.log(data);
                   importClass(data);
                   let options = {
                     method: "get",
@@ -90,7 +91,7 @@ const App = ({ user, importClass, importWaiting, setUser }: any) => {
                   fetch(path, options)
                     .then((data) => data.json())
                     .then((data) => {
-                      console.log(data[0]);
+                      // console.log(data[0]);
                       importWaiting(data[0]);
                     });
                 });
@@ -109,13 +110,18 @@ const App = ({ user, importClass, importWaiting, setUser }: any) => {
             <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
             <Route path="/classes" component={Classes} />
-            <Route path="/editclass" component={EditClass} />
             <Route exact path="/bills" component={Bills} />
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/schedule" component={SchedulePage} />
             <Route exact path="/tests" component={TestPage} />
+            {/* <Route exact path="/test1" component={Quiz} /> */}
+            {/* <Route exact path="/test2" component={Quizz} /> */}
             <Route exact path="/stats" component={StatsPage} />
+
+
+
+
           </Switch>
         </Router>
       </div>
