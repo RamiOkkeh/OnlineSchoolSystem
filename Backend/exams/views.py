@@ -56,7 +56,7 @@ def assignFinalExam(request):
 
 @api_view(['POST'])
 def assignFirstGrade(request):
-    print(">>>>>>>>>>>>>>")
+    print(">>>>>>>assignFirstGrade>>>>>>>")
     print(request.data)
     Exams.objects.filter(studentID=request.data['studentID'], subjectID=request.data['subjectID']).update(firstGrade=request.data['firstGrade'])
     return Response({"success": True})
@@ -77,6 +77,6 @@ def assignFinalGrade(request):
 
 @api_view(['POST'])
 def details(request):
-    examGrade = Exams.objects.all().filter(schoolID=request.data['studentID'])
+    examGrade = Exams.objects.all().filter(studentID=request.data['studentID'], subjectID=request.data['subjectID'])
     serializer = ExamCreateSerializer(examGrade, many=True)
     return Response(serializer.data)
