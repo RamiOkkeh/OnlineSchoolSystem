@@ -3,9 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react'
 import { State } from "../../reducers/rootReducer";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 import './test.css'
-import Question from './Question';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -300,7 +298,7 @@ function CreateTest({ user, classrooms }: any): any {
         </form>
         <Button variant="outlined" onClick={handleClick}>add</Button>
         <div>
-          <h4>Number of questions added {current}</h4>
+          <p>Number of questions added {dataSet.length - 1}</p>
           <Button variant="outlined" onClick={handleSubmit}>Submit Exam</Button>
         </div>
       </div>
@@ -308,14 +306,6 @@ function CreateTest({ user, classrooms }: any): any {
   )
 
 }
-
-// const mapDispatchToProps = (dispatch: Dispatch) => {
-//   return {
-//     importClass: (z: any) => dispatch(createClass(z)),
-//     setUser: (z: any) => dispatch(setUser(z)),
-//     importWaiting: (z: any) => dispatch(waiting(z)),
-//   };
-// };
 
 const mapStateToProps = (state: State) => {
   return {
