@@ -28,3 +28,9 @@ export const waiting = (newState: object) => {
     payload: newState,
   };
 };
+export const setRole = (newState: object) => {
+  return {
+    type: "SET_ROLE",
+    payload: newState,
+  };
+};

@@ -16,7 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
-import { setUser, subjects } from "../../actions/actions";
+import { setUser, setRole, subjects } from "../../actions/actions";
 import { Redirect } from "react-router-dom";
 
 function Copyright() {
@@ -76,6 +76,7 @@ const SignUp = function ({
   schools,
   setUser,
   user,
+  setRole,
   subjects,
   importSubjects,
 }) {
@@ -161,6 +162,7 @@ const SignUp = function ({
               .then((data) => {
                 console.log(data);
                 setUser(data);
+                setRole(data.role);
                 let options = {
                   method: "post",
                   headers: {
@@ -393,6 +395,7 @@ const SignUp = function ({
 const mapDispatchToProps = (dispatch) => {
   return {
     setUser: (z) => dispatch(setUser(z)),
+    setRole: (z) => dispatch(setRole(z)),
     importSubjects: (z) => dispatch(subjects(z)),
   };
 };
