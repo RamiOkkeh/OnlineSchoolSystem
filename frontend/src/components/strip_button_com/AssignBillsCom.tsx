@@ -3,11 +3,21 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
-import { useRadioGroup } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
+
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 200,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(1),
+    },
+}))
 
 const BootstrapInput = withStyles((theme) => ({
     root: {
@@ -17,14 +27,10 @@ const BootstrapInput = withStyles((theme) => ({
     },
     input: {
         borderRadius: 4,
-        position: 'relative',
         backgroundColor: theme.palette.background.paper,
         border: '1px solid #ced4da',
         fontSize: 16,
-        padding: '10px 26px 10px 12px',
-        marginTop: '6rem',
         transition: theme.transitions.create(['border-color', 'box-shadow']),
-        // Use the system font instead of the default Roboto font.
         fontFamily: [
             '-apple-system',
             'BlinkMacSystemFont',
@@ -45,26 +51,21 @@ const BootstrapInput = withStyles((theme) => ({
     },
 }))(InputBase);
 
-const useStyles = makeStyles((theme) => ({
-    margin: {
-        margin: theme.spacing(1),
-    },
-}));
+
 
 function CustomizedSelects({ schoolID, user }: any) {
     const classes = useStyles();
-    const [age, setAge] = React.useState('');
-    const [classroom, setClassroom] = useState([]);
+    const [classrooms, setClassrooms] = useState([]);
+    const [classroom, setClassroom] = useState();
     const [price, setPrice] = useState();
     const [semester, setSemester] = useState('');
-    const [students, setStudents] = useState('');
+    const [studentsClass, setStudentsClass] = useState([]);
 
 
-
-
-    const handleChange = (event: any) => {
-        setStudents(event.target.value);
-    };
+    // const handleChange = (event: any) => {
+    //     console.log('studentsclass', studentsClass,".....",event.target.value.students)
+    //     setStudentsClass(event.target.value.students);
+    // };
 
     const handlePrice = (event: any) => {
         console.log('price', price)
@@ -88,62 +89,67 @@ function CustomizedSelects({ schoolID, user }: any) {
         fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
-                console.log("mydata", data);
-                setClassroom(data);
+                // console.log("mydata", data);
+                setClassrooms(data);
             });
     }, [user])
-    console.log('role', classroom);
-
+    // console.log('classroom', classroom);
     const handelSubmit = (e: any) => {
         e.preventDefault();
         let options = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ schoolID: user.schoolID, students, price, semester })
+            body: JSON.stringify({ schoolID: user.schoolID, students:studentsClass, amount:price, semester })
         };
         let path =
             process.env.NODE_ENV === "production"
-                ? "/payment/"
+                ? "/payment/"   
                 : "http://localhost:8000/payment/addPayment";
         fetch(path, options)
-            .then((data) => data.json())
+            .then((data) => data.json()
+            )
             .then((data) => {
                 console.log("mydata1", data);
             });
+        console.log(path)
     }
-    // console.log('role', classroom);
-
-
+    // console.log('classroom', classroom);
 
     return (
-        <div>
-            <FormControl className={classes.margin}>
-                <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
-                <NativeSelect
-                    id="demo-customized-select-native"
+
+        <div style={{ marginTop: '11rem', display: "flex", paddingLeft: "16rem" }}>
+            <FormControl className={classes.formControl} >
+                <InputLabel id="demo-simple-select-label">classroom</InputLabel>
+                <Select
+
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
                     value={classroom}
-                    onChange={handleChange}
-                    input={<BootstrapInput />}
-                >
-                    <option aria-label="None" value="" />
-
+                    onChange={(e:any)=>{
+                        setStudentsClass(e.target.value.students)
+                        console.log(studentsClass)
+                        setClassroom(e.target.value)
+                    }}  >
                     {
-                        classroom.map((el: any, key: any) => (
-                            <option value={el}>{el.name}</option>
+                        classrooms.map((el: any, key: any) => {
+                            return <MenuItem value={el} key={key}>{el.name}</MenuItem>
 
-                        ))}
+                        })}
 
-                </NativeSelect>
+                </Select>
             </FormControl>
-            <FormControl className={classes.margin}>
-                <InputLabel htmlFor="totalAmount" ></InputLabel>
-                <BootstrapInput id="demo-customized-textbox" onChange={handlePrice} />
+            <FormControl  >
+                <InputLabel htmlFor="totalAmount" >input price</InputLabel>
+                <BootstrapInput id="demo-customized-textbox" onChange={handlePrice} placeholder="price" />
             </FormControl>
-            <FormControl className={classes.margin}>
-                <InputLabel htmlFor="input semester">Age</InputLabel>
-                <BootstrapInput id="demo-customized-textbox" onChange={handlesemester} />
+            <FormControl >
+                <InputLabel htmlFor="input semester" >input semester</InputLabel>
+                <BootstrapInput id="demo-customized-textbox" onChange={handlesemester} placeholder="semster " />
             </FormControl>
-            <button style={{ marginTop: "8.2rem", fontSize: "24px" }} onClick={handelSubmit}>select</button>
+
+            <div style={{ paddingTop: "1.5rem", paddingLeft: "1rem" }} >
+                <button onClick={handelSubmit} style={{ backgroundColor: "gray", fontSize: '24px' }}>select</button>
+            </div>
         </div>
     );
 }
