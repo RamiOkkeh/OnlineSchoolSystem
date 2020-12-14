@@ -6,7 +6,7 @@ import { State } from "../../reducers/rootReducer"
 
 
 function StatsStudent({ test }: any) {
-    console.log('test', test)
+    // console.log('test', test)
     return (
 
         <div style={{ backgroundColor: "white", display: "flex", flexWrap: "wrap", flexDirection: "column", marginTop: "5rem", marginLeft: "17rem", marginRight: "10rem" }}>
