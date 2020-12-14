@@ -99,19 +99,21 @@ function CustomizedSelects({ schoolID, user }: any) {
         let options = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ schoolID: user.schoolID, students:studentsClass, amount:price, semester })
+            body: JSON.stringify({ schoolID: user.schoolID, students: studentsClass, amount: price, semester })
         };
         let path =
             process.env.NODE_ENV === "production"
-                ? "/payment/"   
+                ? "/payment/"
                 : "http://localhost:8000/payment/addPayment";
         fetch(path, options)
-            .then((data) => data.json()
-            )
+            .then((data) => {
+                data.json()
+                console.log('ameed', data)
+            })
             .then((data) => {
                 console.log("mydata1", data);
             });
-        console.log(path)
+        // console.log(path)
     }
     // console.log('classroom', classroom);
 
@@ -125,7 +127,7 @@ function CustomizedSelects({ schoolID, user }: any) {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={classroom}
-                    onChange={(e:any)=>{
+                    onChange={(e: any) => {
                         setStudentsClass(e.target.value.students)
                         console.log(studentsClass)
                         setClassroom(e.target.value)
