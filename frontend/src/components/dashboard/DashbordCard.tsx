@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -41,11 +41,12 @@ export default function RecipeReviewCard({ data }: any) {
   //   setExpanded(!expanded);
   // };
 
-  // const [favourite , setFavourite]= useState("")
+  const [favourite, setFavourite] = useState("");
 
   //   const Post = (userID:any,text:any) => {
   //     fetch('/bsy3mloElzameel', {
-  //         method: 'POST',
+  // method: 'POST',
+  // headers: { 'Content-Type': 'application/json' },
   //         body: JSON.stringify({userID,text}),
   //       }).then(response => {
   //         response.json().then(data => {

@@ -30,9 +30,9 @@ function Header({ user }: any) {
   const nav = user.userID
     ? [{ title: "profile", path: "/profile" }]
     : [
-        { title: "signup", path: "/signup" },
-        { title: "signin", path: "/signin" },
-      ];
+      { title: "signup", path: "/signup" },
+      { title: "signin", path: "/signin" },
+    ];
   // useEffect(() => {
   //   console.log(user);
   // }, [user]);
@@ -59,6 +59,15 @@ function Header({ user }: any) {
                 </ListItem>
               </Link>
             ))}
+            {
+              user.userID ?
+                <Link className={classes.links} to="/signin" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => localStorage.removeItem("Authorization")}>
+                  <ListItem button>
+                    <ListItemText primary="signout" />
+                  </ListItem>
+                </Link>
+                : <div></div>
+            }
           </List>
         </Container>
       </Toolbar>

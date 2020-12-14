@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'payments',
     'posts',
     'principals',
+    'exams',
 ]
 
 MIDDLEWARE = [

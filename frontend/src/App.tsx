@@ -19,7 +19,13 @@ import TestPage from "./pages/testpage/TestPage";
 import StatsPage from "./pages/stats/StatsPage";
 import EditClass from "./pages/EditClass/EditClass";
 import "./App.css";
-import { createClass, setRole, setUser, waiting } from "./actions/actions";
+import {
+  createClass,
+  setRole,
+  setUser,
+  waiting,
+  setUserDetails,
+} from "./actions/actions";
 // import P5Wraper from "react-p5-wrapper";
 import sketch from "./ml5Training";
 
@@ -30,7 +36,14 @@ const theme = createMuiTheme({
   },
 });
 
-const App = ({ user, importClass, importWaiting, setUser, setRole }: any) => {
+const App = ({
+  user,
+  importClass,
+  importWaiting,
+  setUser,
+  setRole,
+  setUserDetail,
+}: any) => {
   useEffect(() => {
     let token = localStorage.getItem("Authorization");
     if (token) {
@@ -48,9 +61,10 @@ const App = ({ user, importClass, importWaiting, setUser, setRole }: any) => {
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
-          console.log(data);
+          console.log(">>>>", data);
           setRole(data.role);
           // setUser(data);
+          setUserDetail(data);
           let options: any = {
             method: "post",
             headers: {
@@ -140,6 +154,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     setUser: (z: any) => dispatch(setUser(z)),
     setRole: (z: any) => dispatch(setRole(z)),
     importWaiting: (z: any) => dispatch(waiting(z)),
+    setUserDetail: (z: any) => dispatch(setUserDetails(z)),
   };
 };
 

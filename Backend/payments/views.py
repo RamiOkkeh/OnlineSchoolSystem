@@ -36,7 +36,7 @@ def addPayment(request):
 def checkout(request):
     print(">>>>>>>>>>>>>>")
     print(request.data)
-    Payment.objects.filter(studentID=request.data['userID']).update(paid=True, token = request.data['token'],payDate=date.today())
+    Payment.objects.filter(studentID=request.data['userID'], semester=request.data['semester']).update(paid=True, token = request.data['token'],payDate=date.today())
     return Response({"success": True})
 
 @api_view(['POST'])

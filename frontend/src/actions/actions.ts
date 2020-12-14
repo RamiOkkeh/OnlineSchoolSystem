@@ -4,6 +4,12 @@ export const setUser = (newState: object) => {
     payload: newState,
   };
 };
+export const setUserDetails = (newState: object) => {
+  return {
+    type: "SET_USERDETAILS",
+    payload: newState,
+  };
+}
 export const createClass = (newState: object) => {
   return {
     type: "CREATE_CLASS",

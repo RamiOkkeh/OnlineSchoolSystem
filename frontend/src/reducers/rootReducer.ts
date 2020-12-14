@@ -3,6 +3,7 @@ export type Actions = { type: string; payload: any };
 export interface State {
   classes: any[];
   user: object;
+  userDetails: object;
   profile: any[];
   schoolID: number;
   schools: any[];
@@ -15,11 +16,8 @@ export interface State {
 
 const initState = {
   classes: [],
-  user: {
-    date: "12-dec-2020",
-    semester: "first",
-    totalprice: "125$",
-  },
+  user: {},
+  userDetails: {},
   schoolID: 0,
   schools: [],
   role: "Student",
@@ -100,6 +98,12 @@ const rootReducers = (state: State = initState, action: Actions) => {
     return {
       ...state,
       user: action.payload,
+    };
+  }
+  if (action.type === "SET_USERDETAILS") {
+    return {
+      ...state,
+      userDetails: action.payload,
     };
   }
   if (action.type === "CREATE_CLASS") {
