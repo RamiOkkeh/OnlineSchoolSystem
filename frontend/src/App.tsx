@@ -9,9 +9,8 @@ import SignupForm from "./pages/SignupForm/SignupForm";
 import SignIn from "./pages/Signin/Signin";
 import Home from "./pages/Home/Home";
 import { connect } from "react-redux";
-import { createClass, setUser, waiting, setUserDetails } from "./actions/actions";
 import { Dispatch } from "redux";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Bills from "./pages/bills/Bills";
 import ProfilePage from "./pages/profile/profilePage";
 import DashboardPage from "./pages/dashboardPage/DashboardPage";
@@ -20,6 +19,15 @@ import TestPage from "./pages/testpage/TestPage";
 import StatsPage from "./pages/stats/StatsPage";
 import EditClass from "./pages/EditClass/EditClass";
 import "./App.css";
+import {
+  createClass,
+  setRole,
+  setUser,
+  waiting,
+  setUserDetails,
+} from "./actions/actions";
+// import P5Wraper from "react-p5-wrapper";
+import sketch from "./ml5Training";
 
 const theme = createMuiTheme({
   palette: {
@@ -28,7 +36,14 @@ const theme = createMuiTheme({
   },
 });
 
-const App = ({ user, importClass, importWaiting, setUser, setUserDetail }: any) => {
+const App = ({
+  user,
+  importClass,
+  importWaiting,
+  setUser,
+  setRole,
+  setUserDetail,
+}: any) => {
   useEffect(() => {
     let token = localStorage.getItem("Authorization");
     if (token) {
@@ -47,6 +62,8 @@ const App = ({ user, importClass, importWaiting, setUser, setUserDetail }: any) 
         .then((data) => data.json())
         .then((data) => {
           console.log(">>>>", data);
+          setRole(data.role);
+          // setUser(data);
           setUserDetail(data);
           let options: any = {
             method: "post",
@@ -98,10 +115,12 @@ const App = ({ user, importClass, importWaiting, setUser, setUserDetail }: any) 
         });
     }
   }, []);
+  sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <Router>
+          {/* <P5Wraper style={{ zIndex: "200" }} sketch={sketch}></P5Wraper> */}
           <Header />
           <Navbar />
           <Switch>
@@ -133,6 +152,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     importClass: (z: any) => dispatch(createClass(z)),
     setUser: (z: any) => dispatch(setUser(z)),
+    setRole: (z: any) => dispatch(setRole(z)),
     importWaiting: (z: any) => dispatch(waiting(z)),
     setUserDetail: (z: any) => dispatch(setUserDetails(z)),
   };

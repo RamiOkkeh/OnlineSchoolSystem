@@ -37,7 +37,7 @@ const styles = makeStyles({
   },
 });
 
-function Classes({ classes, user, createClass }: any) {
+function Classes({ classes, user, createClass, role }: any) {
   const classess = styles();
 
   const [name, setName] = useState("");
@@ -61,33 +61,28 @@ function Classes({ classes, user, createClass }: any) {
         setName("");
       });
   };
-  const handelEdit = (e: any) => {
-    e.preventDefault();
-  };
   return (
     <div className={classess.flex}>
       {classes.map((elem: any, i: number) => {
         return <Class data={elem} key={i} id={i} />;
       })}
-      <CreateClassDialog
-        submit={submit}
-        buttonStyle={classess.button}
-        setName={setName}
-        name={name}
-      />
-      <Link to="/editclass" style={{ textDecoration: "none" }}>
-        Edit
-      </Link>
-      {/* <form className={add ? classess.form : "hide"}>
-        <label htmlFor="className">Class Name</label>
-        <input
-          type="text"
-          name="className"
-          id="className"
-          onChange={(e) => setName(e.target.value)}
+      {role === "Principal" ? (
+        <CreateClassDialog
+          submit={submit}
+          buttonStyle={classess.button}
+          setName={setName}
+          name={name}
         />
-        <button onClick={submit}>Create</button>
-      </form> */}
+      ) : (
+        ""
+      )}
+      {role === "Principal" ? (
+        <Link to="/editclass" style={{ textDecoration: "none" }}>
+          Edit
+        </Link>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
@@ -104,6 +99,7 @@ const mapStateToProps = (state: State) => {
   return {
     classes: state.classes,
     user: state.user,
+    role: state.role,
   };
 };
 

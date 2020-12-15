@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import './test.css'
-import Question from './Question'
-import AnswerList from './AnswerList'
+import React from "react";
+import "./test.css";
+import Question from "./Question";
+import AnswerList from "./AnswerList";
 
 const QuizArea = (props: any) => {
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type style = {
     width: string;
@@ -13,7 +12,7 @@ const QuizArea = (props: any) => {
     boxSizing: string;
     float: string;
     padding: string;
-  }
+  };
 
   // var style = {
   //   width: "25%",
@@ -27,12 +26,10 @@ const QuizArea = (props: any) => {
   return (
     //   <div style={style} className="style1">
     <div className="style1">
-
       <Question dataSet={props.dataSet} />
       <AnswerList dataSet={props.dataSet} handleClick={props.handleClick} />
     </div>
-  )
-}
+  );
+};
 
-
-export default QuizArea
+export default QuizArea;

@@ -9,7 +9,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 import { setUser } from "../../actions/actions";

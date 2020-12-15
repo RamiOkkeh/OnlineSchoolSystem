@@ -20,7 +20,7 @@ const initState = {
   userDetails: {},
   schoolID: 0,
   schools: [],
-  role: "Principal",
+  role: "Student",
   subjects: [],
   profile: [],
   waiting: {},
@@ -41,50 +41,53 @@ const initState = {
       messege: "lasjfksagfkkjdvfjhsad",
     },
   ],
-  test: [{
-    subjectID: 1,
-    subjectName: 'math',
-    studentID: 2,
-    studentName: 'Ameed Asmah',
-    schooldID: 1,
-    classroomID: 1,
-    first: 60,
-    second: 80,
-    final: 85,
-  }, {
-    subjectID: 2,
-    subjectName: 'Arabic',
-    studentID: 2,
-    studentName: 'Ameed Asmah',
-    schooldID: 1,
-    classroomID: 1,
-    first: 90,
-    second: 80,
-    final: 100,
-  }, {
-    subjectID: 3,
-    subjectName: 'English',
-    studentID: 2,
-    studentName: 'Ameed Asmah',
-    schooldID: 1,
-    classroomID: 1,
-    first: 70,
-    second: 60,
-    final: 70,
-  },
-  {
-    subjectID: 4,
-    subjectName: 'phyiscs',
-    studentID: 2,
-    studentName: 'Ameed Asmah',
-    schooldID: 1,
-    classroomID: 1,
-    first: 50,
-    second: 80,
-    final: 40,
-  }]
-}
-
+  test: [
+    {
+      subjectID: 1,
+      subjectName: "math",
+      studentID: 2,
+      studentName: "Ameed Asmah",
+      schooldID: 1,
+      classroomID: 1,
+      first: 60,
+      second: 80,
+      final: 85,
+    },
+    {
+      subjectID: 2,
+      subjectName: "Arabic",
+      studentID: 2,
+      studentName: "Ameed Asmah",
+      schooldID: 1,
+      classroomID: 1,
+      first: 90,
+      second: 80,
+      final: 100,
+    },
+    {
+      subjectID: 3,
+      subjectName: "English",
+      studentID: 2,
+      studentName: "Ameed Asmah",
+      schooldID: 1,
+      classroomID: 1,
+      first: 70,
+      second: 60,
+      final: 70,
+    },
+    {
+      subjectID: 4,
+      subjectName: "phyiscs",
+      studentID: 2,
+      studentName: "Ameed Asmah",
+      schooldID: 1,
+      classroomID: 1,
+      first: 50,
+      second: 80,
+      final: 40,
+    },
+  ],
+};
 
 //Principal
 //Teacher
@@ -131,6 +134,12 @@ const rootReducers = (state: State = initState, action: Actions) => {
     return {
       ...state,
       waiting: action.payload,
+    };
+  }
+  if (action.type === "SET_ROLE") {
+    return {
+      ...state,
+      role: action.payload,
     };
   }
   return state;

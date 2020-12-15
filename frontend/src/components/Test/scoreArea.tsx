@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import './test.css'
-import TotalCorrect from './TotalCorrect'
-import TotalIncorrect from './TotalIncorrect'
-
+import React from "react";
+import "./test.css";
+import TotalCorrect from "./TotalCorrect";
+import TotalIncorrect from "./TotalIncorrect";
 
 function ScoreArea(props: any) {
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type style = {
     width: string;
@@ -13,7 +11,7 @@ function ScoreArea(props: any) {
     textAlign: string;
     float: string;
     padding: string;
-  }
+  };
 
   // var style = {
   //   width: "100%",
@@ -25,12 +23,11 @@ function ScoreArea(props: any) {
   // console.log('ameeed',props)
   return (
     //   <div style={style} >
-    <div className="style2" >
-
+    <div className="style2">
       <TotalCorrect correct={props.correct} />
       <TotalIncorrect incorrect={props.incorrect} />
     </div>
-  )
+  );
 }
 
-export default ScoreArea
+export default ScoreArea;

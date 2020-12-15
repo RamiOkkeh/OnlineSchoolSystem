@@ -12,8 +12,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { setUser } from "../../actions/actions";
+import { setRole, setUser } from "../../actions/actions";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -52,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignIn({ user, setUser }) {
+function SignIn({ user, setRole, setUser }) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -81,7 +82,7 @@ function SignIn({ user, setUser }) {
             headers: {
               "Content-Type": "application/json",
               Authorization: token,
-            }
+            },
           };
           let path =
             process.env.NODE_ENV === "production"
@@ -90,8 +91,8 @@ function SignIn({ user, setUser }) {
           fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
-              console.log("><>", data)
-              setUser(data);
+              console.log("><>", data);
+              setRole(data.role);
               let options = {
                 method: "POST",
                 headers: {
@@ -109,14 +110,17 @@ function SignIn({ user, setUser }) {
                 .then((data) => {
                   console.log(">>", data[0]);
                   setUser(data[0]);
+                  return <Redirect to="dashboard" />;
                 });
             });
         } else {
-          alert("incorrect credentials")
+          alert("incorrect credentials");
         }
       });
   };
-
+  if (user.userID) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <Container className={classes.BG} component="main" maxWidth="xs">
       <CssBaseline />
@@ -139,8 +143,8 @@ function SignIn({ user, setUser }) {
             autoComplete="email"
             autoFocus
             onChange={(e) => {
-              console.log(e.target.value)
-              setEmail(e.target.value.toLocaleLowerCase())
+              console.log(e.target.value);
+              setEmail(e.target.value.toLocaleLowerCase());
             }}
           />
           <TextField
@@ -198,6 +202,7 @@ function SignIn({ user, setUser }) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setRole: (z) => dispatch(setRole(z)),
     setUser: (z) => dispatch(setUser(z)),
   };
 };
