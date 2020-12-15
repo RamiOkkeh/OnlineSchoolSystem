@@ -80,3 +80,9 @@ def details(request):
     examGrade = Exams.objects.all().filter(studentID=request.data['studentID'], subjectID=request.data['subjectID'])
     serializer = ExamCreateSerializer(examGrade, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def stats(request):
+    examStats = Exams.objects.all().filter(studentID=request.data['studentID'])
+    serializer = ExamCreateSerializer(examStats, many=True)
+    return Response(serializer.data)
