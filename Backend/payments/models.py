@@ -19,4 +19,4 @@ class Payment(models.Model):
         unique_together = [['studentID', 'semester']]
 
     def __str__(self):
-        return self.studentID.name
+        return "%s %s" % (self.studentID.name, self.semester)
