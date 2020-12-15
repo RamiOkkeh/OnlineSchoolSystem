@@ -20,7 +20,7 @@ const sketch = (studentGrades) => {
   nn.load(modelInfo, modelLoaded);
   // data = loadJSON("./p5Data.json", () => (data = data.data));
   function modelLoaded() {
-    console.log("model loaded");
+    // console.log("model loaded");
     nn.classify(studentGrades.slice(-5), handleResults);
   }
   // function setup() {
@@ -56,7 +56,7 @@ const sketch = (studentGrades) => {
       console.error(error);
       // return;
     }
-    console.log(result);
+    // console.log(result);
     res = result;
     // return result
   }

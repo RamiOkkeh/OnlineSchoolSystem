@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import RecipeReviewCardd from './CardStudent'
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
 
 
-function StatsStudent({ test }: any) {
-    console.log('test', test)
+function StatsStudent({ testdata, user, test , exams }: any) {
+
+    
+    // console.log('test', test)
     return (
 
         <div style={{ backgroundColor: "white", display: "flex", flexWrap: "wrap", flexDirection: "column", marginTop: "5rem", marginLeft: "17rem", marginRight: "10rem" }}>
@@ -24,12 +26,12 @@ function StatsStudent({ test }: any) {
                         <div> position :Student</div>
                         <div> student Id : 11210385</div>
                     </div>
-                    <div> GPA = {((test.reduce((acc: number, subject: any) => acc + subject.first + subject.second + subject.final, 0)) / (test.length * 3)).toFixed(2)}% </div>
+                    <div> GPA = {((exams.reduce((acc: number, subject: any) => acc + subject.firstGrade + subject.secondGrade + subject.finalGrade, 0)) / (exams.length * 3)).toFixed(2)}% </div>
                 </div>
             </div>
             <div style={{ display: 'flex', flexWrap: "wrap" }}>
-                {test.map((el: any, i: any) => (
-                    <RecipeReviewCardd testdata={el} key={i} />
+                {exams.map((el: any, i: any) => (
+                    <RecipeReviewCardd exam={el} key={i} />
 
                 ))
                 }
@@ -44,7 +46,8 @@ function StatsStudent({ test }: any) {
 const mapStateToProps = (state: State) => {
     return {
         test: state.test,
-        post: state.post
+        schoolID: state.schoolID,
+        user: state.user,
     };
 };
 

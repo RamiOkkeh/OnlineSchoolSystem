@@ -8,31 +8,27 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 
 // {console.log('aaa',dataa)}
-const ChartComp = ({testdata}:any) => {
+const ChartComp = ({ exam }: any) => {
 
     const data = [
-        //   { argument: 'int', value: 0 },
-        { argument: 'first', value: testdata.first },
-        { argument: 'second', value: testdata.second },
-        { argument: 'final', value: testdata.final },
-        //   { argument: 'ff', value: 100 },
+        { argument: 'first', value: exam.firstGrade },
+        { argument: 'second', value: exam.secondGrade },
+        { argument: 'final', value: exam.finalGrade },
     ];
 
-    console.log('aaaaa',testdata)
-    return(
-    <div >
-        <Paper >
-            <Chart
-                data={data}
-            >
-                <ArgumentAxis />
-                <ValueAxis tickSize={10} />
-
-                <SplineSeries valueField="value" argumentField="argument" />
-            </Chart>
-        </Paper>
-    </div>
-)};
-
-
+    // console.log('aaaaa', exam)
+    return (
+        <div >
+            <Paper >
+                <Chart
+                    data={data}
+                >
+                    <ArgumentAxis />
+                    <ValueAxis tickSize={10} />
+                    <SplineSeries valueField="value" argumentField="argument" />
+                </Chart>
+            </Paper>
+        </div>
+    )
+};
 export default ChartComp

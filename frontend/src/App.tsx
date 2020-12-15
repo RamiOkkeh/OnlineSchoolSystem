@@ -80,7 +80,7 @@ const App = ({
           fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
-              console.log(data[0]);
+              // console.log(data[0]);
               setUser(data[0]);
               let options = {
                 method: "post",
@@ -94,7 +94,7 @@ const App = ({
               fetch(path, options)
                 .then((data) => data.json())
                 .then((data) => {
-                  console.log(data);
+                  // console.log(data);
                   importClass(data);
                   let options = {
                     method: "get",
@@ -107,7 +107,7 @@ const App = ({
                   fetch(path, options)
                     .then((data) => data.json())
                     .then((data) => {
-                      console.log(data[0]);
+                      // console.log(data[0]);
                       importWaiting(data[0]);
                     });
                 });
