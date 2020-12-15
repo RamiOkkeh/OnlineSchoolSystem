@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import RecipeReviewCardd from './CardStudent'
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
 
 
-function StatsStudent({ test }: any) {
+function StatsStudent({ testdata, user, test }: any) {
+
+    
     // console.log('test', test)
     return (
 
@@ -44,7 +46,8 @@ function StatsStudent({ test }: any) {
 const mapStateToProps = (state: State) => {
     return {
         test: state.test,
-        post: state.post
+        schoolID: state.schoolID,
+        user: state.user,
     };
 };
 
