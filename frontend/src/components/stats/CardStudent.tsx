@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 // 
 
 
-function RecipeReviewCardd({ testdata, user }: any) {
+function RecipeReviewCardd({ exam, user }: any) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [details, setDetails] = useState([]);
@@ -60,16 +60,16 @@ function RecipeReviewCardd({ testdata, user }: any) {
           <div style={{ display: "flex" }}>
             <div>
               <div style={{ paddingTop: "2rem" }}>
-                Subject : {testdata.subjectName}
+                Subject : {exam.subjectName}
               </div>
             </div>
-            <div style={{ paddingTop: "2rem", paddingLeft: "1.5rem" }}> avgMark = {((testdata.first + testdata.second + testdata.final) / 3).toFixed(2)}%</div>
+            <div style={{ paddingTop: "2rem", paddingLeft: "1.5rem" }}> avgMark = {((exam.firstGrade + exam.secondGrade + exam.finalGrade) / 3).toFixed(2)}%</div>
           </div>
         </div>
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             <div >
-              <ChartComp testdata={testdata} />
+              <ChartComp exam={exam} />
             </div>
           </Typography>
         </CardContent>

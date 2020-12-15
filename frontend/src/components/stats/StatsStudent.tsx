@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
 
 
-function StatsStudent({ testdata, user, test }: any) {
+function StatsStudent({ testdata, user, test , exams }: any) {
 
     
     // console.log('test', test)
@@ -26,12 +26,12 @@ function StatsStudent({ testdata, user, test }: any) {
                         <div> position :Student</div>
                         <div> student Id : 11210385</div>
                     </div>
-                    <div> GPA = {((test.reduce((acc: number, subject: any) => acc + subject.first + subject.second + subject.final, 0)) / (test.length * 3)).toFixed(2)}% </div>
+                    <div> GPA = {((exams.reduce((acc: number, subject: any) => acc + subject.firstGrade + subject.secondGrade + subject.finalGrade, 0)) / (exams.length * 3)).toFixed(2)}% </div>
                 </div>
             </div>
             <div style={{ display: 'flex', flexWrap: "wrap" }}>
-                {test.map((el: any, i: any) => (
-                    <RecipeReviewCardd testdata={el} key={i} />
+                {exams.map((el: any, i: any) => (
+                    <RecipeReviewCardd exam={el} key={i} />
 
                 ))
                 }
