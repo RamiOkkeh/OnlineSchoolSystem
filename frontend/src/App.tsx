@@ -9,7 +9,7 @@ import SignupForm from "./pages/SignupForm/SignupForm";
 import SignIn from "./pages/Signin/Signin";
 import Home from "./pages/Home/Home";
 import { connect } from "react-redux";
-import { createClass, setUser, waiting } from "./actions/actions";
+import { createClass, setUser, waiting, setUserDetails } from "./actions/actions";
 import { Dispatch } from "redux";
 import React, { useEffect } from "react";
 import Bills from "./pages/bills/Bills";
@@ -28,7 +28,7 @@ const theme = createMuiTheme({
   },
 });
 
-const App = ({ user, importClass, importWaiting, setUser }: any) => {
+const App = ({ user, importClass, importWaiting, setUser, setUserDetail }: any) => {
   useEffect(() => {
     let token = localStorage.getItem("Authorization");
     if (token) {
@@ -46,8 +46,8 @@ const App = ({ user, importClass, importWaiting, setUser }: any) => {
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
-          // console.log(data);
-          // setUser(data);
+          console.log(">>>>", data);
+          setUserDetail(data);
           let options: any = {
             method: "post",
             headers: {
@@ -134,6 +134,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     importClass: (z: any) => dispatch(createClass(z)),
     setUser: (z: any) => dispatch(setUser(z)),
     importWaiting: (z: any) => dispatch(waiting(z)),
+    setUserDetail: (z: any) => dispatch(setUserDetails(z)),
   };
 };
 
