@@ -1,5 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import { State } from "../../reducers/rootReducer"
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -30,18 +32,38 @@ const styles = makeStyles({
     color: `white`,
   },
 });
-const navItems = [
-  { title: "DashBoard", path: "/dashboard" },
-  { title: "Schedule", path: "/schedule" },
-  { title: "Classes", path: "/classes" },
-  { title: "Tests", path: "/tests" },
-  { title: "Stats", path: "/stats" },
-  { title: "Bills", path: "/bills" },
-  { title: "Options", path: "/options" },
-];
 
-function Navbar() {
+
+function Navbar({ user , userDetails }: any) {
   const classes = styles();
+  console.log("homepageUser", userDetails)
+
+
+
+  const navItems =
+    userDetails.role === "Student" ?
+      [{ title: "DashBoard", path: "/dashboard" },
+      { title: "Schedule", path: "/schedule" },
+      { title: "Stats", path: "/stats" },
+      { title: "Tests", path: "/tests" },
+      { title: "Bills", path: "/bills" },
+      { title: "Options", path: "/options" },
+      { title: "Classes", path: "/classes" }]
+      :
+      userDetails.role === "Teacher" ?
+      [{ title: "DashBoard", path: "/dashboard" },
+      { title: "Tests", path: "/tests" },
+      { title: "Options", path: "/options" },
+      { title: "Classes", path: "/classes" }]
+      : userDetails.role === "Principal" ?
+      [{ title: "DashBoard", path: "/dashboard" },
+      { title: "Schedule", path: "/schedule" },
+      { title: "Bills", path: "/bills" },
+      { title: "Options", path: "/options" },
+      { title: "Classes", path: "/classes" }]
+      :[{ title: "DashBoard", path: "/dashboard" },]
+
+
   return (
     <AppBar className={classes.nav}>
       <Toolbar>
@@ -63,4 +85,10 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+const mapStateToProps = (state: State) => {
+  return {
+    user: state.user,
+    userDetails: state.userDetails,
+  };
+};
+export default connect(mapStateToProps)(Navbar);

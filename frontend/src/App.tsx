@@ -127,14 +127,16 @@ const App = ({
             <Route path="/" exact component={Home} />
             <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
+            <Route exact path="/dashboard" component={DashboardPage} />
+            <Route exact path="/schedule" component={SchedulePage} />
+
             <Route path="/classes" component={Classes} />
             <Route path="/editclass" component={EditClass} />
             <Route exact path="/bills" component={Bills} />
             <Route exact path="/profile" component={ProfilePage} />
-            <Route exact path="/dashboard" component={DashboardPage} />
-            <Route exact path="/schedule" component={SchedulePage} />
+            
             <Route exact path="/tests" component={TestPage} />
-            <Route exact path="/stats" component={StatsPage} />
+           <Route exact path="/stats" component={StatsPage} />  
           </Switch>
         </Router>
       </div>
