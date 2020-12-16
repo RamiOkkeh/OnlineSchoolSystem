@@ -93,7 +93,7 @@ function CustomizedSelects({ schoolID, user }: any) {
                 setClassrooms(data);
             });
     }, [user])
-    // console.log('classroom', classroom);
+    console.log('classroom', classrooms);
     const handelSubmit = (e: any) => {
         e.preventDefault();
         let options = {
@@ -115,7 +115,7 @@ function CustomizedSelects({ schoolID, user }: any) {
             });
         // console.log(path)
     }
-    console.log('classroom', classroom);
+    // console.log('classroom', classroom);
 
     return (
 

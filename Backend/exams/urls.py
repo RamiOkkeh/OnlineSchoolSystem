@@ -1,5 +1,5 @@
 from django.urls import path, include
-from exams.views import ExamList, assignFirstExam, assignSecondExam , assignFinalExam , assignFirstGrade, assignSecondGrade, assignFinalGrade, details
+from exams.views import ExamList, assignFirstExam, assignSecondExam , assignFinalExam , assignFirstGrade, assignSecondGrade, assignFinalGrade, details, stats
 
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path("assignSecondGrade", assignSecondGrade),
     path("assignFinalGrade", assignFinalGrade),
     path("details", details),
+    path("stats", stats),
 ]
