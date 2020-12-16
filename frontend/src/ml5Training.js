@@ -20,16 +20,8 @@ const sketch = (studentGrades, callback) => {
   nn.load(modelInfo, modelLoaded);
   // data = loadJSON("./p5Data.json", () => (data = data.data));
   function modelLoaded() {
-<<<<<<< HEAD
     console.log("model loaded");
     nn.classify(studentGrades.slice(-5), callback);
-||||||| 84f8c7c
-    console.log("model loaded");
-    nn.classify(studentGrades.slice(-5), handleResults);
-=======
-    // console.log("model loaded");
-    nn.classify(studentGrades.slice(-5), handleResults);
->>>>>>> 6f6c0eb73d7431fbadb216447cab50bd113ccf2c
   }
   // function setup() {
   //   //   let tags = data.shift();
@@ -59,7 +51,6 @@ const sketch = (studentGrades, callback) => {
   //     nn.classify(grades, handleResults);
   //   }
   // }
-<<<<<<< HEAD
   // function handleResults(error, result) {
   //   if (error) {
   //     console.error(error);
@@ -69,27 +60,6 @@ const sketch = (studentGrades, callback) => {
   //   res = result;
   //   // return result
   // }
-||||||| 84f8c7c
-  function handleResults(error, result) {
-    if (error) {
-      console.error(error);
-      // return;
-    }
-    console.log(result);
-    res = result;
-    // return result
-  }
-=======
-  function handleResults(error, result) {
-    if (error) {
-      console.error(error);
-      // return;
-    }
-    // console.log(result);
-    res = result;
-    // return result
-  }
->>>>>>> 6f6c0eb73d7431fbadb216447cab50bd113ccf2c
   // return res;
 };
 export default sketch;
