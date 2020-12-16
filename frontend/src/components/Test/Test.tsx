@@ -48,9 +48,11 @@ function Test({ user, userDetails }: any) {
         console.log(data[0].firstExam);
         setDataSet(data[0].firstExam);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   // to do get request fetch exam data
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   var dataSetExample = [
     {
       question: "What is 8 x 1?",
@@ -152,6 +154,7 @@ function Test({ user, userDetails }: any) {
           console.log(data);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
 
   const handleClick = async (choice: any) => {

@@ -28,7 +28,7 @@ SECRET_KEY = "gd!2d-tn*6)fa2th8qt3@()vgn50ss%b+ic^m+bi^!7+ssm6g3"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['oss-0.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -53,9 +53,14 @@ INSTALLED_APPS = [
     'posts',
     'principals',
     'exams',
+    'psycopg2',
+    'whitenoise',
+    'gunicorn',
+    # 'dj-database-url',s
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -155,11 +160,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = "/static/"
-STATICFILES_DIR = {
-    os.path.join(BASE_DIR, 'build/static')
-}
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+print(STATIC_ROOT)
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'build/static'),
+)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
 
 AUTH_USER_MODEL = "users.UserAccount"
 

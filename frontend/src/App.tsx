@@ -10,7 +10,7 @@ import SignIn from "./pages/Signin/Signin";
 import Home from "./pages/Home/Home";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Bills from "./pages/bills/Bills";
 import ProfilePage from "./pages/profile/profilePage";
 import DashboardPage from "./pages/dashboardPage/DashboardPage";
@@ -60,6 +60,7 @@ const App = ({
           : "http://localhost:8000/auth/users/me/";
       fetch(path, options)
         .then((data) => data.json())
+        .catch((err) => alert(err))
         .then((data) => {
           console.log(">>>>", data);
           setRole(data.role);
@@ -114,6 +115,7 @@ const App = ({
             });
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
   return (

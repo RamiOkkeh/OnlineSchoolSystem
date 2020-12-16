@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -41,7 +42,7 @@ export default function RecipeReviewCard({ data }: any) {
   //   setExpanded(!expanded);
   // };
 
-  const [favourite, setFavourite] = useState("");
+  // const [favourite, setFavourite] = useState("");
 
   //   const Post = (userID:any,text:any) => {
   //     fetch('/bsy3mloElzameel', {
