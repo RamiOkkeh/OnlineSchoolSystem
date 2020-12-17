@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   BG: {
-    backgroundColor: "#fef3f3",
+    backgroundColor: "#fef3f300",
     marginTop: "100px",
   },
 }));

@@ -34,7 +34,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    // marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -51,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   BG: {
-    backgroundColor: "#fef3f3",
-    marginTop: "100px",
+    backgroundColor: "#fef3f300",
+    // marginTop: "100px",
   },
   school: {
     width: "100px",

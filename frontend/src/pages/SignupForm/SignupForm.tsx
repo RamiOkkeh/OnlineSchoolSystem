@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     left: "100px",
     // backgroundColor: "#fef3f3",
-    padding: "100px",
+    paddingTop: "100px",
   },
   backButton: {
     marginRight: theme.spacing(1),
@@ -33,20 +33,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps() {
-  return [
-    "Select master blaster campaign settings",
-    "Create an ad group",
-    "Create an ad",
-    "hey?",
-  ];
-}
 
 function SignupForm({ importSchools, user, importSubjects }: any) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [role, setRole] = React.useState("Student");
-  const steps = getSteps();
+  const [steps, setSteps] = React.useState([
+    "Select role",
+    "Create an account",
+  ]);
+
+  useEffect(() => {
+    if (role === 'Principal') {
+      setSteps(
+        [
+          "Select role",
+          "Create an account",
+          "Create a School",
+          "Add Subjects",
+        ])
+    }else{
+      setSteps(
+        [
+          "Select role",
+          "Create an account",
+        ])
+    }
+  }, [role]);
 
   useEffect(() => {
     let options = {
@@ -63,7 +76,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
         console.log(data);
         importSchools(data);
       });
-  });
+  }, []);
 
   const handleNext = () => {
     if (activeStep === 1 && !localStorage.getItem("Authorization")) {
@@ -86,7 +99,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
       case 0:
         return (
           <form>
-            <label htmlFor="role:">What is Your Role?</label>
+            <label htmlFor="role:" style={{ marginRight: '2rem' }}>What is Your Role?</label>
             <Select value={role} onChange={(e: any) => setRole(e.target.value)}>
               <MenuItem value="Student">Student</MenuItem>
               <MenuItem value="Teacher">Teacher</MenuItem>
@@ -107,7 +120,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
   console.log(user);
   return (
     <div className={classes.root}>
-      <Stepper activeStep={activeStep} alternativeLabel>
+      <Stepper style={{backgroundColor:'#00000000'}} activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
@@ -123,24 +136,24 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
             <Button onClick={handleReset}>Reset</Button>
           </div>
         ) : (
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
             <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.backButton}
-              >
-                Back
+              <Typography className={classes.instructions}>
+                {getStepContent(activeStep)}
+              </Typography>
+              <div>
+                <Button
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  className={classes.backButton}
+                >
+                  Back
               </Button>
-              <Button variant="contained" color="primary" onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
+                <Button variant="contained" color="primary" onClick={handleNext}>
+                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                </Button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </div>
   );
