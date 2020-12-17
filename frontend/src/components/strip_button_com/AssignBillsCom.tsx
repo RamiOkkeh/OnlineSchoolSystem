@@ -85,7 +85,7 @@ function CustomizedSelects({ schoolID, user }: any) {
         let path =
             process.env.NODE_ENV === "production"
                 ? "/payment/"
-                : "http://localhost:8000/classroom/getSchoolClasses";
+                : "http://192.168.0.109:8000/classroom/getSchoolClasses";
         fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
@@ -104,7 +104,7 @@ function CustomizedSelects({ schoolID, user }: any) {
         let path =
             process.env.NODE_ENV === "production"
                 ? "/payment/"
-                : "http://localhost:8000/payment/addPayment";
+                : "http://192.168.0.109:8000/payment/addPayment";
         fetch(path, options)
             .then((data) => {
                 data.json()

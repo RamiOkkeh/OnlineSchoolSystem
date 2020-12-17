@@ -58,7 +58,7 @@ function AddSubject({ role, user }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/subject/"
-        : "http://localhost:8000/subject/";
+        : "http://192.168.0.109:8000/subject/";
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {

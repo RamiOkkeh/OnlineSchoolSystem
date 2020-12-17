@@ -53,7 +53,7 @@ function Classes({ classes, user, createClass, role }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/classroom/"
-        : "http://localhost:8000/classroom/";
+        : "http://192.168.0.109:8000/classroom/";
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -74,15 +74,15 @@ function Classes({ classes, user, createClass, role }: any) {
           name={name}
         />
       ) : (
-        ""
-      )}
+          ""
+        )}
       {role === "Principal" ? (
         <Link to="/editclass" style={{ textDecoration: "none" }}>
           Edit
         </Link>
       ) : (
-        ""
-      )}
+          ""
+        )}
     </div>
   );
 }

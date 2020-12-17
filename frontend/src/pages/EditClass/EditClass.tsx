@@ -21,7 +21,7 @@ function EditClass({ user, waiting }: any) {
       let path =
         process.env.NODE_ENV === "production"
           ? "/student/assignClass"
-          : "http://localhost:8000/student/assignClass";
+          : "http://192.168.0.109:8000/student/assignClass";
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {

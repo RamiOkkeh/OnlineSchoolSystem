@@ -35,7 +35,7 @@ function Test({ user, userDetails }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? `/exam/details`
-        : `http://localhost:8000/exam/details`;
+        : `http://192.168.0.109:8000/exam/details`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -72,7 +72,7 @@ function Test({ user, userDetails }: any) {
       let path =
         process.env.NODE_ENV === "production"
           ? `/exam/assignFirstGrade`
-          : `http://localhost:8000/exam/assignFirstGrade`;
+          : `http://192.168.0.109:8000/exam/assignFirstGrade`;
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
@@ -101,7 +101,7 @@ function Test({ user, userDetails }: any) {
     //   // console.log('current',current)
     // }
   };
-  
+
   return (
     <div style={{ marginLeft: "14rem", marginTop: "3rem" }}>
       {

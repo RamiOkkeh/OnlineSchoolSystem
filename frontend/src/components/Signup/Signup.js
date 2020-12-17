@@ -123,7 +123,7 @@ const SignUp = function ({
     let path =
       process.env.NODE_ENV === "production"
         ? "/auth/users/"
-        : "http://localhost:8000/auth/users/";
+        : "http://192.168.0.109:8000/auth/users/";
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -140,7 +140,7 @@ const SignUp = function ({
         let path =
           process.env.NODE_ENV === "production"
             ? "/auth/jwt/create/"
-            : "http://localhost:8000/auth/jwt/create/";
+            : "http://192.168.0.109:8000/auth/jwt/create/";
         fetch(path, options)
           .then((data) => data.json())
           .then((data) => {
@@ -156,7 +156,7 @@ const SignUp = function ({
             let path =
               process.env.NODE_ENV === "production"
                 ? "/auth/users/me/"
-                : "http://localhost:8000/auth/users/me/";
+                : "http://192.168.0.109:8000/auth/users/me/";
             fetch(path, options)
               .then((data) => data.json())
               .then((data) => {
@@ -172,22 +172,22 @@ const SignUp = function ({
                   body: JSON.stringify(
                     role === "Student"
                       ? {
-                          userID: userInfo.id,
-                          schoolID: School.id,
-                          classroomID: 1,
-                        }
+                        userID: userInfo.id,
+                        schoolID: School.id,
+                        classroomID: 1,
+                      }
                       : {
-                          userID: userInfo.id,
-                          schoolID: School.id,
-                          subjectID: Subject.id,
-                        }
+                        userID: userInfo.id,
+                        schoolID: School.id,
+                        subjectID: Subject.id,
+                      }
                   ),
                 };
                 if (role !== "Principal") {
                   let path =
                     process.env.NODE_ENV === "production"
                       ? `/${role.toLowerCase()}/`
-                      : `http://localhost:8000/${role.toLowerCase()}/`;
+                      : `http://192.168.0.109:8000/${role.toLowerCase()}/`;
                   fetch(path, options)
                     .then((data) => data.json())
                     .then((data) => {
@@ -295,7 +295,7 @@ const SignUp = function ({
                     let path2 =
                       process.env.NODE_ENV === "production"
                         ? "/subject/getSchoolSubjects"
-                        : "http://localhost:8000/subject/getSchoolSubjects";
+                        : "http://192.168.0.109:8000/subject/getSchoolSubjects";
                     fetch(path2, options2)
                       .then((data) => data.json())
                       .then((data) => {
@@ -311,8 +311,8 @@ const SignUp = function ({
                 </Select>
               </Grid>
             ) : (
-              ""
-            )}
+                ""
+              )}
             {role === "Teacher" ? (
               <Grid>
                 <Grid>
@@ -348,8 +348,8 @@ const SignUp = function ({
                 </Grid>
               </Grid>
             ) : (
-              ""
-            )}
+                ""
+              )}
             <Grid item xs={12}>
               <FormControlLabel
                 control={

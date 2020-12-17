@@ -73,7 +73,7 @@ function CreateSchool({ role, user, setUser }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/school/"
-        : "http://localhost:8000/school/";
+        : "http://192.168.0.109:8000/school/";
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -89,7 +89,7 @@ function CreateSchool({ role, user, setUser }: any) {
         let path =
           process.env.NODE_ENV === "production"
             ? "/principal/"
-            : "http://localhost:8000/principal/";
+            : "http://192.168.0.109:8000/principal/";
         fetch(path, options)
           .then((data) => data.json())
           .then((data) => {

@@ -52,7 +52,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
           "Create a School",
           "Add Subjects",
         ])
-    }else{
+    } else {
       setSteps(
         [
           "Select role",
@@ -69,7 +69,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/school/"
-        : "http://localhost:8000/school/";
+        : "http://192.168.0.109:8000/school/";
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -120,7 +120,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
   console.log(user);
   return (
     <div className={classes.root}>
-      <Stepper style={{backgroundColor:'#00000000'}} activeStep={activeStep} alternativeLabel>
+      <Stepper style={{ backgroundColor: '#00000000' }} activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>

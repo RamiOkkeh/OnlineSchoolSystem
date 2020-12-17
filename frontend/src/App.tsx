@@ -57,7 +57,7 @@ const App = ({
       let path =
         process.env.NODE_ENV === "production"
           ? "/auth/users/me/"
-          : "http://localhost:8000/auth/users/me/";
+          : "http://192.168.0.109:8000/auth/users/me/";
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
@@ -80,7 +80,7 @@ const App = ({
             let path =
               process.env.NODE_ENV === "production"
                 ? `/${data.role.toLowerCase()}/details`
-                : `http://localhost:8000/${data.role.toLowerCase()}/details`;
+                : `http://192.168.0.109:8000/${data.role.toLowerCase()}/details`;
             fetch(path, options)
               .then((data) => data.json())
               .then((data) => {
@@ -94,7 +94,7 @@ const App = ({
                 let path =
                   process.env.NODE_ENV === "production"
                     ? "/classroom/getSchoolClasses"
-                    : "http://localhost:8000/classroom/getSchoolClasses";
+                    : "http://192.168.0.109:8000/classroom/getSchoolClasses";
                 fetch(path, options)
                   .then((data) => data.json())
                   .then((data) => {
@@ -107,7 +107,7 @@ const App = ({
                     let path =
                       process.env.NODE_ENV === "production"
                         ? "/classroom/"
-                        : "http://localhost:8000/classroom/";
+                        : "http://192.168.0.109:8000/classroom/";
                     fetch(path, options)
                       .then((data) => data.json())
                       .then((data) => {

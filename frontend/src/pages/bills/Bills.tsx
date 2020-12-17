@@ -17,7 +17,7 @@ function Bills({ user, role }: any) {
         let path =
             process.env.NODE_ENV === "production"
                 ? "/payment/"
-                : "http://localhost:8000/payment/details";
+                : "http://192.168.0.109:8000/payment/details";
         fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
