@@ -1,7 +1,10 @@
 import React from "react";
 import "./profileBody.css";
+import { connect } from "react-redux";
+import { State } from "../../reducers/rootReducer";
 
-export default function ProfilePrincipal() {
+ function ProfilePrincipal({user,userDetails,classes}:any) {
+   console.log('ssss',user,'......',userDetails,"kkkkkk",classes)
   return (
     <div style={{ maxWidth: "1700px", marginTop: "63px", marginLeft: "150px" }}>
       <div style={{}}>
@@ -25,7 +28,7 @@ export default function ProfilePrincipal() {
               width: "15%",
             }}
           >
-            <h3 style={{ margin: "0px", color: "white" }}>Rami Okeh</h3>
+            <h3 style={{ margin: "0px", color: "white" }}>{user.principalName}</h3>
             <div
               style={{ paddingLeft: "5px", margin: "0px", marginTop: "5px" }}
               className="active"
@@ -45,28 +48,36 @@ export default function ProfilePrincipal() {
           <div>
             <h3 style={{ padding: "30px 10px 20px 15px" }}>
               {" "}
-              SchoolName:Al-KindiSchool
+              SchoolName:{user.schoolName}
             </h3>
             <h4 style={{ padding: "0 10px 20px 15px" }}>
-              number of Teachers:25
+              Email:{userDetails.email}
+            </h4>
+            <h4 style={{ padding: "0 10px 20px 15px" }}>
+              role:{userDetails.role}
             </h4>
             <h4 style={{ padding: "0 10px 20px 15px" }}>
               {" "}
-              number of Students : 400{" "}
+              number of Classes : {classes.length}
             </h4>
-            <h4 style={{ padding: "0 10px 20px 15px" }}>
-              {" "}
-              number of Students : 400{" "}
-            </h4>
+          
             {/* <h4 style={{ padding: "0 10px 20px 15px" }} > number of reservations :5</h4> */}
           </div>
         </div>
         <div style={{ flex: ".73" }}>
-          {/* <DisabledTabs  /> */}
-          {/* component code for FAVORITES*/}
           <div className="gallery"></div>
         </div>
       </div>
     </div>
   );
 }
+
+
+const mapStateToProps = (state: State) => {
+  return {
+      user: state.user,
+      userDetails: state.userDetails,
+      classes : state.classes,
+  };
+};
+export default connect(mapStateToProps)(ProfilePrincipal);

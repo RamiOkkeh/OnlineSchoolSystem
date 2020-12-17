@@ -8,7 +8,7 @@ import { State } from "../../reducers/rootReducer"
 function StatsStudent({ testdata, user, test , exams }: any) {
 
     
-    // console.log('test', test)
+    // console.log('test', exams)
     return (
 
         <div style={{ backgroundColor: "white", display: "flex", flexWrap: "wrap", flexDirection: "column", marginTop: "5rem", marginLeft: "17rem", marginRight: "10rem" }}>
@@ -26,7 +26,7 @@ function StatsStudent({ testdata, user, test , exams }: any) {
                         <div> position :Student</div>
                         <div> student Id : 11210385</div>
                     </div>
-                    <div> GPA = {((exams.reduce((acc: number, subject: any) => acc + subject.firstGrade + subject.secondGrade + subject.finalGrade, 0)) / (exams.length * 3)).toFixed(2)}% </div>
+                    <div> GPA = { exams.length ?((exams.reduce((acc: number, subject: any) => acc + subject.firstGrade + subject.secondGrade + subject.finalGrade, 0)) / (exams.length * 3)).toFixed(2):0.0}% </div>
                 </div>
             </div>
             <div style={{ display: 'flex', flexWrap: "wrap" }}>
