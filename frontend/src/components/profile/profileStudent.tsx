@@ -1,28 +1,85 @@
 
-import React from "react";
+import React, { useState } from "react";
 import "./profileBody.css";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 
 
 
-function Profile({ profile,user }: any) {
-  console.log('myuser',user);
+function Profile({ profile, user }: any) {
+  const [image, setImage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const uploadImage = async (e) => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files['0'])
+    data.append('upload_preset', 'dquts6y1')
+console.log('asasasa',files['0'])
+
+    setLoading(true)
+
+
+ const requestOptions = {
+  method: 'POST',
+  body: data
+};
+console.log('aaaaa',data)
+
+fetch("https://api.cloudinary.com/v1_1/coronaschool/image/upload", requestOptions)
+  .then(response => response.json())
+  .then(res => {
+    console.log('aaaaa1111',res)
+    setImage(res.secure_url)
+    setLoading(false)
+    //
+  })
+}
+
+
+
+  //   const res = await fetch(
+  //     'https://api.cloudinary.com/v1_1/coronaschool/image/upload',
+  //     {
+  //       method: 'POST',
+  //       body: data
+  //     }
+  //   )
+  //   const file = await res.json()
+
+  //   setImage(file.secure_url)
+  //   setLoading(false)
+  // }
+
+  console.log('myuser', user);
   return (
     <div style={{ maxWidth: "1700px", marginTop: "63px", marginLeft: "150px" }}>
       <div style={{}}>
         <div className="background_img">
-          <img
-            style={{
-              width: "160px",
-              marginTop: "30px",
-              marginRight: "57rem",
-              height: "160px",
-              borderRadius: "80px ",
-            }}
-            src="https://ca.slack-edge.com/TTVPM20S0-U018HTXLNDD-c9c19858d7dc-512"
-            alt=""
+
+          <h1>Upload Image</h1>
+          <input
+            type="file"
+            name="file"
+            placeholder="Upload an image"
+            onChange={uploadImage}
           />
+          {loading ? (
+            <h3>Loading...</h3>
+          ) : (
+              <img src={image} style={{ width: '300px' }} />
+            )}
+          {/* <img
+              style={{
+                width: "160px",
+                marginTop: "30px",
+                marginRight: "57rem",
+                height: "160px",
+                borderRadius: "80px ",
+              }}
+              src="https://ca.slack-edge.com/TTVPM20S0-U018HTXLNDD-c9c19858d7dc-512"
+              alt=""
+            /> */}
           <div
             style={{
               marginLeft: "55px",
@@ -55,11 +112,11 @@ function Profile({ profile,user }: any) {
               {user.classroomName}
             </h4>
             <h4 style={{ padding: "0 10px 20px 15px" }}>
-              
+
               schoolName :{user.schoolName}
             </h4>
             <h4 style={{ padding: "0 10px 20px 15px" }}>
-              
+
               userId :{user.userID}
             </h4>
             {/* <h4 style={{ padding: "0 10px 20px 15px" }} > number of reservations :5</h4> */}
@@ -79,8 +136,7 @@ function Profile({ profile,user }: any) {
 
 const mapStateToProps = (state: State) => {
   return {
-      user: state.user,
+    user: state.user,
   };
 };
 export default connect(mapStateToProps)(Profile);
-
