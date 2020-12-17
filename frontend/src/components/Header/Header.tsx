@@ -11,7 +11,6 @@ import {
   ListItem,
   ListItemText,
 } from "@material-ui/core";
-import { DesktopWindows } from "@material-ui/icons";
 
 const styles = makeStyles({
   flex: {
@@ -64,7 +63,7 @@ function Header({ user }: any) {
               user.userID ?
                 <Link className={classes.links} to="/signin" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                   localStorage.removeItem("Authorization")
-                  location.reload()
+                  window.location.reload()
                 }}>
                   <ListItem button>
                     <ListItemText primary="signout" />

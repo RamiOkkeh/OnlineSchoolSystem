@@ -101,7 +101,7 @@ function Test({ user, userDetails }: any) {
     //   // console.log('current',current)
     // }
   };
- console.log("ssasda",dataSet)
+  
   return (
     <div style={{ marginLeft: "14rem", marginTop: "3rem" }}>
       {
