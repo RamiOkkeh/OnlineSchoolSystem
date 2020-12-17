@@ -6,23 +6,17 @@ import ScoreArea from "./scoreArea";
 import QuizArea from "./QuizArea";
 
 function Test({ user, userDetails }: any) {
-  type dataSetType = [
-    {
-      question: any;
-      answers: string[];
-      correct: number;
-      // incorrect: string[];
-    }
-  ];
+  // type dataSetType = [
+  //   {
+  //     question: any;
+  //     answers: string[];
+  //     correct: number;
+  //     // incorrect: string[];
+  //   }
+  // ];
 
   const [current, setCurrent] = useState(0);
-  const [dataSet, setDataSet] = useState<dataSetType>([
-    {
-      question: "",
-      answers: [],
-      correct: 0,
-    },
-  ]);
+  const [dataSet, setDataSet] = useState<any[]>([]);
   const [correct, setCorrect] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
 
@@ -45,80 +39,13 @@ function Test({ user, userDetails }: any) {
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
-        console.log(data[0].firstExam);
-        setDataSet(data[0].firstExam);
+        if (data[0]) {
+          console.log(data[0].firstExam);
+          setDataSet(data[0].firstExam);
+        }
       });
   }, [user]);
 
-  // to do get request fetch exam data
-  var dataSetExample = [
-    {
-      question: "What is 8 x 1?",
-      answers: ["1", "8", "16", "9"],
-      correct: 1,
-    },
-    {
-      question: "Who is Steve Jobs?",
-      answers: [
-        "CEO of Microsoft",
-        "Barber in NY",
-        "Movie Star",
-        "CEO of Apple",
-      ],
-      correct: 3,
-    },
-    {
-      question: "Metallica is a ____ band",
-      answers: ["Blues", "Hard-Rock", "Jazz", "Metal"],
-      correct: 3,
-    },
-    {
-      question: "IS is a ____",
-      answers: ["Word", "Band", "Terror Group", "Brand"],
-      correct: 2,
-    },
-    {
-      question: "Who was Einstein",
-      answers: [
-        "A Scientist",
-        "A Dentist",
-        "A Serial Killer",
-        "None of the above",
-      ],
-      correct: 0,
-    },
-    {
-      question: "JavaScript can be used in ____ development",
-      answers: ["Back-End", "Front-End", "ReactJS", "All of the Above"],
-      correct: 3,
-    },
-    {
-      question: "Hitler was a",
-      answers: [
-        "Mass Murderer",
-        "Dictator",
-        "Jew",
-        "None of the above",
-        "All of the above",
-      ],
-      correct: 4,
-    },
-    {
-      question: "Korn is a",
-      answers: ["Nu-Metal band", "Religion", "Singer"],
-      correct: 0,
-    },
-    {
-      question: "Windows computers are",
-      answers: ["Horrible", "Great", "Cheap", "Invented by Bill Gates"],
-      correct: 3,
-    },
-    {
-      question: "The BigBan stands in",
-      answers: ["Egypt", "London", "Amsterdam", "NewYork"],
-      correct: 1,
-    },
-  ];
 
   useEffect(() => {
     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -174,15 +101,23 @@ function Test({ user, userDetails }: any) {
     //   // console.log('current',current)
     // }
   };
-
+  
   return (
     <div style={{ marginLeft: "14rem", marginTop: "3rem" }}>
-      <ScoreArea correct={correct} incorrect={incorrect} />
-      {current === dataSet.length ? (
-        <h4>thank you your grade is {(100 / dataSet.length) * correct}/100</h4>
-      ) : (
-        <QuizArea handleClick={handleClick} dataSet={dataSet[current]} />
-      )}
+      {
+        dataSet.length ?
+          <div>
+            <ScoreArea correct={correct} incorrect={incorrect} />
+            {
+              current === dataSet.length ? (
+                <h4>thank you your grade is {(100 / dataSet.length) * correct}/100</h4>
+              ) : (
+                  <QuizArea handleClick={handleClick} dataSet={dataSet[current]} />
+                )}
+          </div>
+          :
+          <div style={{ marginTop: "10rem" }}> <h2>no exams yet</h2> </div>
+      }
     </div>
   );
 }

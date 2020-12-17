@@ -89,7 +89,7 @@ function CustomizedSelects({ schoolID, user }: any) {
         fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
-                // console.log("mydata", data);
+                console.log("mydata", data);
                 setClassrooms(data);
             });
     }, [user])

@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { setRole, setUser } from "../../actions/actions";
+import { setRole, setUser,setUserDetails } from "../../actions/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignIn({ user, setRole, setUser }) {
+function SignIn({ user, setRole, userDetails, setUser, setUserDetails }) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -93,6 +93,7 @@ function SignIn({ user, setRole, setUser }) {
             .then((data) => {
               console.log("><>", data);
               setRole(data.role);
+              setUserDetails(data);
               let options = {
                 method: "POST",
                 headers: {
@@ -108,7 +109,7 @@ function SignIn({ user, setRole, setUser }) {
               fetch(path, options)
                 .then((data) => data.json())
                 .then((data) => {
-                  console.log(">>", data[0]);
+                  console.log(">>", data);
                   setUser(data[0]);
                   return <Redirect to="dashboard" />;
                 });
@@ -118,7 +119,7 @@ function SignIn({ user, setRole, setUser }) {
         }
       });
   };
-  if (user.userID) {
+  if (userDetails.id) {
     return <Redirect to="/dashboard" />;
   }
   return (
@@ -204,12 +205,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setRole: (z) => dispatch(setRole(z)),
     setUser: (z) => dispatch(setUser(z)),
+    setUserDetails: (z) => dispatch(setUserDetails(z)),
   };
 };
 
 const mapSateToProps = (state) => {
   return {
     user: state.user,
+    userDetails: state.userDetails,
   };
 };
 
