@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'psycopg2',
     'whitenoise',
     'gunicorn',
-    # 'dj-database-url',s
+    # 'dj-database-url'
 ]
 
 MIDDLEWARE = [
