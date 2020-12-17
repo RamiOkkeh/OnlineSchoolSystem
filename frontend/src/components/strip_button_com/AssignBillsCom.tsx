@@ -7,6 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
 import { MenuItem } from '@material-ui/core';
+import local_IP from '../../local_IP';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -85,7 +86,7 @@ function CustomizedSelects({ schoolID, user }: any) {
         let path =
             process.env.NODE_ENV === "production"
                 ? "/payment/"
-                : "http://localhost:8000/classroom/getSchoolClasses";
+                : `${local_IP}/classroom/getSchoolClasses`;
         fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
@@ -104,7 +105,7 @@ function CustomizedSelects({ schoolID, user }: any) {
         let path =
             process.env.NODE_ENV === "production"
                 ? "/payment/"
-                : "http://localhost:8000/payment/addPayment";
+                : `${local_IP}/payment/addPayment`;
         fetch(path, options)
             .then((data) => {
                 data.json()

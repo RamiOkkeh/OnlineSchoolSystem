@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { createClass } from "../../actions/actions";
 import CreateClassDialog from "../../components/CreateClass/CreateClass";
 import { Link } from "react-router-dom";
+import local_IP from "../../local_IP";
 
 const styles = makeStyles({
   flex: {
@@ -53,7 +54,7 @@ function Classes({ classes, user, createClass, role }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/classroom/"
-        : "http://localhost:8000/classroom/";
+        : `${local_IP}/classroom/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -74,15 +75,15 @@ function Classes({ classes, user, createClass, role }: any) {
           name={name}
         />
       ) : (
-        ""
-      )}
+          ""
+        )}
       {role === "Principal" ? (
         <Link to="/editclass" style={{ textDecoration: "none" }}>
           Edit
         </Link>
       ) : (
-        ""
-      )}
+          ""
+        )}
     </div>
   );
 }
