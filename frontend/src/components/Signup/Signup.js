@@ -18,6 +18,7 @@ import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
 import { setUser, setRole, subjects } from "../../actions/actions";
 import { Redirect } from "react-router-dom";
+import local_IP from "../../local_IP";
 
 function Copyright() {
   return (
@@ -123,7 +124,7 @@ const SignUp = function ({
     let path =
       process.env.NODE_ENV === "production"
         ? "/auth/users/"
-        : "http://192.168.0.109:8000/auth/users/";
+        : `${local_IP}/auth/users/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -140,7 +141,7 @@ const SignUp = function ({
         let path =
           process.env.NODE_ENV === "production"
             ? "/auth/jwt/create/"
-            : "http://192.168.0.109:8000/auth/jwt/create/";
+            : `${local_IP}/auth/jwt/create/`;
         fetch(path, options)
           .then((data) => data.json())
           .then((data) => {
@@ -156,7 +157,7 @@ const SignUp = function ({
             let path =
               process.env.NODE_ENV === "production"
                 ? "/auth/users/me/"
-                : "http://192.168.0.109:8000/auth/users/me/";
+                : `${local_IP}/auth/users/me/`;
             fetch(path, options)
               .then((data) => data.json())
               .then((data) => {
@@ -187,7 +188,7 @@ const SignUp = function ({
                   let path =
                     process.env.NODE_ENV === "production"
                       ? `/${role.toLowerCase()}/`
-                      : `http://192.168.0.109:8000/${role.toLowerCase()}/`;
+                      : `${local_IP}/${role.toLowerCase()}/`;
                   fetch(path, options)
                     .then((data) => data.json())
                     .then((data) => {
@@ -295,7 +296,7 @@ const SignUp = function ({
                     let path2 =
                       process.env.NODE_ENV === "production"
                         ? "/subject/getSchoolSubjects"
-                        : "http://192.168.0.109:8000/subject/getSchoolSubjects";
+                        : `${local_IP}/subject/getSchoolSubjects`;
                     fetch(path2, options2)
                       .then((data) => data.json())
                       .then((data) => {

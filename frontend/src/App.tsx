@@ -28,6 +28,7 @@ import {
 } from "./actions/actions";
 // import P5Wraper from "react-p5-wrapper";
 import sketch from "./ml5Training";
+import local_IP from "./local_IP";
 
 const theme = createMuiTheme({
   palette: {
@@ -57,7 +58,7 @@ const App = ({
       let path =
         process.env.NODE_ENV === "production"
           ? "/auth/users/me/"
-          : "http://192.168.0.109:8000/auth/users/me/";
+          : `${local_IP}/auth/users/me/`;
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
@@ -80,7 +81,7 @@ const App = ({
             let path =
               process.env.NODE_ENV === "production"
                 ? `/${data.role.toLowerCase()}/details`
-                : `http://192.168.0.109:8000/${data.role.toLowerCase()}/details`;
+                : `${local_IP}/${data.role.toLowerCase()}/details`;
             fetch(path, options)
               .then((data) => data.json())
               .then((data) => {
@@ -94,7 +95,7 @@ const App = ({
                 let path =
                   process.env.NODE_ENV === "production"
                     ? "/classroom/getSchoolClasses"
-                    : "http://192.168.0.109:8000/classroom/getSchoolClasses";
+                    : `${local_IP}/classroom/getSchoolClasses`;
                 fetch(path, options)
                   .then((data) => data.json())
                   .then((data) => {
@@ -107,7 +108,7 @@ const App = ({
                     let path =
                       process.env.NODE_ENV === "production"
                         ? "/classroom/"
-                        : "http://192.168.0.109:8000/classroom/";
+                        : `${local_IP}/classroom/`;
                     fetch(path, options)
                       .then((data) => data.json())
                       .then((data) => {

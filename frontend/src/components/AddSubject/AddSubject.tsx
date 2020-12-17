@@ -11,6 +11,7 @@ import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
+import local_IP from "../../local_IP";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -58,7 +59,7 @@ function AddSubject({ role, user }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/subject/"
-        : "http://192.168.0.109:8000/subject/";
+        : `${local_IP}/subject/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {

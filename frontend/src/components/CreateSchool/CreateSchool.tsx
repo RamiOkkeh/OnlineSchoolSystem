@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 import { setUser } from "../../actions/actions";
 import { Dispatch } from "redux";
+import local_IP from "../../local_IP";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -73,7 +74,7 @@ function CreateSchool({ role, user, setUser }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/school/"
-        : "http://192.168.0.109:8000/school/";
+        : `${local_IP}/school/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -89,7 +90,7 @@ function CreateSchool({ role, user, setUser }: any) {
         let path =
           process.env.NODE_ENV === "production"
             ? "/principal/"
-            : "http://192.168.0.109:8000/principal/";
+            : `${local_IP}/principal/`;
         fetch(path, options)
           .then((data) => data.json())
           .then((data) => {

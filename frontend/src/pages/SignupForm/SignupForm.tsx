@@ -15,6 +15,7 @@ import { State } from "../../reducers/rootReducer";
 // import { Redirect } from "react-router-dom";
 import CreateSchool from "../../components/CreateSchool/CreateSchool";
 import AddSubject from "../../components/AddSubject/AddSubject";
+import local_IP from "../../local_IP";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,7 +70,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/school/"
-        : "http://192.168.0.109:8000/school/";
+        : `${local_IP}/school/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {

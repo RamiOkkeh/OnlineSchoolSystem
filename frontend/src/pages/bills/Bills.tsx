@@ -4,6 +4,7 @@ import "./Bills.css";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
 import AssignBills from './AssignBills'
+import local_IP from '../../local_IP';
 
 function Bills({ user, role }: any) {
     // console.log('whosme', user);
@@ -17,7 +18,7 @@ function Bills({ user, role }: any) {
         let path =
             process.env.NODE_ENV === "production"
                 ? "/payment/"
-                : "http://192.168.0.109:8000/payment/details";
+                : `${local_IP}/payment/details`;
         fetch(path, options)
             .then((data) => data.json())
             .then((data) => {

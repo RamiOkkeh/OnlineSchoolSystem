@@ -15,6 +15,7 @@ import Container from "@material-ui/core/Container";
 import { setRole, setUser, setUserDetails } from "../../actions/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import local_IP from "../../local_IP";
 
 function Copyright() {
   return (
@@ -70,7 +71,7 @@ function SignIn({ user, setRole, userDetails, setUser, setUserDetails }) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/auth/jwt/create/"
-        : "http://192.168.0.109:8000/auth/jwt/create/";
+        : `${local_IP}/auth/jwt/create/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -87,7 +88,7 @@ function SignIn({ user, setRole, userDetails, setUser, setUserDetails }) {
           let path =
             process.env.NODE_ENV === "production"
               ? "/auth/users/me/"
-              : "http://192.168.0.109:8000/auth/users/me/";
+              : `${local_IP}/auth/users/me/`;
           fetch(path, options)
             .then((data) => data.json())
             .then((data) => {
@@ -105,7 +106,7 @@ function SignIn({ user, setRole, userDetails, setUser, setUserDetails }) {
               let path =
                 process.env.NODE_ENV === "production"
                   ? `/${data.role.toLowerCase()}/`
-                  : `http://192.168.0.109:8000/${data.role.toLowerCase()}/details`;
+                  : `${local_IP}/${data.role.toLowerCase()}/details`;
               fetch(path, options)
                 .then((data) => data.json())
                 .then((data) => {

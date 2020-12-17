@@ -4,6 +4,7 @@ import { State } from "../../reducers/rootReducer";
 import "./test.css";
 import ScoreArea from "./scoreArea";
 import QuizArea from "./QuizArea";
+import local_IP from "../../local_IP";
 
 function Test({ user, userDetails }: any) {
   // type dataSetType = [
@@ -35,7 +36,7 @@ function Test({ user, userDetails }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? `/exam/details`
-        : `http://192.168.0.109:8000/exam/details`;
+        : `${local_IP}/exam/details`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -72,7 +73,7 @@ function Test({ user, userDetails }: any) {
       let path =
         process.env.NODE_ENV === "production"
           ? `/exam/assignFirstGrade`
-          : `http://192.168.0.109:8000/exam/assignFirstGrade`;
+          : `${local_IP}/exam/assignFirstGrade`;
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
