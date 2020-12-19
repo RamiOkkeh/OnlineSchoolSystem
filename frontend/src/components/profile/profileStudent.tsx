@@ -15,48 +15,33 @@ function Profile({ profile, user }: any) {
     const data = new FormData()
     data.append('file', files['0'])
     data.append('upload_preset', 'dquts6y1')
-console.log('asasasa',files['0'])
+    console.log('asasasa', files['0'])
 
     setLoading(true)
 
 
- const requestOptions = {
-  method: 'POST',
-  body: data
-};
-console.log('aaaaa',data)
+    const requestOptions = {
+      method: 'POST',
+      body: data
+    };
+    console.log('aaaaa', data)
 
-fetch("https://api.cloudinary.com/v1_1/coronaschool/image/upload", requestOptions)
-  .then(response => response.json())
-  .then(res => {
-    console.log('aaaaa1111',res)
-    setImage(res.secure_url)
-    setLoading(false)
-    //
-  })
-}
+    fetch("https://api.cloudinary.com/v1_1/coronaschool/image/upload", requestOptions)
+      .then(response => response.json())
+      .then(res => {
+        console.log('aaaaa1111', res)
+        setImage(res.secure_url)
+        setLoading(false)
+        //
+      })
+  }
 
 
-
-  //   const res = await fetch(
-  //     'https://api.cloudinary.com/v1_1/coronaschool/image/upload',
-  //     {
-  //       method: 'POST',
-  //       body: data
-  //     }
-  //   )
-  //   const file = await res.json()
-
-  //   setImage(file.secure_url)
-  //   setLoading(false)
-  // }
-
-  console.log('myuser', user);
+  console.log('myuser', image);
   return (
     <div style={{ maxWidth: "1700px", marginTop: "63px", marginLeft: "150px" }}>
       <div style={{}}>
         <div className="background_img">
-
           <h1>Upload Image</h1>
           <input
             type="file"
@@ -67,7 +52,13 @@ fetch("https://api.cloudinary.com/v1_1/coronaschool/image/upload", requestOption
           {loading ? (
             <h3>Loading...</h3>
           ) : (
-              <img src={image} style={{ width: '300px' }} />
+              <img src={image} style={{
+                width: "160px",
+                marginTop: "-40px",
+                marginRight: "57rem",
+                height: "160px",
+                borderRadius: "80px ",
+              }} />
             )}
           {/* <img
               style={{
