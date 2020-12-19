@@ -24,7 +24,7 @@
 
 #site-footer{
   /* display: flex; */
-  background-color:rgb(97, 247, 142) ;
+  background-color:"#00000040" ;
 }
 
 .container{

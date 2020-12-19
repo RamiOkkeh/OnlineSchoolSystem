@@ -65,7 +65,7 @@ export default function Home() {
           </h3>
         </div>
       </Slider>
-      <div style={{ backgroundColor: "#00000040", width: "89.5%", maxWidth: "90rem", maxHeight: "400px", marginLeft: "9rem", marginTop: "0rem", height: "250px" }} >
+      <div style={{ backgroundColor: "#00000040", width: "89.5%", maxWidth: "90rem", maxHeight: "400px", marginLeft: "9rem", marginTop: "-3.5rem", height: "250px" }} >
         <div>
           <button className="button button4" style={{ marginTop: "6.0rem" , marginRight:"1rem"}}>Click here to view DashBoard</button>
         </div>
@@ -94,7 +94,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <img src="http://www.chuquxueba.com/wp-content/uploads/2020/01/trinity-grammar-school-006.jpg" style={{ paddingTop: "3rem", maxHeight: '650px', width: "100%" }} />
+        <img src="http://www.chuquxueba.com/wp-content/uploads/2020/01/trinity-grammar-school-032.jpg" style={{ paddingTop: "3rem", maxHeight: '650px', width: "100%" }} />
       </div>
       <div style={{ backgroundColor: "#00000070", width: "89.5%", maxWidth: "90rem", maxHeight: "400px", marginLeft: "9rem", marginTop: "2rem", height: "150px" }}>
         <div>
@@ -107,12 +107,12 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <img src="http://www.chuquxueba.com/wp-content/uploads/2020/01/trinity-grammar-school-015.jpg" style={{ paddingTop: "3rem", maxHeight: '650px', width: "100%" }} />
+        <img src="http://www.chuquxueba.com/wp-content/uploads/2020/01/trinity-grammar-school-011.jpg" style={{ paddingTop: "3rem", maxHeight: '650px', width: "100%" }} />
       </div>
 
       <footer id="site-footer" >
         <div className="container">
-          <div className="footer-item" style={{marginLeft:"12rem" , marginBottom:".7rem"}}>
+          <div className="footer-item" style={{marginLeft:"12rem" , marginBottom:".7"}}>
             <h3>Summer Hill Campus</h3>
       (Kindergarten – Year 12)<br />
       119 Prospect Road<br />
