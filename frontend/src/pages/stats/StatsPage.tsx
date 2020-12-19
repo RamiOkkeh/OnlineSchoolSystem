@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import StatsStudent from '../../components/stats/StatsStudent'
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
+import local_IP from '../../local_IP';
 
 function Stats({ testdata, user, test }: any) {
 
@@ -20,7 +21,7 @@ function Stats({ testdata, user, test }: any) {
         let path =
             process.env.NODE_ENV === "production"
                 ? "/exam/stats"
-                : "http://127.0.0.1:8000/exam/stats";
+                : `${local_IP}/exam/stats`;
         fetch(path, options)
             .then((data) => data.json())
             .then((data) => {

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { State } from "../../reducers/rootReducer";
 import { connect } from "react-redux";
 import './test.css'
+import local_IP from '../../local_IP';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -211,7 +212,7 @@ function CreateTest({ user, classrooms }: any): any {
     let path =
       process.env.NODE_ENV === "production"
         ? `/exam/assign${exam}`
-        : `http://localhost:8000/exam/assign${exam}`;
+        : `${local_IP}/exam/assign${exam}`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {

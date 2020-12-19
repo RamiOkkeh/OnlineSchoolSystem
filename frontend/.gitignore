@@ -11,6 +11,8 @@
 # production
 /build
 
+/src/local_IP.js
+
 # misc
 .DS_Store
 .env.local

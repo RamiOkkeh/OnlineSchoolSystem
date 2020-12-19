@@ -1,0 +1,68 @@
+.room {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name_sent {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-radius: 25px;
+    text-align: end;
+    padding-right: 25px;
+}
+
+.name_received {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-radius: 25px;
+    text-align: start;
+    padding-left: 25px;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    margin-bottom: 0px;
+    line-height: 20px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: relative;
+    color: white;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.sent {
+    flex-direction: row-reverse;
+    margin-top: 0px;
+}
+
+.sent p {
+    color: white;
+    background: #0b93f6;
+    align-self: flex-end;
+}
+
+.received p {
+    background: #e5e5ea;
+    color: black;
+}
+
+.important {
+    font-weight: bold
+}
+
+.chatBox {
+    padding: 10px;
+    height: 65vh;
+    margin: 5vh 0 5vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    background-color: #00000060;
+    width: 70vh;
+    border-radius: 20px;
+}

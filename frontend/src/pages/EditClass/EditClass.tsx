@@ -5,6 +5,7 @@ import { State } from "../../reducers/rootReducer";
 import EditStudent from "../../components/EditStudent/EditStudent";
 import { Redirect } from "react-router-dom";
 import "./EditCalss.css";
+import local_IP from "../../local_IP";
 
 function EditClass({ user, waiting }: any) {
   let plop: any = {};
@@ -21,7 +22,7 @@ function EditClass({ user, waiting }: any) {
       let path =
         process.env.NODE_ENV === "production"
           ? "/student/assignClass"
-          : "http://localhost:8000/student/assignClass";
+          : `${local_IP}/student/assignClass`;
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
