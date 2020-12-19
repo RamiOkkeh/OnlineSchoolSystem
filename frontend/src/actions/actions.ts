@@ -40,3 +40,9 @@ export const setRole = (newState: object) => {
     payload: newState,
   };
 };
+export const setClassroomID = (newState: object) => {
+  return {
+    type: "SET_ClassroomID",
+    payload: newState,
+  };
+};
