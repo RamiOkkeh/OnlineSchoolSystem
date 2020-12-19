@@ -15,6 +15,7 @@ import { State } from "../../reducers/rootReducer";
 // import { Redirect } from "react-router-dom";
 import CreateSchool from "../../components/CreateSchool/CreateSchool";
 import AddSubject from "../../components/AddSubject/AddSubject";
+import local_IP from "../../local_IP";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +53,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
           "Create a School",
           "Add Subjects",
         ])
-    }else{
+    } else {
       setSteps(
         [
           "Select role",
@@ -69,7 +70,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/school/"
-        : "http://localhost:8000/school/";
+        : `${local_IP}/school/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -120,7 +121,7 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
   console.log(user);
   return (
     <div className={classes.root}>
-      <Stepper style={{backgroundColor:'#00000000'}} activeStep={activeStep} alternativeLabel>
+      <Stepper style={{ backgroundColor: '#00000000' }} activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>

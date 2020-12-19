@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { State } from "../../reducers/rootReducer";
@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { createClass } from "../../actions/actions";
 import CreateClassDialog from "../../components/CreateClass/CreateClass";
 import { Link } from "react-router-dom";
+import local_IP from "../../local_IP";
 
 const styles = makeStyles({
   flex: {
@@ -41,6 +42,25 @@ function Classes({ classes, user, createClass, role }: any) {
   const classess = styles();
 
   const [name, setName] = useState("");
+  const [classroom, setClassroom] = useState([]);
+
+  useEffect(() => {
+    let options = {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ schoolID: user.schoolID }),
+    };
+    let path =
+      process.env.NODE_ENV === "production"
+        ? "/classroom/getSchoolClasses"
+        : `${local_IP}/classroom/getSchoolClasses`;
+    fetch(path, options)
+      .then((data) => data.json())
+      .then((data) => {
+        setClassroom(data);
+      })
+
+  }, [user])
 
   const submit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -53,7 +73,7 @@ function Classes({ classes, user, createClass, role }: any) {
     let path =
       process.env.NODE_ENV === "production"
         ? "/classroom/"
-        : "http://localhost:8000/classroom/";
+        : `${local_IP}/classroom/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -61,10 +81,11 @@ function Classes({ classes, user, createClass, role }: any) {
         setName("");
       });
   };
+
   return (
     <div className={classess.flex}>
-      {classes.map((elem: any, i: number) => {
-        return <Class data={elem} key={i} id={i} />;
+      {classroom.map((elem: any, i: number) => {
+        return <Class data={elem} key={i} id={elem.id} />;
       })}
       {role === "Principal" ? (
         <CreateClassDialog
@@ -74,15 +95,15 @@ function Classes({ classes, user, createClass, role }: any) {
           name={name}
         />
       ) : (
-        ""
-      )}
+          ""
+        )}
       {role === "Principal" ? (
         <Link to="/editclass" style={{ textDecoration: "none" }}>
           Edit
         </Link>
       ) : (
-        ""
-      )}
+          ""
+        )}
     </div>
   );
 }

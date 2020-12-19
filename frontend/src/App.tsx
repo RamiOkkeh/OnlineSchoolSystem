@@ -28,6 +28,8 @@ import {
 } from "./actions/actions";
 // import P5Wraper from "react-p5-wrapper";
 import sketch from "./ml5Training";
+import local_IP from "./local_IP";
+import Chat from "./components/chat/chat";
 
 const theme = createMuiTheme({
   palette: {
@@ -57,11 +59,11 @@ const App = ({
       let path =
         process.env.NODE_ENV === "production"
           ? "/auth/users/me/"
-          : "http://localhost:8000/auth/users/me/";
+          : `${local_IP}/auth/users/me/`;
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
-          console.log(">>>>", data);
+          console.log(">>>>", data);  
           if (data.code) {
             localStorage.removeItem("Authorization")
             window.location.reload()
@@ -80,11 +82,11 @@ const App = ({
             let path =
               process.env.NODE_ENV === "production"
                 ? `/${data.role.toLowerCase()}/details`
-                : `http://localhost:8000/${data.role.toLowerCase()}/details`;
+                : `${local_IP}/${data.role.toLowerCase()}/details`;
             fetch(path, options)
               .then((data) => data.json())
               .then((data) => {
-                // console.log(data[0]);
+                console.log('>>>>>>>>ss>>>',data[0]);
                 setUser(data[0]);
                 let options = {
                   method: "post",
@@ -94,7 +96,7 @@ const App = ({
                 let path =
                   process.env.NODE_ENV === "production"
                     ? "/classroom/getSchoolClasses"
-                    : "http://localhost:8000/classroom/getSchoolClasses";
+                    : `${local_IP}/classroom/getSchoolClasses`;
                 fetch(path, options)
                   .then((data) => data.json())
                   .then((data) => {
@@ -107,7 +109,7 @@ const App = ({
                     let path =
                       process.env.NODE_ENV === "production"
                         ? "/classroom/"
-                        : "http://localhost:8000/classroom/";
+                        : `${local_IP}/classroom/`;
                     fetch(path, options)
                       .then((data) => data.json())
                       .then((data) => {
@@ -140,6 +142,7 @@ const App = ({
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/tests" component={TestPage} />
             <Route exact path="/stats" component={StatsPage} />
+            <Route exact path="/classroom" component={Chat} />
           </Switch>
         </Router>
       </div>
