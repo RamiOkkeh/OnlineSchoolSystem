@@ -18,6 +18,7 @@ import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
 import { setUser, setRole, subjects } from "../../actions/actions";
 import { Redirect } from "react-router-dom";
+import local_IP from "../../local_IP";
 
 function Copyright() {
   return (
@@ -34,7 +35,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    // marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -51,8 +52,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   BG: {
-    backgroundColor: "#fef3f3",
-    marginTop: "100px",
+    backgroundColor: "#fef3f300",
+    // marginTop: "100px",
   },
   school: {
     width: "100px",
@@ -123,7 +124,7 @@ const SignUp = function ({
     let path =
       process.env.NODE_ENV === "production"
         ? "/auth/users/"
-        : "http://localhost:8000/auth/users/";
+        : `${local_IP}/auth/users/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -140,7 +141,7 @@ const SignUp = function ({
         let path =
           process.env.NODE_ENV === "production"
             ? "/auth/jwt/create/"
-            : "http://localhost:8000/auth/jwt/create/";
+            : `${local_IP}/auth/jwt/create/`;
         fetch(path, options)
           .then((data) => data.json())
           .then((data) => {
@@ -156,7 +157,7 @@ const SignUp = function ({
             let path =
               process.env.NODE_ENV === "production"
                 ? "/auth/users/me/"
-                : "http://localhost:8000/auth/users/me/";
+                : `${local_IP}/auth/users/me/`;
             fetch(path, options)
               .then((data) => data.json())
               .then((data) => {
@@ -172,22 +173,22 @@ const SignUp = function ({
                   body: JSON.stringify(
                     role === "Student"
                       ? {
-                          userID: userInfo.id,
-                          schoolID: School.id,
-                          classroomID: 1,
-                        }
+                        userID: userInfo.id,
+                        schoolID: School.id,
+                        classroomID: 1,
+                      }
                       : {
-                          userID: userInfo.id,
-                          schoolID: School.id,
-                          subjectID: Subject.id,
-                        }
+                        userID: userInfo.id,
+                        schoolID: School.id,
+                        subjectID: Subject.id,
+                      }
                   ),
                 };
                 if (role !== "Principal") {
                   let path =
                     process.env.NODE_ENV === "production"
                       ? `/${role.toLowerCase()}/`
-                      : `http://localhost:8000/${role.toLowerCase()}/`;
+                      : `${local_IP}/${role.toLowerCase()}/`;
                   fetch(path, options)
                     .then((data) => data.json())
                     .then((data) => {
@@ -295,7 +296,7 @@ const SignUp = function ({
                     let path2 =
                       process.env.NODE_ENV === "production"
                         ? "/subject/getSchoolSubjects"
-                        : "http://localhost:8000/subject/getSchoolSubjects";
+                        : `${local_IP}/subject/getSchoolSubjects`;
                     fetch(path2, options2)
                       .then((data) => data.json())
                       .then((data) => {
@@ -311,8 +312,8 @@ const SignUp = function ({
                 </Select>
               </Grid>
             ) : (
-              ""
-            )}
+                ""
+              )}
             {role === "Teacher" ? (
               <Grid>
                 <Grid>
@@ -348,8 +349,8 @@ const SignUp = function ({
                 </Grid>
               </Grid>
             ) : (
-              ""
-            )}
+                ""
+              )}
             <Grid item xs={12}>
               <FormControlLabel
                 control={

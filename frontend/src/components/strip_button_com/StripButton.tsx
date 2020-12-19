@@ -1,5 +1,6 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
+import local_IP from '../../local_IP';
 
 
 
@@ -10,7 +11,7 @@ const StripButton = ({ semester, price, user }: any) => {
     let path =
       process.env.NODE_ENV === "production"
         ? "/payment/checkout"
-        : "http://127.0.0.1:8000/payment/checkout";
+        : `${local_IP}/payment/checkout`;
     console.log({ userID: user.userID, semester });
     fetch(path, {
       method: 'POST',

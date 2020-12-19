@@ -28,6 +28,7 @@ import {
 } from "./actions/actions";
 // import P5Wraper from "react-p5-wrapper";
 import sketch from "./ml5Training";
+import local_IP from "./local_IP";
 
 const theme = createMuiTheme({
   palette: {
@@ -57,62 +58,67 @@ const App = ({
       let path =
         process.env.NODE_ENV === "production"
           ? "/auth/users/me/"
-          : "http://localhost:8000/auth/users/me/";
+          : `${local_IP}/auth/users/me/`;
       fetch(path, options)
         .then((data) => data.json())
         .catch((err) => alert(err))
         .then((data) => {
           console.log(">>>>", data);
-          setRole(data.role);
-          // setUser(data);
-          setUserDetail(data);
-          let options: any = {
-            method: "post",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-            body: JSON.stringify({ userID: data.id }),
-          };
-          let path =
-            process.env.NODE_ENV === "production"
-              ? `/${data.role.toLowerCase()}/details`
-              : `http://localhost:8000/${data.role.toLowerCase()}/details`;
-          fetch(path, options)
-            .then((data) => data.json())
-            .then((data) => {
-              // console.log(data[0]);
-              setUser(data[0]);
-              let options = {
-                method: "post",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ schoolID: data[0].schoolID }),
-              };
-              let path =
-                process.env.NODE_ENV === "production"
-                  ? "/classroom/getSchoolClasses"
-                  : "http://localhost:8000/classroom/getSchoolClasses";
-              fetch(path, options)
-                .then((data) => data.json())
-                .then((data) => {
-                  // console.log(data);
-                  importClass(data);
-                  let options = {
-                    method: "get",
-                    headers: { "Content-Type": "application/json" },
-                  };
-                  let path =
-                    process.env.NODE_ENV === "production"
-                      ? "/classroom/"
-                      : "http://localhost:8000/classroom/";
-                  fetch(path, options)
-                    .then((data) => data.json())
-                    .then((data) => {
-                      // console.log(data[0]);
-                      importWaiting(data[0]);
-                    });
-                });
-            });
+          if (data.code) {
+            localStorage.removeItem("Authorization")
+            window.location.reload()
+          } else {
+            setRole(data.role);
+            // setUser(data);
+            setUserDetail(data);
+            let options: any = {
+              method: "post",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+              },
+              body: JSON.stringify({ userID: data.id }),
+            };
+            let path =
+              process.env.NODE_ENV === "production"
+                ? `/${data.role.toLowerCase()}/details`
+                : `${local_IP}/${data.role.toLowerCase()}/details`;
+            fetch(path, options)
+              .then((data) => data.json())
+              .then((data) => {
+                // console.log(data[0]);
+                setUser(data[0]);
+                let options = {
+                  method: "post",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ schoolID: data[0].schoolID }),
+                };
+                let path =
+                  process.env.NODE_ENV === "production"
+                    ? "/classroom/getSchoolClasses"
+                    : `${local_IP}/classroom/getSchoolClasses`;
+                fetch(path, options)
+                  .then((data) => data.json())
+                  .then((data) => {
+                    // console.log(data);
+                    importClass(data);
+                    let options = {
+                      method: "get",
+                      headers: { "Content-Type": "application/json" },
+                    };
+                    let path =
+                      process.env.NODE_ENV === "production"
+                        ? "/classroom/"
+                        : `${local_IP}/classroom/`;
+                    fetch(path, options)
+                      .then((data) => data.json())
+                      .then((data) => {
+                        // console.log(data[0]);
+                        importWaiting(data[0]);
+                      });
+                  });
+              });
+          }
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,12 +135,12 @@ const App = ({
             <Route path="/" exact component={Home} />
             <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
+            <Route exact path="/dashboard" component={DashboardPage} />
+            <Route exact path="/schedule" component={SchedulePage} />
             <Route path="/classes" component={Classes} />
             <Route path="/editclass" component={EditClass} />
             <Route exact path="/bills" component={Bills} />
             <Route exact path="/profile" component={ProfilePage} />
-            <Route exact path="/dashboard" component={DashboardPage} />
-            <Route exact path="/schedule" component={SchedulePage} />
             <Route exact path="/tests" component={TestPage} />
             <Route exact path="/stats" component={StatsPage} />
           </Switch>

@@ -1,14 +1,13 @@
-/* eslint-disable jsx-a11y/alt-text */
+
 import React from "react";
 import "./profileBody.css";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { connect } from "react-redux";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { State } from "../../reducers/rootReducer";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function Profile({ profile }: any) {
-  console.log(profile);
+
+
+function Profile({ profile,user }: any) {
+  console.log('myuser',user);
   return (
     <div style={{ maxWidth: "1700px", marginTop: "63px", marginLeft: "150px" }}>
       <div style={{}}>
@@ -32,7 +31,7 @@ function Profile({ profile }: any) {
               width: "15%",
             }}
           >
-            <h3 style={{ margin: "0px", color: "white" }}>ameed asmah</h3>
+            <h3 style={{ margin: "0px", color: "white" }}>{user.studentName}</h3>
             <div
               style={{ paddingLeft: "5px", margin: "0px", marginTop: "5px" }}
               className="active"
@@ -50,13 +49,18 @@ function Profile({ profile }: any) {
           }}
         >
           <div>
-            <h3 style={{ padding: "30px 10px 20px 15px" }}>ameed asmah</h3>
+            <h3 style={{ padding: "30px 10px 20px 15px" }}>{user.studentName}</h3>
             <h4 style={{ padding: "0 10px 20px 15px" }}>
-              email:ameed.asmah@gmail.com
+              classRoom:
+              {user.classroomName}
             </h4>
             <h4 style={{ padding: "0 10px 20px 15px" }}>
-              {" "}
-              number of Subject :7{" "}
+              
+              schoolName :{user.schoolName}
+            </h4>
+            <h4 style={{ padding: "0 10px 20px 15px" }}>
+              
+              userId :{user.userID}
             </h4>
             {/* <h4 style={{ padding: "0 10px 20px 15px" }} > number of reservations :5</h4> */}
           </div>
@@ -71,4 +75,12 @@ function Profile({ profile }: any) {
   );
 }
 
-export default Profile;
+
+
+const mapStateToProps = (state: State) => {
+  return {
+      user: state.user,
+  };
+};
+export default connect(mapStateToProps)(Profile);
+
