@@ -21,7 +21,7 @@ const AnswerList = (props: any) => {
 
   // console.log('moooomo',props)
   return (
-    <div>
+    <div style={{display:'flex', justifyContent:'center', flexWrap:'wrap', width:'40%'}}>
       {
         props.dataSet.answers.map((answer: any, i: any) => <Answer choice={i} key={i} answer={answer} handleClick={props.handleClick} />)
       }

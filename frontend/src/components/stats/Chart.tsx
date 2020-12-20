@@ -22,9 +22,10 @@ const ChartComp = ({ exam }: any) => {
             <Paper >
                 <Chart
                     data={data}
+                    height={200}
                 >
                     <ArgumentAxis />
-                    <ValueAxis tickSize={10} />
+                    <ValueAxis tickSize={30} />
                     <SplineSeries valueField="value" argumentField="argument" />
                 </Chart>
             </Paper>

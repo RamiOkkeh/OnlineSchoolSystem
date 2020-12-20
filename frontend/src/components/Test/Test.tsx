@@ -104,14 +104,14 @@ function Test({ user, userDetails }: any) {
   };
 
   return (
-    <div style={{ marginLeft: "14rem", marginTop: "3rem" }}>
+    <div style={{ marginLeft: "10rem", marginTop: "10rem" }}>
       {
         dataSet.length ?
           <div>
-            <ScoreArea correct={correct} incorrect={incorrect} />
+            {/* <ScoreArea correct={correct} incorrect={incorrect} /> */}
             {
               current === dataSet.length ? (
-                <h4>thank you your grade is {(100 / dataSet.length) * correct}/100</h4>
+                <h4>thank you your grade is {((100 / dataSet.length) * correct).toFixed(2)}/100</h4>
               ) : (
                   <QuizArea handleClick={handleClick} dataSet={dataSet[current]} />
                 )}

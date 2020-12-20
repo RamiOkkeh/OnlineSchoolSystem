@@ -52,33 +52,34 @@ function RecipeReviewCardd({ exam, user }: any) {
 
   return (
     // console.log(post)
-    <div >
-      <Card className={classes.root} style={{ marginLeft: "2rem", marginTop: "2rem", width: "22rem", height: "600px", marginBottom: "3rem" }} >
+    <div>
+      <Card className={classes.root} style={{ marginLeft: "6rem", marginTop: "2rem", width: "22rem", marginBottom: "3rem" }} >
         <div style={{ display: "flex" }}>
-          <CardHeader />
-
-          <div style={{ display: "flex" }}>
-            <div>
+          <CardHeader/>
+            <div style={{ display: "flex" }}>
+              <div>
               <div style={{ paddingTop: "2rem" }}>
                 Subject : {exam.subjectName}
               </div>
+              </div>
+              <div style={{ paddingTop: "2rem", paddingLeft: "1.5rem" }}>
+                Avg. Mark = {((exam.firstGrade + exam.secondGrade + exam.finalGrade) / 3).toFixed(2)}%
             </div>
-            <div style={{ paddingTop: "2rem", paddingLeft: "1.5rem" }}> avgMark = {((exam.firstGrade + exam.secondGrade + exam.finalGrade) / 3).toFixed(2)}%</div>
-          </div>
+            </div>
         </div>
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            <div >
-              <ChartComp exam={exam} />
+          {/* <Typography variant="body2" color="textSecondary" component="p"> */}
+            <div>
+            <ChartComp exam={exam} />
             </div>
-          </Typography>
+          {/* </Typography> */}
         </CardContent>
-        <CardActions disableSpacing>
+        {/* <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
           </IconButton>
           <IconButton aria-label="share">
           </IconButton>
-        </CardActions>
+        </CardActions> */}
       </Card>
     </div>
   );
