@@ -29,6 +29,7 @@ import {
 // import P5Wraper from "react-p5-wrapper";
 import sketch from "./ml5Training";
 import local_IP from "./local_IP";
+import Chat from "./components/chat/chat";
 
 const theme = createMuiTheme({
   palette: {
@@ -143,6 +144,7 @@ const App = ({
             <Route exact path="/profile" component={ProfilePage} />
             <Route exact path="/tests" component={TestPage} />
             <Route exact path="/stats" component={StatsPage} />
+            <Route exact path="/classroom" component={Chat} />
           </Switch>
         </Router>
       </div>

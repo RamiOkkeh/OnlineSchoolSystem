@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { State } from "../../reducers/rootReducer";
@@ -42,6 +42,25 @@ function Classes({ classes, user, createClass, role }: any) {
   const classess = styles();
 
   const [name, setName] = useState("");
+  const [classroom, setClassroom] = useState([]);
+
+  useEffect(() => {
+    let options = {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ schoolID: user.schoolID }),
+    };
+    let path =
+      process.env.NODE_ENV === "production"
+        ? "/classroom/getSchoolClasses"
+        : `${local_IP}/classroom/getSchoolClasses`;
+    fetch(path, options)
+      .then((data) => data.json())
+      .then((data) => {
+        setClassroom(data);
+      })
+
+  }, [user])
 
   const submit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -62,10 +81,11 @@ function Classes({ classes, user, createClass, role }: any) {
         setName("");
       });
   };
+
   return (
     <div className={classess.flex}>
-      {classes.map((elem: any, i: number) => {
-        return <Class data={elem} key={i} id={i} />;
+      {classroom.map((elem: any, i: number) => {
+        return <Class data={elem} key={i} id={elem.id} />;
       })}
       {role === "Principal" ? (
         <CreateClassDialog

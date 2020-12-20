@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# Project Name
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Corona Schools
 
-## Available Scripts
+## Heading
 
-In the project directory, you can run:
+> e-Learning Website
 
-### `npm start`
+## Sub-Heading
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> Full Stack Project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How to Get Started
 
-### `npm test`
+> Fork
+> Clone your fork
+> npm install
+> npm start & npm run server
+> Enjoy!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Summary
 
-### `npm run build`
+> A website aims to provides a complete services to students & teachers in Corona conditions.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Problem
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> The educational process is currently dispersed due to Corona
+> The loss of students and teachers among the many electronic meeting programs and the consequences of the current situation.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Solution
 
-### `npm run eject`
+> New websit, as a special space work for each school. Gather all teachers and students in the same place in school actual time.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Quote from us
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+> “Education is the passport to the future, for tomorrow belongs to those who prepare for it today”. Malcolm X ;) :) :D
