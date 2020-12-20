@@ -1,4 +1,4 @@
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 import green from "@material-ui/core/colors/green";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Classes from "./pages/Classes/Classes";
@@ -63,7 +63,7 @@ const App = ({
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
-          console.log(">>>>", data);  
+          console.log(">>>>", data);
           if (data.code) {
             localStorage.removeItem("Authorization")
             window.location.reload()
@@ -86,7 +86,7 @@ const App = ({
             fetch(path, options)
               .then((data) => data.json())
               .then((data) => {
-                console.log('>>>>>>>>ss>>>',data[0]);
+                console.log('>>>>>>>>ss>>>', data[0]);
                 setUser(data[0]);
                 let options = {
                   method: "post",
@@ -123,6 +123,7 @@ const App = ({
     }
   }, []);
   sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
+  console.log("APP",user.userID)
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -135,14 +136,14 @@ const App = ({
             <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
             <Route exact path="/dashboard" component={DashboardPage} />
-            <Route exact path="/schedule" component={SchedulePage} />
-            <Route path="/classes" component={Classes} />
-            <Route path="/editclass" component={EditClass} />
-            <Route exact path="/bills" component={Bills} />
-            <Route exact path="/profile" component={ProfilePage} />
-            <Route exact path="/tests" component={TestPage} />
-            <Route exact path="/stats" component={StatsPage} />
-            <Route exact path="/classroom" component={Chat} />
+            <Route exact path="/schedule" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
+            <Route path="/classes" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
+            <Route path="/editclass" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
+            <Route exact path="/bills" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
+            <Route exact path="/profile" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
+            <Route exact path="/tests" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
+            <Route exact path="/stats" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
+            <Route exact path="/classroom" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
           </Switch>
         </Router>
       </div>
