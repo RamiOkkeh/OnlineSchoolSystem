@@ -122,6 +122,9 @@ const App = ({
         });
     }
   }, []);
+  useEffect(() => {
+    
+  }, [user])
   sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
   console.log("APP",user.userID)
   return (
@@ -136,14 +139,14 @@ const App = ({
             <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
             <Route exact path="/dashboard" component={DashboardPage} />
-            <Route exact path="/schedule" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
-            <Route path="/classes" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
-            <Route path="/editclass" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
-            <Route exact path="/bills" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
-            <Route exact path="/profile" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
-            <Route exact path="/tests" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
-            <Route exact path="/stats" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
-            <Route exact path="/classroom" render={props =>user.userID ? <DashboardPage/>: <Redirect to="/" />} />
+            <Route exact path="/schedule" render={props =>user.userID ? <SchedulePage/>: <Redirect to="/" />} />
+            <Route path="/classes" render={props =>user.userID ? <Classes/>: <Redirect to="/" />} />
+            <Route path="/editclass" render={props =>user.userID ? <EditClass/>: <Redirect to="/" />} />
+            <Route exact path="/bills" render={props =>user.userID ? <Bills/>: <Redirect to="/" />} />
+            <Route exact path="/profile" render={props =>user.userID ? <ProfilePage/>: <Redirect to="/" />} />
+            <Route exact path="/tests" render={props =>user.userID ? <TestPage/>: <Redirect to="/" />} />
+            <Route exact path="/stats" render={props =>user.userID ? <StatsPage/>: <Redirect to="/" />} />
+            <Route exact path="/classroom" render={props =>user.userID ? <Chat/>: <Redirect to="/" />} />
           </Switch>
         </Router>
       </div>

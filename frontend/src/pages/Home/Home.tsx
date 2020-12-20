@@ -14,7 +14,7 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000
+    autoplaySpeed: 3000
 
   };
   return (
@@ -24,7 +24,7 @@ export default function Home() {
           <img id="slide" src="https://cdn.discordapp.com/attachments/762721371809382421/790225539196780564/baner4.png" />
           {/* <img src="https://cdn.discordapp.com/attachments/762721371809382421/790217100906987591/image2.png" /> */}
         </div>
-        <div style={{ marginTop: "4rem", width: "55%", fontFamily: "Georgia", marginRight: "8rem" }}>
+        <div className="slide-left" style={{ marginTop: "4rem", width: "55%", fontFamily: "Georgia", marginRight: "8rem" }} >
           <h1>ONLINE SCHOOL SYSTEM</h1>
           <h4> A feature rich school management software for all educational
           institutes. This school management software is for learning,
