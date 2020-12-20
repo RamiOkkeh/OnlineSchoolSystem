@@ -36,12 +36,14 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     TEACHER = 'Teacher'
     STUDENT = 'Student'
     PRINCIPAL = 'Principal'
+    PARENT = 'Parent'
     USER = 'User'
     ADMIN = 'Admin'
     ROLE_CHOICES = [
         (TEACHER, 'Teacher'),
         (STUDENT, 'Student'),
         (PRINCIPAL, 'Principal'),
+        (PARENT, 'Parent'),
         (USER, 'User'),
         (ADMIN, 'Admin'),
     ]

@@ -6,6 +6,7 @@ export interface State {
   userDetails: object;
   profile: any[];
   schoolID: number;
+  classroomID: number;
   schools: any[];
   role: String;
   subjects: any[];
@@ -19,6 +20,7 @@ const initState = {
   user: {},
   userDetails: {},
   schoolID: 0,
+  classroomID: 0,
   schools: [],
   role: "Student",
   subjects: [],
@@ -140,6 +142,13 @@ const rootReducers = (state: State = initState, action: Actions) => {
     return {
       ...state,
       role: action.payload,
+    };
+  }
+  if (action.type === "SET_ClassroomID") {
+    console.log(action.payload);
+    return {
+      ...state,
+      classroomID: action.payload,
     };
   }
   return state;
