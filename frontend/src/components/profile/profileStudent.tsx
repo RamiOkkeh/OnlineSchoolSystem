@@ -62,7 +62,7 @@ function Profile({ profile, user, userDetails }: any) {
     <div style={{ maxWidth: "1700px", marginTop: "63px", marginLeft: "150px" }}>
       <div style={{}}>
         <div className="background_img">
-          <div style={{ display: 'flex', flexDirection: "column", marginLeft: '2rem', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: "column", marginLeft: '4rem', justifyContent: 'center' }}>
             {/* <div style={{ display: 'flex', flexDirection: "row" }}> */}
             <MediaCard uploadImage={uploadImage} image={image} user={user} />
             {/* <div className="file-input">
