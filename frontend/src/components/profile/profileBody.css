@@ -57,8 +57,9 @@
   position: relative;
   width: 35px;
   height: 35px;
+  margin-left: 5px;
   border-radius: 25px;
-  background: linear-gradient(40deg, #43a047, #1b5e20);
+  background: linear-gradient(40deg, #a3da5d, #3a9940);
   box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;

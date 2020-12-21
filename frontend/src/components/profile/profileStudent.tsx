@@ -77,7 +77,7 @@ function Profile({ profile, user, userDetails }: any) {
           }}
         >
           <div>
-            <h3 style={{ padding: "30px 10px 20px 15px" }}>{user.studentName}</h3>
+            {/* <h3 style={{ padding: "30px 10px 20px 15px" }}>{user.studentName}</h3> */}
             <h4 style={{ padding: "0 10px 20px 15px" }}>
               classRoom:
               {user.classroomName}
