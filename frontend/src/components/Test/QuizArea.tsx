@@ -25,9 +25,11 @@ const QuizArea = (props: any) => {
   // console.log('aaaaa',props)
   return (
     //   <div style={style} className="style1">
-    <div className="style1">
+    <div style={{ width: '100%' }}>
       <Question dataSet={props.dataSet} />
-      <AnswerList dataSet={props.dataSet} handleClick={props.handleClick} />
+      <div style={{display:'flex', justifyContent:'center'}}>
+        <AnswerList dataSet={props.dataSet} handleClick={props.handleClick} />
+      </div>
     </div>
   );
 };
