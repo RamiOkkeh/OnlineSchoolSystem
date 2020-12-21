@@ -44,7 +44,7 @@ function Navbar({ user, userDetails }: any) {
 
   useEffect(() => {
     setNavItems(
-      userDetails.role === "Student"
+      userDetails.role === undefined
         ? [
             { title: "DashBoard", path: "/dashboard" },
             { title: "Stats", path: "/stats" },
@@ -52,7 +52,7 @@ function Navbar({ user, userDetails }: any) {
             { title: "Tests", path: "/tests" },
             { title: "Bills", path: "/bills" },
             // { title: "Options", path: "/options" },
-            // { title: "Classroom", path: "/classroom" } for chat page
+            // { title: "Classroom", path: "/classroom" }, //for chat page
           ]
         : userDetails.role === "Teacher"
         ? [
