@@ -63,35 +63,7 @@ function Profile({ profile, user, userDetails }: any) {
       <div style={{}}>
         <div className="background_img">
           <div style={{ display: 'flex', flexDirection: "column", marginLeft: '5%', justifyContent: 'center' }}>
-            {/* <div style={{ display: 'flex', flexDirection: "row" }}> */}
             <MediaCard uploadImage={uploadImage} image={image} user={user} />
-            {/* <div className="file-input">
-                    <input type="file" id="file" name="file" className="file" onChange={uploadImage} />
-                    <label htmlFor="file">
-                      <img alt="upload" src="https://static.thenounproject.com/png/625182-200.png" width="25px" />
-                    </label>
-                  </div>
-                  <img src={image} alt="profile" style={{
-                    width: "160px",
-                    marginRight: "57rem",
-                    height: "160px",
-                    borderRadius: "80px ",
-                  }} />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    marginLeft: '3rem',
-                    justifyContent: "space-around",
-                    width: "15%",
-                  }}
-                >
-                  <h3 style={{ margin: "0px", color: "white" }}>{user.studentName}</h3>
-                  <div
-                    style={{ paddingLeft: "5px", margin: "0px", marginTop: "5px" }}
-                    className="active"
-                  ></div>
-                </div> */}
           </div>
         </div>
       </div>
