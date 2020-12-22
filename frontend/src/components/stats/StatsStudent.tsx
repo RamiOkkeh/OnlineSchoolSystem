@@ -5,14 +5,9 @@ import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
 
 
+
 function StatsStudent({ testdata, user, test, exams, userDetails }: any) {
 
-    useEffect(() => {
-       console.log('ssss',userDetails)
-    }, [userDetails])
-
-
-    console.log('test', user, 'userDetails', userDetails.img)
     return (
 
         <div style={{ display: "flex", flexWrap: "wrap", flexDirection: "column", marginTop: "5rem", marginLeft: "17rem", marginRight: "10rem" }}>
@@ -24,7 +19,6 @@ function StatsStudent({ testdata, user, test, exams, userDetails }: any) {
                 </div>
                 <div style={{ backgroundColor: "#A8E36D40", flex: ".70", display: "flex", flexWrap: "wrap", flexDirection: "column", borderRadius: '50px' }}>
                     <div style={{ paddingTop: "1.5rem", display: 'flex', flexWrap: "wrap", justifyContent: "space-evenly" }}>
-                        {/* <div> First name: {user.studentName.split(' ')[0]}</div> */}
                         <div> Name: {user.studentName}</div>
                     </div>
                     <div style={{ paddingTop: "3rem", paddingBottom: "1.5rem", display: 'flex', flexWrap: "wrap", justifyContent: "space-evenly" }}>
