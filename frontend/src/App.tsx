@@ -1,4 +1,4 @@
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 import green from "@material-ui/core/colors/green";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Classes from "./pages/Classes/Classes";
@@ -63,7 +63,7 @@ const App = ({
       fetch(path, options)
         .then((data) => data.json())
         .then((data) => {
-          console.log(">>>>", data);  
+          console.log(">>>>", data);
           if (data.code) {
             localStorage.removeItem("Authorization")
             window.location.reload()
@@ -86,7 +86,7 @@ const App = ({
             fetch(path, options)
               .then((data) => data.json())
               .then((data) => {
-                console.log('>>>>>>>>ss>>>',data[0]);
+                console.log('>>>>>>>>ss>>>', data[0]);
                 setUser(data[0]);
                 let options = {
                   method: "post",
@@ -100,7 +100,7 @@ const App = ({
                 fetch(path, options)
                   .then((data) => data.json())
                   .then((data) => {
-                    // console.log(data);
+                    // console.log('>>>>>>>classes>>>>>>>>', data);
                     importClass(data);
                     let options = {
                       method: "get",
@@ -122,7 +122,12 @@ const App = ({
         });
     }
   }, []);
+  useEffect(() => {
+
+  }, [user])
+
   sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
+  console.log("APP", user)
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -135,14 +140,14 @@ const App = ({
             <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
             <Route exact path="/dashboard" component={DashboardPage} />
-            <Route exact path="/schedule" component={SchedulePage} />
-            <Route path="/classes" component={Classes} />
-            <Route path="/editclass" component={EditClass} />
-            <Route exact path="/bills" component={Bills} />
-            <Route exact path="/profile" component={ProfilePage} />
-            <Route exact path="/tests" component={TestPage} />
-            <Route exact path="/stats" component={StatsPage} />
-            <Route exact path="/classroom" component={Chat} />
+            <Route exact path="/schedule" render={props => localStorage.getItem("Authorization") ? <SchedulePage /> : <Redirect to="/" />} />
+            <Route path="/classes" render={props => localStorage.getItem("Authorization") ? <Classes /> : <Redirect to="/" />} />
+            <Route path="/editclass" render={props => localStorage.getItem("Authorization") ? <EditClass /> : <Redirect to="/" />} />
+            <Route exact path="/bills" render={props => localStorage.getItem("Authorization") ? <Bills /> : <Redirect to="/" />} />
+            <Route exact path="/profile" render={props => localStorage.getItem("Authorization") ? <ProfilePage /> : <Redirect to="/" />} />
+            <Route exact path="/tests" render={props => localStorage.getItem("Authorization") ? <TestPage /> : <Redirect to="/" />} />
+            <Route exact path="/stats" render={props => localStorage.getItem("Authorization") ? <StatsPage /> : <Redirect to="/" />} />
+            <Route exact path="/classroom" render={props => localStorage.getItem("Authorization") ? <Chat /> : <Redirect to="/" />} />
           </Switch>
         </Router>
       </div>

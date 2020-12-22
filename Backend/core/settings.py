@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'principals',
     'parents',
     'exams',
+    'import_export',
 ]
 
 MIDDLEWARE = [

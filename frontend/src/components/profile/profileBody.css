@@ -1,45 +1,90 @@
-.gallery{
-    display: flex;
-  flex-wrap : wrap;
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 10px;
-  }
-  .item{
-    width:30%   
-  }
-  .background_img{ 
-    background: url("https://userscontent2.emaze.com/images/788ab86d-ae5a-480f-a28e-d857c327697d/8e9ede7eef5294d8ca5774be42a7133e.jpg") no-repeat  ;
-    background-size:cover;
-    height:15rem  ;
-    border-bottom-left-radius:40px;
-    border-bottom-right-radius:40px;
-  
-  
-  }      
-  
-  .active{
-    width: 5px;
-    height: 10px;
-    border-radius: 20px;  
-    margin-top : 20px;
-    margin-left : 10px;
-    /* position: absolute; */
-    right: calc(50% - 70px);
-    top: 75px;
-    background-color: #07ff3d;
-    border: 3px solid #fff;
-  
-  }
-  .center-me{
-    width: 60vw;
-    margin: auto;
-    display: flex;
-    /* justify-content: center; */
-    justify-content: space-between;
-    align-items: center;
-} 
+}
+
+.item {
+  width: 30%
+}
+
+.background_img {
+  background: url("https://userscontent2.emaze.com/images/788ab86d-ae5a-480f-a28e-d857c327697d/8e9ede7eef5294d8ca5774be42a7133e.jpg") no-repeat;
+  background-size: cover;
+  height: 15rem;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.active {
+  width: 5px;
+  height: 10px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
+  /* position: absolute; */
+  right: calc(50% - 70px);
+  top: 75px;
+  background-color: #07ff3d;
+  border: 3px solid #fff;
+}
+
+.center-me {
+  width: 60vw;
+  margin: auto;
+  display: flex;
+  /* justify-content: center; */
+  justify-content: space-between;
+  align-items: center;
+}
+
 .total {
   /* margin-top: 30px; */
   /* margin-left: auto; */
   font-size: 26px;
+}
+
+.file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.file-input label {
+  display: block;
+  position: relative;
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+  border-radius: 25px;
+  background: linear-gradient(40deg, #a3da5d, #3a9940);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+}
+
+.file-name {
+  position: absolute;
+  bottom: -35px;
+  left: 10px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+input:hover+label, input:focus+label {
+  transform: scale(1.02);
+}
+
+/* Adding an outline to the label on focus */
+
+input:focus+label {
+  outline: 1px solid #000;
+  outline: -webkit-focus-ring-color auto 2px;
 }

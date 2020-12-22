@@ -1,24 +1,43 @@
 .Bills {
-    display: flexbox;
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 400px; */
     margin: 200px;
-    padding-left: 280px;
+    padding-left: 150px;
 }
 
 .main {
     display: flex;
-    justify-content: space-between;
-    width: 300px;
+    justify-content: center;
+    width: 500px;
     height: 50px;
-    border: 1px solid red;
+    border: .2px solid black;
+    border-radius: 2px;
+    margin: 1px;
+    align-items: center;
     /* padding-right: 20rem;
    margin-left: 22rem; */
-    background-color: white;
+    background-color: #A8E36D40
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    height: 50px;
+    border: .2px solid black;
+    border-radius: 2px 2px 20px 20px;
+    margin: 1px;
+    align-items: center;
+    /* padding-right: 20rem;
+   margin-left: 22rem; */
+    background-color: #A8E36D40
 }
 
 .firstBox {
     flex: .8;
-    border-right: 1px solid red;
+    /* border: .2px solid black; */
 }
 
 .secondtBox {
@@ -27,12 +46,13 @@
 
 .thirdtBox {
     flex: .80;
-    border-left: 1px solid red;
+    /* border: .2px solid black; */
 }
 
 .fourthtBox {
     flex: .80;
-    border-left: 1px solid red;
+    /* border: .2px solid black; */
     display: flex;
     align-items: center;
+    justify-content: center;
 }
