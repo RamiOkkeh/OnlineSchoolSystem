@@ -1,14 +1,16 @@
 
 import React, { useEffect, useState } from "react";
+import { Dispatch } from "redux";
 import "./profileBody.css";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 import local_IP from "../../local_IP";
 import MediaCard from "./profileImg";
+import { setUserDetails } from "../../actions/actions";
 
 
 
-function Profile({ profile, user, userDetails }: any) {
+function Profile({ profile, user, userDetails, setUserDetail }: any) {
   const [image, setImage] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -38,6 +40,9 @@ function Profile({ profile, user, userDetails }: any) {
         console.log('aaaaa1111', res)
         setImage(res.secure_url)
         setLoading(false)
+        let oldDetails = {...userDetails}
+        oldDetails.img=res.secure_url
+        setUserDetail(oldDetails)
         //
         let options = {
           method: "POST",
@@ -103,7 +108,11 @@ function Profile({ profile, user, userDetails }: any) {
   );
 }
 
-
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    setUserDetail: (z: any) => dispatch(setUserDetails(z)),
+  };
+};
 
 const mapStateToProps = (state: State) => {
   return {
@@ -111,4 +120,4 @@ const mapStateToProps = (state: State) => {
     userDetails: state.userDetails,
   };
 };
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
