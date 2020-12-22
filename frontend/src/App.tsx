@@ -100,7 +100,7 @@ const App = ({
                 fetch(path, options)
                   .then((data) => data.json())
                   .then((data) => {
-                    // console.log(data);
+                    // console.log('>>>>>>>classes>>>>>>>>', data);
                     importClass(data);
                     let options = {
                       method: "get",
@@ -123,10 +123,10 @@ const App = ({
     }
   }, []);
   useEffect(() => {
-    
+
   }, [user])
   sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
-  console.log("APP",user.userID)
+  console.log("APP", user.userID)
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -139,14 +139,14 @@ const App = ({
             <Route path="/signup" component={SignupForm} />
             <Route path="/signin" component={SignIn} />
             <Route exact path="/dashboard" component={DashboardPage} />
-            <Route exact path="/schedule" render={props =>user.userID ? <SchedulePage/>: <Redirect to="/" />} />
-            <Route path="/classes" render={props =>user.userID ? <Classes/>: <Redirect to="/" />} />
-            <Route path="/editclass" render={props =>user.userID ? <EditClass/>: <Redirect to="/" />} />
-            <Route exact path="/bills" render={props =>user.userID ? <Bills/>: <Redirect to="/" />} />
-            <Route exact path="/profile" render={props =>user.userID ? <ProfilePage/>: <Redirect to="/" />} />
-            <Route exact path="/tests" render={props =>user.userID ? <TestPage/>: <Redirect to="/" />} />
-            <Route exact path="/stats" render={props =>user.userID ? <StatsPage/>: <Redirect to="/" />} />
-            <Route exact path="/classroom" render={props =>user.userID ? <Chat/>: <Redirect to="/" />} />
+            <Route exact path="/schedule" render={props => localStorage.getItem("Authorization") ? <SchedulePage /> : <Redirect to="/" />} />
+            <Route path="/classes" render={props => localStorage.getItem("Authorization") ? <Classes /> : <Redirect to="/" />} />
+            <Route path="/editclass" render={props => localStorage.getItem("Authorization") ? <EditClass /> : <Redirect to="/" />} />
+            <Route exact path="/bills" render={props => localStorage.getItem("Authorization") ? <Bills /> : <Redirect to="/" />} />
+            <Route exact path="/profile" render={props => localStorage.getItem("Authorization") ? <ProfilePage /> : <Redirect to="/" />} />
+            <Route exact path="/tests" render={props => localStorage.getItem("Authorization") ? <TestPage /> : <Redirect to="/" />} />
+            <Route exact path="/stats" render={props => localStorage.getItem("Authorization") ? <StatsPage /> : <Redirect to="/" />} />
+            <Route exact path="/classroom" render={props => localStorage.getItem("Authorization") ? <Chat /> : <Redirect to="/" />} />
           </Switch>
         </Router>
       </div>
