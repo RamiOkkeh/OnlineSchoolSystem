@@ -42,7 +42,7 @@ function Header({ user }: any) {
         <Container className={classes.flex}>
           <Link to="/">
             <img
-              src="./logo2.png"
+              src="https://media.discordapp.net/attachments/762721371809382421/790989688457658379/alphaplus_white_logo1.png"
               alt="logo"
               style={{ width: "50px", margin: "5px" }}
             />

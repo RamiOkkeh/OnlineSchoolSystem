@@ -1,35 +1,67 @@
-import React from "react";
+import React , {useEffect,useState} from "react";
 import "./profileBody.css";
+import { connect } from "react-redux";
+import { State } from "../../reducers/rootReducer";
+import local_IP from "../../local_IP";
+import MediaCard from "./profileImg";
 
-export default function ProfileTeacher() {
+
+
+ function ProfileTeacher({userDetails,user,Classes}:any) {
+  // console.log('ssssss', userDetails,'user',user,'classes',Classes);
+   const [image, setImage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+
+  useEffect(() => {
+    setImage(userDetails.img)
+  }, [userDetails])
+
+
+  const uploadImage = async (e) => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files['0'])
+    data.append('upload_preset', 'dquts6y1')
+    console.log('asasasa', files['0'])
+
+    setLoading(true)
+    const requestOptions = {
+      method: 'POST',
+      body: data
+    };
+    console.log('aaaaa', data)
+
+    fetch("https://api.cloudinary.com/v1_1/coronaschool/image/upload", requestOptions)
+      .then(response => response.json())
+      .then(res => {
+        console.log('aaaaa1111', res)
+        setImage(res.secure_url)
+        setLoading(false)
+        //
+        let options = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userID: user.userID, img: res.secure_url })
+        };
+        let path =
+          process.env.NODE_ENV === "production"
+            ? "/users/uploadImg"
+            : `${local_IP}/users/uploadImg`;
+        fetch(path, options)
+          .then((data) => data.json())
+          .then((data) => {
+            console.log(">>>>>>", data);
+          });
+      })
+  }
+
   return (
     <div style={{ maxWidth: "1700px", marginTop: "63px", marginLeft: "150px" }}>
-      <div style={{}}>
+     <div style={{}}>
         <div className="background_img">
-          <img
-            style={{
-              width: "160px",
-              marginTop: "30px",
-              marginRight: "57rem",
-              height: "160px",
-              borderRadius: "80px ",
-            }}
-            src="https://ca.slack-edge.com/TTVPM20S0-U01CBQLUYKA-405d23825794-512"
-            alt=""
-          />
-          <div
-            style={{
-              marginLeft: "55px",
-              display: "flex",
-              justifyContent: "space-around",
-              width: "15%",
-            }}
-          >
-            <h3 style={{ margin: "0px", color: "white" }}>Asem Basheer</h3>
-            <div
-              style={{ paddingLeft: "5px", margin: "0px", marginTop: "5px" }}
-              className="active"
-            ></div>
+          <div style={{ display: 'flex', flexDirection: "column", marginLeft: '5%', justifyContent: 'center' }}>
+                <MediaCard uploadImage={uploadImage} image={image!=='null'? image:'https://media.discordapp.net/attachments/762721371809382421/791010214941818920/115-1150152_default-profile-picture-avatar-png-green.png'} user={user} />
           </div>
         </div>
       </div>
@@ -45,15 +77,15 @@ export default function ProfileTeacher() {
           <div>
             <h3 style={{ padding: "30px 10px 20px 15px" }}>
               {" "}
-              TeacherName:Asem Basheer
+              TeacherName:{user.teacherName}
             </h3>
             <h4 style={{ padding: "0 10px 20px 15px" }}>
-              email:Asem_basheer@gmail.com
+              email:{userDetails.email}
             </h4>
             {/* <h4 style={{ padding: "0 10px 20px 15px" }}> number of Students :2 </h4> */}
             <h4 style={{ padding: "0 10px 20px 15px" }}>
               {" "}
-              number of Classess :4{" "}
+              Subject Name :{user.subjectName}
             </h4>
             {/* <h4 style={{ padding: "0 10px 20px 15px" }} > number of reservations :5</h4> */}
           </div>
@@ -67,3 +99,14 @@ export default function ProfileTeacher() {
     </div>
   );
 }
+
+const mapStateToProps = (state: State) => {
+  return {
+      user: state.user,
+      userDetails: state.userDetails,
+      classes : state.classes,
+      
+  };
+};
+export default connect(mapStateToProps)(ProfileTeacher);
+
