@@ -7,6 +7,7 @@ import { State } from "../../reducers/rootReducer";
 import local_IP from "../../local_IP";
 import MediaCard from "./profileImg";
 import { setUserDetails } from "../../actions/actions";
+import SimpleCard from './ProfileCard'
 
 
 
@@ -79,6 +80,8 @@ function Profile({ profile, user, userDetails, setUserDetail }: any) {
             backgroundColor: "#f2f2f2",
             boxShadow: "3px 3px #d9d9d9",
             borderTopLeftRadius: "45px",
+            marginLeft:"2rem",
+            height:"420px",
           }}
         >
           <div>
@@ -99,9 +102,9 @@ function Profile({ profile, user, userDetails, setUserDetail }: any) {
           </div>
         </div>
         <div style={{ flex: ".73" }}>
-          {/* <DisabledTabs  /> */}
-          {/* component code for FAVORITES*/}
-          <div className="gallery"></div>
+          <div className="gallery">
+           <SimpleCard />
+          </div>
         </div>
       </div>
     </div>
