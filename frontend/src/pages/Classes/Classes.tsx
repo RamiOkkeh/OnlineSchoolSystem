@@ -7,8 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { createClass } from "../../actions/actions";
 import CreateClassDialog from "../../components/CreateClass/CreateClass";
 import { Link } from "react-router-dom";
-import local_IP from "../../local_IP";
 import { Button } from "@material-ui/core";
+const local_IP = require("../../local_IP") || "";
 
 const styles = makeStyles({
   flex: {
@@ -22,10 +22,10 @@ const styles = makeStyles({
     marginLeft: "200px",
   },
   buttons: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    paddingLeft: '12rem'
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    paddingLeft: "12rem",
   },
   form: {
     backgroundColor: "white",
@@ -54,13 +54,12 @@ function Classes({ classes, user, createClass, role }: any) {
       .then((data) => {
         createClass(data);
         setClassroom(data);
-      })
-  }
-
+      });
+  };
 
   useEffect(() => {
-    getClassrooms()
-  }, [user])
+    getClassrooms();
+  }, [user]);
 
   const submit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -79,38 +78,45 @@ function Classes({ classes, user, createClass, role }: any) {
       .then((data) => {
         createClass(data);
         setName("");
-        getClassrooms()
+        getClassrooms();
       });
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
+      }}
+    >
       <div className={classess.flex}>
         {classroom.map((elem: any, i: number) => {
           return <Class data={elem} key={i} id={elem.id} />;
         })}
       </div>
-      {role === "Principal" ?
+      {role === "Principal" ? (
         <div className={classess.buttons}>
-          <CreateClassDialog
-            submit={submit}
-            setName={setName}
-            name={name}
-          />
-          <Link to="/editclass" style={{ textDecoration: "none", paddingTop: '1rem' }}>
-            <Button variant="outlined" >Waiting room</Button>
+          <CreateClassDialog submit={submit} setName={setName} name={name} />
+          <Link
+            to="/editclass"
+            style={{ textDecoration: "none", paddingTop: "1rem" }}
+          >
+            <Button variant="outlined">Waiting room</Button>
           </Link>
         </div>
-        :
+      ) : (
         <div></div>
-      }
+      )}
     </div>
   );
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    createClass: (newState: State) => { dispatch(createClass(newState)); },
+    createClass: (newState: State) => {
+      dispatch(createClass(newState));
+    },
   };
 };
 
