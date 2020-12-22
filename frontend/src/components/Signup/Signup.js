@@ -124,7 +124,7 @@ const SignUp = function ({
     let path =
       process.env.NODE_ENV === "production"
         ? "/auth/users/"
-        : `${"http://" + local_IP}/auth/users/`;
+        : `${local_IP}/auth/users/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
