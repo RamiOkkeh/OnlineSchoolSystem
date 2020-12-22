@@ -42,7 +42,7 @@ function Header({ user }: any) {
         <Container className={classes.flex}>
           <Link to="/">
             <img
-              src="./logo2.png"
+              src="https://media.discordapp.net/attachments/762721371809382421/790989688457658379/alphaplus_white_logo1.png"
               alt="logo"
               style={{ width: "50px", margin: "5px" }}
             />
@@ -61,7 +61,7 @@ function Header({ user }: any) {
             ))}
             {
               user.userID ?
-                <Link className={classes.links} to="/signin" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+                <Link className={classes.links} to="/" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                   localStorage.removeItem("Authorization")
                   window.location.reload()
                 }}>
