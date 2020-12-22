@@ -8,6 +8,7 @@ import { createClass } from "../../actions/actions";
 import CreateClassDialog from "../../components/CreateClass/CreateClass";
 import { Link } from "react-router-dom";
 import local_IP from "../../local_IP";
+import { Button } from "@material-ui/core";
 
 const styles = makeStyles({
   flex: {
@@ -15,22 +16,16 @@ const styles = makeStyles({
     justifyContent: "space-around",
     alignItems: "center",
     flexWrap: "wrap",
-    height: "100vh",
+    height: "70%",
     // width: "1000px",
     marginTop: "100px",
     marginLeft: "200px",
   },
-  button: {
-    width: "200px",
-    height: "200px",
-    border: "5px solid black",
-    borderRadius: "200px",
-    outline: "none",
-    backgroundImage:
-      'url("https://media.istockphoto.com/photos/light-green-defocused-blurred-motion-abstract-background-picture-id1138288758?k=6&m=1138288758&s=612x612&w=0&h=rwNnAXEgmHzxpeb7SY0A2KVMOQhkBaoml1T6HEaW7Fs=")',
-    backgroundPosition: "center",
-    backgroundSize: "100% 100%",
-    color: "white",
+  buttons: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    paddingLeft: '12rem'
   },
   form: {
     backgroundColor: "white",
@@ -44,7 +39,7 @@ function Classes({ classes, user, createClass, role }: any) {
   const [name, setName] = useState("");
   const [classroom, setClassroom] = useState([]);
 
-  useEffect(() => {
+  const getClassrooms = () => {
     let options = {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -57,9 +52,14 @@ function Classes({ classes, user, createClass, role }: any) {
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
+        createClass(data);
         setClassroom(data);
       })
+  }
 
+
+  useEffect(() => {
+    getClassrooms()
   }, [user])
 
   const submit = (e: { preventDefault: () => void }) => {
@@ -79,40 +79,38 @@ function Classes({ classes, user, createClass, role }: any) {
       .then((data) => {
         createClass(data);
         setName("");
+        getClassrooms()
       });
   };
 
   return (
-    <div className={classess.flex}>
-      {classroom.map((elem: any, i: number) => {
-        return <Class data={elem} key={i} id={elem.id} />;
-      })}
-      {role === "Principal" ? (
-        <CreateClassDialog
-          submit={submit}
-          buttonStyle={classess.button}
-          setName={setName}
-          name={name}
-        />
-      ) : (
-          ""
-        )}
-      {role === "Principal" ? (
-        <Link to="/editclass" style={{ textDecoration: "none" }}>
-          Edit
-        </Link>
-      ) : (
-          ""
-        )}
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+      <div className={classess.flex}>
+        {classroom.map((elem: any, i: number) => {
+          return <Class data={elem} key={i} id={elem.id} />;
+        })}
+      </div>
+      {role === "Principal" ?
+        <div className={classess.buttons}>
+          <CreateClassDialog
+            submit={submit}
+            setName={setName}
+            name={name}
+          />
+          <Link to="/editclass" style={{ textDecoration: "none", paddingTop: '1rem' }}>
+            <Button variant="outlined" >Waiting room</Button>
+          </Link>
+        </div>
+        :
+        <div></div>
+      }
     </div>
   );
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    createClass: (newState: State) => {
-      dispatch(createClass(newState));
-    },
+    createClass: (newState: State) => { dispatch(createClass(newState)); },
   };
 };
 

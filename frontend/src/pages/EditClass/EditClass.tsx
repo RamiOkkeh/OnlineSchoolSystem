@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Grid } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Button, Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 import EditStudent from "../../components/EditStudent/EditStudent";
@@ -7,9 +7,11 @@ import { Redirect } from "react-router-dom";
 import "./EditCalss.css";
 import local_IP from "../../local_IP";
 
-function EditClass({ user, waiting }: any) {
+function EditClass({ user }: any) {
   let plop: any = {};
   let [obj, addToObj] = useState(plop);
+  let [waiting, setWaiting] = useState([]);
+
   const submit = () => {
     console.log(obj);
     let keys = Object.keys(obj);
@@ -30,19 +32,34 @@ function EditClass({ user, waiting }: any) {
         });
     });
   };
-  if (!waiting.students) {
-    return <Redirect to="dashboard" />;
-  }
+
+  useEffect(() => {
+    let options = {
+      method: "get",
+      headers: { "Content-Type": "application/json" },
+    };
+    let path =
+      process.env.NODE_ENV === "production"
+        ? "/classroom/"
+        : `${local_IP}/classroom/`;
+    fetch(path, options)
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(data[0]);
+        setWaiting(data[0].students);
+      });
+  }, [])
+
   return (
     <div className="center">
+      <h3>Waiting room</h3>
       <Grid container direction="column" justify="center" alignItems="center">
-        {waiting.students
-          .filter((elem: any) => elem.schoolID === user.schoolID)
-          .map((elem: any, i: number) => (
-            <EditStudent data={elem} addToObj={addToObj} key={i} />
-          ))}
+        {waiting.map((elem: any, i: number) => {
+          if (elem.schoolID === user.schoolID) return <EditStudent data={elem} addToObj={addToObj} key={i} />
+          return <div></div>
+        })}
       </Grid>
-      <button onClick={submit}>Submit</button>
+      <Button variant='outlined' onClick={submit}>Submit</Button>
     </div>
   );
 }
@@ -50,7 +67,7 @@ function EditClass({ user, waiting }: any) {
 const mapStateToProps = (state: State) => {
   return {
     user: state.user,
-    waiting: state.waiting,
+    // waiting: state.waiting,
   };
 };
 
