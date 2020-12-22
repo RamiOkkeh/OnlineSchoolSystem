@@ -57,13 +57,13 @@ function Profile({ profile, user, userDetails }: any) {
   }
 
 
-  console.log('myuser', image, userDetails);
+  console.log('myuser', image, 'ssssss', userDetails);
   return (
     <div style={{ maxWidth: "1700px", marginTop: "63px", marginLeft: "150px" }}>
       <div style={{}}>
         <div className="background_img">
           <div style={{ display: 'flex', flexDirection: "column", marginLeft: '5%', justifyContent: 'center' }}>
-                <MediaCard uploadImage={uploadImage} image={image!=='null'? image:'https://media.discordapp.net/attachments/762721371809382421/791010214941818920/115-1150152_default-profile-picture-avatar-png-green.png'} user={user} />
+            <MediaCard uploadImage={uploadImage} image={image !== 'null' ? image : 'https://media.discordapp.net/attachments/762721371809382421/791010214941818920/115-1150152_default-profile-picture-avatar-png-green.png'} user={user} />
           </div>
         </div>
       </div>

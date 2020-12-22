@@ -5,10 +5,10 @@ import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
 
 
-function StatsStudent({ testdata, user, test , exams }: any) {
+function StatsStudent({ testdata, user, test , exams,userDetails }: any) {
 
     
-    console.log('test', user)
+    console.log('test', user,'userDetails',userDetails)
     return (
 
         <div style={{  display: "flex", flexWrap: "wrap", flexDirection: "column", marginTop: "5rem", marginLeft: "17rem", marginRight: "10rem" }}>
@@ -48,6 +48,7 @@ const mapStateToProps = (state: State) => {
         test: state.test,
         schoolID: state.schoolID,
         user: state.user,
+        userDetails : state.userDetails,
     };
 };
 
