@@ -7,19 +7,19 @@ from django.contrib.auth.models import (
 
 
 class UserAccountManager(BaseUserManager):
-    def create_user(self, email, name, role, password=None ):
+    def create_user(self, email, name, role, img='null', password=None ):
         if not email:
             raise ValueError("Users must have an email address")
 
         email = self.normalize_email(email)
-        user = self.model(email=email, name=name, role=role)
+        user = self.model(email=email, name=name, role=role, img='null')
         user.set_password(password)
         user.save()
 
         return user
 
-    def create_superuser(self, email, name, role,password):
-        user = self.create_user(email, name, role,password)
+    def create_superuser(self, email, name, role, password, img='null'):
+        user = self.create_user(email, name, role, password, img='null')
         user.is_superuser = True
         user.is_staff = True
         user.save()
@@ -49,11 +49,12 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     ]
     
     role = models.CharField(max_length=255, default=USER , choices=ROLE_CHOICES)
+    img = models.CharField(max_length=690 ,null=True, default='null')
 
     objects = UserAccountManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["name","role"]
+    REQUIRED_FIELDS = ["name","role","img"]
 
     def __str__(self):
         return self.email

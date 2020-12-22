@@ -10,11 +10,13 @@ import { Paper } from "@material-ui/core";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: "#4caf50",
     color: theme.palette.common.black,
+    textAlign: 'center'
   },
   body: {
     fontSize: 14,
+    textAlign: 'center'
   },
 }))(TableCell);
 
@@ -102,10 +104,10 @@ export default function CustomizedTables() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer>
       <Table
         className={classes.table}
-        style={{ width: "800px", marginLeft: "20rem", marginTop: "12rem" }}
+        style={{backgroundColor:"#A8E36D40", width: "800px", marginLeft: "20rem", marginTop: "12rem" }}
         aria-label="customized table"
       >
         <TableHead>

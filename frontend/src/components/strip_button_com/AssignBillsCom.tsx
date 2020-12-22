@@ -6,11 +6,17 @@ import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer"
-import { MenuItem } from '@material-ui/core';
+import { Button, MenuItem, TextField } from '@material-ui/core';
 import local_IP from '../../local_IP';
 
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+    },
     formControl: {
         margin: theme.spacing(1),
         minWidth: 200,
@@ -57,8 +63,8 @@ const BootstrapInput = withStyles((theme) => ({
 function CustomizedSelects({ schoolID, user }: any) {
     const classes = useStyles();
     const [classrooms, setClassrooms] = useState([]);
-    const [classroom, setClassroom] = useState();
-    const [price, setPrice] = useState();
+    const [classroom, setClassroom] = useState('');
+    const [price, setPrice] = useState('');
     const [semester, setSemester] = useState('');
     const [studentsClass, setStudentsClass] = useState([]);
 
@@ -109,24 +115,25 @@ function CustomizedSelects({ schoolID, user }: any) {
         fetch(path, options)
             .then((data) => {
                 data.json()
-                console.log('ameed', data)
             })
             .then((data) => {
                 console.log("mydata1", data);
+                setPrice('')
+                setSemester('')
+                setClassroom('')
+                alert('Payments sent')
             });
-        // console.log(path)
     }
-    // console.log('classroom', classroom);
 
     return (
 
         <div style={{ marginTop: '11rem', display: "flex", paddingLeft: "16rem" }}>
-            <FormControl className={classes.formControl} >
-                <InputLabel id="demo-simple-select-label">classroom</InputLabel>
+            <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">Classroom</InputLabel>
                 <Select
-
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    label="Classroom"
                     value={classroom}
                     onChange={(e: any) => {
                         setStudentsClass(e.target.value.students)
@@ -136,23 +143,14 @@ function CustomizedSelects({ schoolID, user }: any) {
                     {
                         classrooms.map((el: any, key: any) => {
                             return <MenuItem value={el} key={key}>{el.name}</MenuItem>
-
                         })}
-
                 </Select>
             </FormControl>
-            <FormControl  >
-                <InputLabel htmlFor="totalAmount" >input price</InputLabel>
-                <BootstrapInput id="demo-customized-textbox" onChange={handlePrice} placeholder="price" />
-            </FormControl>
-            <FormControl >
-                <InputLabel htmlFor="input semester" >input semester</InputLabel>
-                <BootstrapInput id="demo-customized-textbox" onChange={handlesemester} placeholder="semster " />
-            </FormControl>
-
-            <div style={{ paddingTop: "1.5rem", paddingLeft: "1rem" }} >
-                <button onClick={handelSubmit} style={{ backgroundColor: "gray", fontSize: '24px' }}>select</button>
-            </div>
+            <form className={classes.root}>
+                <TextField id="outlined-basic" value={price} label="Amount" variant="outlined" onChange={handlePrice} />
+                <TextField id="outlined-basic" value={semester} label="Semester" variant="outlined" onChange={handlesemester} />
+            </form>
+            <Button variant="outlined" onClick={handelSubmit} style={{ alignSelf: 'center' }} >add payments</Button>
         </div>
     );
 }

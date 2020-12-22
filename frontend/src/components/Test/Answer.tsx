@@ -4,12 +4,15 @@ import React from 'react'
     var style = {
       width: "100%",
       height: 50,
-      color: "blue"
+      backgroundColor:'#4caf5060',
+      border:'1px',
+      borderRadius:'15px',
+      boxShadow:' 2px 3px #888888'
     }
     
     // console.log('answerssssss',props)
     return(
-      <div>
+      <div style={{margin:'10px', width:'180px'}}>
         <button style={style} onClick={() => props.handleClick(props.choice)}>{props.answer}</button>
       </div>
     )

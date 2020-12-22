@@ -10,11 +10,13 @@ import {Paper, TextField} from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#4caf50',
     color: theme.palette.common.white,
+    textAlign: 'center'
   },
   body: {
     fontSize: 14,
+    textAlign: 'center'
   },
 }))(TableCell);
 
@@ -48,8 +50,8 @@ export default function SchedulePrincipal() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} style={{width:"800px" , marginLeft:"20rem" , marginTop:"8rem"}} aria-label="customized table">
+    <TableContainer>
+      <Table className={classes.table} style={{backgroundColor:"#20A10630", width:"800px" , marginLeft:"20rem" , marginTop:"6rem"}} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Day </StyledTableCell>

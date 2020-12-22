@@ -15,10 +15,11 @@ function StatsStudent({ testdata, user, test, exams }: any) {
     });
     console.log("test", test, status);
   }, []);
+
+  console.log("test", user);
   return (
     <div
       style={{
-        backgroundColor: "white",
         display: "flex",
         flexWrap: "wrap",
         flexDirection: "column",
@@ -27,17 +28,8 @@ function StatsStudent({ testdata, user, test, exams }: any) {
         marginRight: "10rem",
       }}
     >
-      <div
-        style={{ backgroundColor: "red", display: "flex", flexWrap: "wrap" }}
-      >
-        <div
-          className="profile"
-          style={{
-            backgroundColor: "green",
-            flex: ".30",
-            paddingTop: "1.5rem",
-          }}
-        >
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div className="profile" style={{ flex: ".30", paddingTop: "1.5rem" }}>
           <div>
             <img
               style={{
@@ -46,17 +38,18 @@ function StatsStudent({ testdata, user, test, exams }: any) {
                 height: "160px",
                 borderRadius: "100px ",
               }}
-              src="https://ca.slack-edge.com/TTVPM20S0-U018HTXLNDD-c9c19858d7dc-512"
+              src="https://ca.slack-edge.com/TTVPM20S0-U01BJSLTV5K-54889184147f-512"
             />{" "}
           </div>
         </div>
         <div
           style={{
-            backgroundColor: "gray",
+            backgroundColor: "#A8E36D40",
             flex: ".70",
             display: "flex",
             flexWrap: "wrap",
             flexDirection: "column",
+            borderRadius: "50px",
           }}
         >
           <div
@@ -67,8 +60,8 @@ function StatsStudent({ testdata, user, test, exams }: any) {
               justifyContent: "space-evenly",
             }}
           >
-            <div> Name : Ameed Asmah</div>
-            <div>status: {status[0]}</div>
+            <div> First name: {user.studentName.split(" ")[0]}</div>
+            <div> Last name: {user.studentName.split(" ")[1]}</div>
           </div>
           <div
             style={{
@@ -79,23 +72,25 @@ function StatsStudent({ testdata, user, test, exams }: any) {
               justifyContent: "space-evenly",
             }}
           >
-            <div> position :Student</div>
-            <div> student Id : 11210385</div>
+            <div> Position: Student</div>
+            <div> student Id: {user.userID}</div>
           </div>
           <div>
             {" "}
             GPA ={" "}
-            {(
-              exams.reduce(
-                (acc: number, subject: any) =>
-                  acc +
-                  subject.firstGrade +
-                  subject.secondGrade +
-                  subject.finalGrade,
-                0
-              ) /
-              (exams.length * 3)
-            ).toFixed(2)}
+            {exams.length
+              ? (
+                  exams.reduce(
+                    (acc: number, subject: any) =>
+                      acc +
+                      subject.firstGrade +
+                      subject.secondGrade +
+                      subject.finalGrade,
+                    0
+                  ) /
+                  (exams.length * 3)
+                ).toFixed(2)
+              : 0.0}
             %{" "}
           </div>
         </div>
@@ -106,6 +101,13 @@ function StatsStudent({ testdata, user, test, exams }: any) {
         ))}
       </div>
     </div>
+    //   </div>
+    //   <div style={{ display: "flex", flexWrap: "wrap" }}>
+    //     {exams.map((el: any, i: any) => (
+    //       <RecipeReviewCardd exam={el} key={i} />
+    //     ))}
+    //   </div>
+    // </div>
   );
 }
 
