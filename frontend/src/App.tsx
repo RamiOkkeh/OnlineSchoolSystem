@@ -126,7 +126,7 @@ const App = ({
 
   }, [user])
   sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
-  console.log("APP", user.userID)
+  console.log("APP", user)
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
