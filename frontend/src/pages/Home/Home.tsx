@@ -39,7 +39,7 @@ export default function Home() {
           <img id="slide" src="https://cdn.discordapp.com/attachments/762721371809382421/790225539196780564/baner4.png" />
           {/* <img src="https://cdn.discordapp.com/attachments/762721371809382421/790217100906987591/image2.png" /> */}
         </div>
-        <div style={{ marginTop: "4rem", width: "55%", fontFamily: "Georgia", marginRight: "8rem", }} >
+        <div style={{ marginTop: "4rem", width: "55%", fontFamily: "Georgia", marginRight: "8rem" }} >
           <Slide right>
             <h1>AlphaPlus</h1>
             <h4> A feature rich school management software for all educational
@@ -178,8 +178,8 @@ export default function Home() {
           </div>
         </Slide>
         <div style={{ flex: ".4" }}>
-          <Roll right>
-            <img alt='native' style={{ marginTop: "1.4rem" }} height='450px' src="https://media.discordapp.net/attachments/762721371809382421/791006742947037194/signin_native.png?width=229&height=473" />
+        <Roll right>
+          <img alt='native' style={{marginTop:"1.4rem"}} height='450px' src="https://media.discordapp.net/attachments/762721371809382421/791006742947037194/signin_native.png?width=229&height=473"/>
           </Roll>
         </div>
       </div>
@@ -189,7 +189,7 @@ export default function Home() {
       <footer style={{ paddingTop: "4rem" }}>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#00000095" }}>
           <div style={{ flex: ".5", paddingTop: "2rem" }}>
-            <img style={{ paddingLeft: "2rem", height: "70px", marginTop: ".5rem" }} src="https://www.alphaplus.co.uk/wp-content/uploads/2018/04/alphaplus_white_logo.png" />
+            <img style={{ paddingLeft: "2rem", height: "70px",marginTop: ".5rem" }} src="https://www.alphaplus.co.uk/wp-content/uploads/2018/04/alphaplus_white_logo.png" />
             <h5 style={{ paddingLeft: "8rem" }}> © 2020 AlphaPlus Consultancy Ltd, all rights reserved.</h5>
             <p style={{ textAlign: "left", marginLeft: "12.5rem" }}>AlphaPlus is world's best and no.1 free online school management softawre for lifetime with no limitations.
             Someone can manage their school, college, tuition center, academy or any kind of educational institute with
@@ -215,15 +215,15 @@ export default function Home() {
           </h5>
           </div>
           <div style={{ flex: ".25" }}>
-            <h2 style={{ marginTop: "3rem" }}>YOUR FEEDBACK</h2>
+            <h2 style={{marginTop: "3rem"}}>YOUR FEEDBACK</h2>
             <div>
               <label>
-                <input style={{ height: "1.5rem" }} type="text" placeholder="your name" name="" />
-                <input style={{ marginTop: "1rem", marginBottom: "1rem", height: "1.5rem" }} type="text" placeholder="your Email" name="" />
-                <input style={{ height: "60px" }} type="text" placeholder="Feedback" name="" />
+              <input style={{height:"1.5rem"}} type="text" placeholder="your name" name=""/>
+              <input style={{marginTop:"1rem",marginBottom:"1rem", height:"1.5rem"}}type="text" placeholder="your Email" name=""/>
+              <input style={{height:"60px"}}type="text" placeholder="Feedback" name=""/>
               </label>
               <div>
-                <button>send</button>
+              <button>send</button>
               </div>
             </div>
           </div>
