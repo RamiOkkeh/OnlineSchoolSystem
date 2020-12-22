@@ -41,7 +41,7 @@ export default function Home() {
         </div>
         <div style={{ marginTop: "4rem", width: "55%", fontFamily: "Georgia", marginRight: "8rem" }} >
           <Slide right>
-            <h1>ONLINE SCHOOL SYSTEM</h1>
+            <h1>AlphaPlus</h1>
             <h4> A feature rich school management software for all educational
             institutes. This school management software is for learning,
             administration and activities management in schools.
@@ -111,7 +111,7 @@ export default function Home() {
         <div style={{ flex: ".50", paddingTop: "6rem", paddingLeft: "9rem", msFlexDirection: "column" }}>
           <Slide right>
             <div >
-              <h2>Why skooly is best school management software ?</h2>
+              <h2>Why AlphaPlus is best school management software ?</h2>
               <div style={{ fontFamily: "Georgia", paddingTop: "2rem", }}>
                 <p style={{ textAlign: "left" }}>
                   Besides from, AlphaPlus is a completely free online school management
@@ -177,7 +177,11 @@ export default function Home() {
             </div>
           </div>
         </Slide>
-        <div style={{ flex: ".4" }}></div>
+        <div style={{ flex: ".4" }}>
+        <Roll right>
+          <img alt='native' style={{marginTop:"1.4rem"}} height='450px' src="https://media.discordapp.net/attachments/762721371809382421/791006742947037194/signin_native.png?width=229&height=473"/>
+          </Roll>
+        </div>
       </div>
       <div>
         <SimpleCard />
@@ -185,14 +189,14 @@ export default function Home() {
       <footer style={{ paddingTop: "4rem" }}>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#00000095" }}>
           <div style={{ flex: ".5", paddingTop: "2rem" }}>
-            <img style={{ paddingLeft: "2rem", height: "70px" }} src="https://www.alphaplus.co.uk/wp-content/uploads/2018/04/alphaplus_white_logo.png" />
+            <img style={{ paddingLeft: "2rem", height: "70px",marginTop: ".5rem" }} src="https://www.alphaplus.co.uk/wp-content/uploads/2018/04/alphaplus_white_logo.png" />
             <h5 style={{ paddingLeft: "8rem" }}> © 2020 AlphaPlus Consultancy Ltd, all rights reserved.</h5>
             <p style={{ textAlign: "left", marginLeft: "12.5rem" }}>AlphaPlus is world's best and no.1 free online school management softawre for lifetime with no limitations.
             Someone can manage their school, college, tuition center, academy or any kind of educational institute with
           AlphaPlus.Our school management software has more features than any school software in the market.</p>
           </div>
           <div style={{ flex: ".4" }}>
-            <h3>CONTACT US</h3>
+            <h3 style={{marginTop: "3rem"}}>CONTACT US</h3>
             <h5 style={{ display: "flex", paddingTop: "1rem", justifyContent: "center", alignItems: "center", marginLeft: "-4.5rem" }}>
               <ChromeReaderModeIcon style={{ paddingRight: ".3rem" }} />
             AlphPlus
@@ -211,7 +215,7 @@ export default function Home() {
           </h5>
           </div>
           <div style={{ flex: ".25" }}>
-            <h2>YOUR FEEDBACK</h2>
+            <h2 style={{marginTop: "3rem"}}>YOUR FEEDBACK</h2>
             <div>
               <label>
               <input style={{height:"1.5rem"}} type="text" placeholder="your name" name=""/>
