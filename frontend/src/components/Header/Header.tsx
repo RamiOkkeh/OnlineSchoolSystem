@@ -61,7 +61,7 @@ function Header({ user }: any) {
             ))}
             {
               user.userID ?
-                <Link className={classes.links} to="/signin" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+                <Link className={classes.links} to="/" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                   localStorage.removeItem("Authorization")
                   window.location.reload()
                 }}>

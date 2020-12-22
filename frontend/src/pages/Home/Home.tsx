@@ -196,7 +196,7 @@ export default function Home() {
           AlphaPlus.Our school management software has more features than any school software in the market.</p>
           </div>
           <div style={{ flex: ".4" }}>
-            <h3 style={{marginTop: "3rem"}}>CONTACT US</h3>
+            <h3 style={{ marginTop: "3rem" }}>CONTACT US</h3>
             <h5 style={{ display: "flex", paddingTop: "1rem", justifyContent: "center", alignItems: "center", marginLeft: "-4.5rem" }}>
               <ChromeReaderModeIcon style={{ paddingRight: ".3rem" }} />
             AlphPlus
