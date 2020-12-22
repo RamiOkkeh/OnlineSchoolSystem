@@ -46,12 +46,12 @@ function Navbar({ user, userDetails }: any) {
     setNavItems(userDetails.role === "Student" ?
       [
         { title: "DashBoard", path: "/dashboard" },
-        { title: "Stats", path: "/stats" },
+        { title: "Classroom", path: "/classroom" },
         { title: "Schedule", path: "/schedule" },
+        { title: "Stats", path: "/stats" },
         { title: "Tests", path: "/tests" },
         { title: "Bills", path: "/bills" },
         // { title: "Options", path: "/options" },
-        // { title: "Classroom", path: "/classroom" } for chat page
       ]
       :
       userDetails.role === "Teacher" ?

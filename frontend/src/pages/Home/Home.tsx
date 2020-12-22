@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import SimpleCard from '../../components/home/SimpleCard';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import DoneIcon from '@material-ui/icons/Done';
+import Roll from 'react-reveal/Roll';
+import Slide from 'react-reveal/Slide';
+import HeadShake from 'react-reveal/HeadShake';
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
+import EditLocationIcon from '@material-ui/icons/EditLocation';
+import EmailIcon from '@material-ui/icons/Email';
+import PhoneIcon from '@material-ui/icons/Phone';
+
 import './Home.css'
 // import { Height } from '@material-ui/icons';
 
 
 export default function Home() {
+  useEffect(() => {
+    AOS.init({ duration: 2000 })
+  }, [])
   var settings = {
     // dots: true,
     infinite: true,
@@ -14,7 +29,7 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000
+    autoplaySpeed: 2000
 
   };
   return (
@@ -24,15 +39,17 @@ export default function Home() {
           <img id="slide" src="https://cdn.discordapp.com/attachments/762721371809382421/790225539196780564/baner4.png" />
           {/* <img src="https://cdn.discordapp.com/attachments/762721371809382421/790217100906987591/image2.png" /> */}
         </div>
-        <div className="slide-left" style={{ marginTop: "4rem", width: "55%", fontFamily: "Georgia", marginRight: "8rem" }} >
-          <h1>ONLINE SCHOOL SYSTEM</h1>
-          <h4> A feature rich school management software for all educational
-          institutes. This school management software is for learning,
-          administration and activities management in schools.
+        <div style={{ marginTop: "4rem", width: "55%", fontFamily: "Georgia", marginRight: "8rem" }} >
+          <Slide right>
+            <h1>ONLINE SCHOOL SYSTEM</h1>
+            <h4> A feature rich school management software for all educational
+            institutes. This school management software is for learning,
+            administration and activities management in schools.
           </h4>
+          </Slide>
         </div>
       </div>
-      <Slider {...settings} style={{ marginTop: "2.8rem", marginLeft: "9rem" }}>
+      <Slider {...settings} style={{ marginTop: "2.8rem", marginLeft: "9rem", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <div >
           <h3>
             <img src="https://d21zeai4l2a92w.cloudfront.net/wp-content/uploads/2017/05/teacher-appreciation-kindergarten.jpg" style={{ maxHeight: '400px', width: "60%", paddingLeft: "12rem", paddingTop: "1.5rem" }} />
@@ -80,82 +97,136 @@ export default function Home() {
           </h3>
         </div>
       </Slider>
-      <div style={{ backgroundColor: "#00000040", width: "89.5%", maxWidth: "90rem", maxHeight: "400px", marginLeft: "9rem", marginTop: "1rem", height: "250px" }} >
-        <div>
-          <button className="button button4" style={{ marginTop: "6.0rem", marginRight: "1rem" }}>Click here to view DashBoard</button>
-        </div>
-      </div>
-      <div style={{ backgroundColor: "#00000040", width: "89.5%", maxWidth: "90rem", maxHeight: "400px", marginLeft: "9rem", marginTop: "2rem", height: "150px" }}>
-        <div style={{ fontStyle: 'italic' }}>
-          <h3 style={{ marginTop: '1px' }}>
-            <br />
-              With a wide range of activities on offer,<br />
-           Trinity is the perfect place to grow into an individual with a number of talents,<br />
-            both inside and outside of the classroom.
-    </h3>
-        </div>
-      </div>
-      <div>
-        <img src="http://www.chuquxueba.com/wp-content/uploads/2020/01/trinity-grammar-school-002.jpg" style={{ paddingTop: "3rem", maxHeight: '650px', width: "100%" }} />
-      </div>
-      <div style={{ backgroundColor: "#00000070", width: "89.5%", maxWidth: "90rem", maxHeight: "400px", marginLeft: "9rem", marginTop: "2rem", height: "150px" }}>
-        <div>
-          <h3>
-            <br />
-            <br />
-            Trinity caters for all my needs, whether they be academic,<br />
-           sporting, musical or spiritual.
-    </h3>
-        </div>
-      </div>
-      <div>
-        <img src="http://www.chuquxueba.com/wp-content/uploads/2020/01/trinity-grammar-school-032.jpg" style={{ paddingTop: "3rem", maxHeight: '650px', width: "100%" }} />
-      </div>
-      <div style={{ backgroundColor: "#00000070", width: "89.5%", maxWidth: "90rem", maxHeight: "400px", marginLeft: "9rem", marginTop: "2rem", height: "150px" }}>
-        <div>
-          <h3>
-            <br />
-            With a wide range of activities on offer,<br />
-           Trinity is the perfect place to grow into an individual with a number of talents,<br />
-            both inside and outside of the classroom.
-    </h3>
-        </div>
-      </div>
-      <div>
-        <img src="http://www.chuquxueba.com/wp-content/uploads/2020/01/trinity-grammar-school-011.jpg" style={{ paddingTop: "3rem", maxHeight: '650px', width: "100%" }} />
-      </div>
 
-      <footer id="site-footer" >
-        <div className="container">
-          <div className="footer-item" style={{ marginLeft: "12rem", marginBottom: ".7" }}>
-            <h3>Summer Hill Campus</h3>
-      (Kindergarten – Year 12)<br />
-      119 Prospect Road<br />
-      Summer Hill NSW 2130<br />
-      p. + 61 2 9581 6000
-    </div>
-          <div className="footer-item" style={{ marginLeft: "12rem" }}>
-            <h3>Strathfield CAMPUS</h3>
-      (Pre-Kindergarten to Year 6)<br />
-      115-125 The Boulevarde<br />
-      Strathfield NSW 2135<br />
-      p. + 61 2 8732 4600
-    </div>
-          <div className="footer-item">
-            <div className="logo"></div>
-          </div>
+      {/* <div className="slide-left1" style={{ flex: ".50" ,paddingTop:"6rem" , paddingLeft:"9rem" , msFlexDirection:"column"}}> */}
+      {/* <div className="wrapper" style={{ flex: ".6" }}> */}
+      {/* <div style={{ backgroundColor: "#60BF3A00", width: "89.5%", maxWidth: "90rem", maxHeight: "400px", marginLeft: "9rem", marginTop: "1rem", height: "250px" }} > */}
+      <div style={{ background: "#00000030", height: "700px", display: "flex", marginBottom: "4rem", justifyContent: "center", alignItems: "center" }}>
+        <div className="wrapper" style={{ flex: ".6" }}>
+          <Slide left>
+            <img style={{ maxWidth: "500px", paddingTop: "6rem", marginLeft: "16rem", height: "300px", width: "400px" }} src="https://cdn.discordapp.com/attachments/762721371809382421/790588651981373470/skooly-5.png"
+            />
+          </Slide>
         </div>
-        <div className="container">
-          <div className="footer-links">
-            Copyright 2020 corna School School  |  <a href="https://www.trinity.nsw.edu.au/wp-content/uploads/2016/03/TGS_PrivacyPolicy.pdf" target="_blank">Privacy Policy</a>  |  Council of Trinity Grammar School Cricos Code: 02308G
-      <p>Website designed and developed by <a title="Web Design Sydney" href="http://www.digeratisolutions.com.au" target="_blank">Digerati Solutions</a></p>
-            <a style={{ display: 'inline-block', fontSize: '14px', fontWeight: 'bold', letterSpacing: '1px', overflow: 'hidden', lineHeight: '25px' }} href="mailto:feedback@trinity.nsw.edu.au?subject=Feedback - Website">
-              <img style={{ margin: '0 10px 0 0', float: 'left', maxHeight: '25px' }} src="https://www.trinity.nsw.edu.au/wp-content/themes/trinity/img/icon-envelope.png" alt="Feedback" />Feedback
-        </a>
+        <div style={{ flex: ".50", paddingTop: "6rem", paddingLeft: "9rem", msFlexDirection: "column" }}>
+          <Slide right>
+            <div >
+              <h2>Why skooly is best school management software ?</h2>
+              <div style={{ fontFamily: "Georgia", paddingTop: "2rem", }}>
+                <p style={{ textAlign: "left" }}>
+                  Besides from, AlphaPlus is a completely free online school management
+                  software it has more school management features than any other online
+                  school management system in the market. It does not ends here,
+                  AlphaPlus <br />is still enhancing features. You will be automatically updated
+                  as new feature will be a part of our free school management software.
+                  Some main school management features are given below.
+        </p>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div style={{ display: "flex" }}>
+                    <Slide right>
+                      < DoneIcon style={{ marginTop: "1.1rem", marginLeft: ".7rem", paddingRight: ".5rem" }} /> <h5>An admin portal with all controls</h5>
+                    </Slide>
+                  </div>
+                  <div style={{ display: "flex", paddingBottom: ".5rem" }}>
+                    <Slide right>
+                      < DoneIcon style={{ marginTop: "1.1rem", marginLeft: ".7rem", paddingRight: ".5rem" }} /> <h5>Portals for students/parents, staff and teachers.</h5>
+                    </Slide>
+                  </div>
+                  <div style={{ display: "flex", paddingBottom: ".5rem" }}>
+                    <Slide right>
+                      < DoneIcon style={{ marginTop: "1.1rem", marginLeft: ".7rem", paddingRight: ".5rem" }} /> <h5>Students and staff complete data record system.</h5>
+                    </Slide>
+                  </div>
+                  <div style={{ display: "flex", paddingBottom: ".5rem" }}>
+                    <Slide right>
+                      < DoneIcon style={{ marginTop: "1.1rem", marginLeft: ".7rem", paddingRight: ".5rem" }} /> <h5>Classes, Courses and Subjects management.</h5>
+                    </Slide>
+                  </div>
+                  <div style={{ display: "flex", paddingBottom: ".5rem" }}>
+                    <Slide right>
+                      < DoneIcon style={{ marginTop: "1.1rem", marginLeft: ".7rem", paddingRight: ".5rem" }} /> <h5>Exams, class tests, home work and assignments management.</h5>
+                    </Slide>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Slide>
+        </div>
+      </div>
+      <div style={{ backgroundColor: "#00000020", height: "500px", display: "flex", marginBottom: "4rem" }}>
+        <Slide left>
+          <div style={{ flex: ".65" }}>
+            <HeadShake>
+              <div style={{ paddingLeft: "7.8rem", paddingTop: "1.5rem" }}>
+                <h2>Single Stop Solution For School Management </h2>
+              </div>
+            </HeadShake>
+            <div style={{ paddingLeft: "12rem" }} >
+              <p style={{ textAlign: "left", padding: ".5rem" }}>
+                Managing any educational institute is not a piece of cake. Managing students, <br />
+              staff,timetable,exams, class test, attendance, fees collection, accounts. <br />
+              It does not ends here. Parents are always worried about their child performance <br />
+              and they need satisfaction. They really care about their child academic statics. <br />
+              Moreover we have seen schools using huge registers to mark attendance of their <br />
+              students and staff. And we have also seen that schools manage their admission, <br />
+              exams data,  class tests data ect, manually. We know it takes a lot of time and very
+              difficlt to manage.
+
+              Well ! it's time to put check on these worries. AlphaPlus presents you a free online school management software to make conventional tasks easier. This is one stop solution to manage, track and record everything within your school or organization. Our free online school management software includes admin, staff and students panel, exams madule, attendance madule, fees collection madule, salary and expense management, class tests management, inventory management, students and staff data record system and many more. It is very easy to use and manage because AlphaPlus is a free online school management software for end-users. If you can send an email you can use AlphaPlus.
+      </p>
+            </div>
+          </div>
+        </Slide>
+        <div style={{ flex: ".4" }}></div>
+      </div>
+      <div>
+        <SimpleCard />
+      </div>
+      <footer style={{ paddingTop: "4rem" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#00000095" }}>
+          <div style={{ flex: ".5", paddingTop: "2rem" }}>
+            <img style={{ paddingLeft: "2rem", height: "70px" }} src="https://www.alphaplus.co.uk/wp-content/uploads/2018/04/alphaplus_white_logo.png" />
+            <h5 style={{ paddingLeft: "8rem" }}> © 2020 AlphaPlus Consultancy Ltd, all rights reserved.</h5>
+            <p style={{ textAlign: "left", marginLeft: "12.5rem" }}>AlphaPlus is world's best and no.1 free online school management softawre for lifetime with no limitations.
+            Someone can manage their school, college, tuition center, academy or any kind of educational institute with
+          AlphaPlus.Our school management software has more features than any school software in the market.</p>
+          </div>
+          <div style={{ flex: ".4" }}>
+            <h3>CONTACT US</h3>
+            <h5 style={{ display: "flex", paddingTop: "1rem", justifyContent: "center", alignItems: "center", marginLeft: "-4.5rem" }}>
+              <ChromeReaderModeIcon style={{ paddingRight: ".3rem" }} />
+            AlphPlus
+          </h5>
+            <h5 style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "2rem" }}>
+              <EditLocationIcon style={{ paddingRight: ".3rem" }} />
+            Palestine,Nablus,16 Street
+          </h5>
+            <h5 style={{ display: "flex", justifyContent: "center", alignItems: "center", paddingRight: "1rem", marginLeft: "2rem" }}>
+              <EmailIcon style={{ paddingRight: ".3rem" }} />
+            alphaplus@alpha.com
+          </h5>
+            <h5 style={{ display: "flex", justifyContent: "center", alignItems: "center", paddingRight: "1rem", marginLeft: "2rem" }}>
+              <PhoneIcon style={{ paddingRight: ".3rem" }} />
+            phone:+972599043747
+          </h5>
+          </div>
+          <div style={{ flex: ".25" }}>
+            <h2>YOUR FEEDBACK</h2>
+            <div>
+              <label>
+              <input style={{height:"1.5rem"}} type="text" placeholder="your name" name=""/>
+              <input style={{marginTop:"1rem",marginBottom:"1rem", height:"1.5rem"}}type="text" placeholder="your Email" name=""/>
+              <input style={{height:"60px"}}type="text" placeholder="Feedback" name=""/>
+              </label>
+              <div>
+              <button>send</button>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
     </div>
   );
 }
+
 

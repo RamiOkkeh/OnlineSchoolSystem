@@ -125,7 +125,7 @@ const App = ({
   useEffect(() => {
 
   }, [user])
-  sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
+  // sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
   console.log("APP", user.userID)
   return (
     <ThemeProvider theme={theme}>
