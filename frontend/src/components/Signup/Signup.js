@@ -124,7 +124,7 @@ const SignUp = function ({
     let path =
       process.env.NODE_ENV === "production"
         ? "/auth/users/"
-        : `${local_IP}/auth/users/`;
+        : `${"http://" + local_IP}/auth/users/`;
     fetch(path, options)
       .then((data) => data.json())
       .then((data) => {
@@ -173,15 +173,15 @@ const SignUp = function ({
                   body: JSON.stringify(
                     role === "Student"
                       ? {
-                        userID: userInfo.id,
-                        schoolID: School.id,
-                        classroomID: 1,
-                      }
+                          userID: userInfo.id,
+                          schoolID: School.id,
+                          classroomID: 1,
+                        }
                       : {
-                        userID: userInfo.id,
-                        schoolID: School.id,
-                        subjectID: Subject.id,
-                      }
+                          userID: userInfo.id,
+                          schoolID: School.id,
+                          subjectID: Subject.id,
+                        }
                   ),
                 };
                 if (role !== "Principal") {
@@ -312,8 +312,8 @@ const SignUp = function ({
                 </Select>
               </Grid>
             ) : (
-                ""
-              )}
+              ""
+            )}
             {role === "Teacher" ? (
               <Grid>
                 <Grid>
@@ -349,8 +349,8 @@ const SignUp = function ({
                 </Grid>
               </Grid>
             ) : (
-                ""
-              )}
+              ""
+            )}
             <Grid item xs={12}>
               <FormControlLabel
                 control={

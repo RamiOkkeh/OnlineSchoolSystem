@@ -60,8 +60,8 @@ function StatsStudent({ testdata, user, test, exams }: any) {
               justifyContent: "space-evenly",
             }}
           >
-            <div> First name: {user.studentName.split(" ")[0]}</div>
-            <div> Last name: {user.studentName.split(" ")[1]}</div>
+            <div> Name: {user.studentName}</div>
+            <div> Status: {status[0]}</div>
           </div>
           <div
             style={{
