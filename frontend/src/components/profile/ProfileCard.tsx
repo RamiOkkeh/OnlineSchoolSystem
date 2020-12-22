@@ -41,7 +41,7 @@ function SimpleCard({ user }: any) {
             <div style={{ display: "flex"  , paddingTop:"2rem"}}>
                 <div style={{ paddingRight:"2rem"}}>
                     <Rotate top left>
-                        <Card className={classes.root} style={{ marginLeft: "0rem", height: "300px", width: "450px",marginTop:"2rem",backgroundColor:"#89CB48" }}>
+                        <Card className={classes.root} style={{ marginLeft: "0rem", height: "300px", width: "450px",marginTop:"2rem",backgroundColor:"#89CB4840" }}>
                             <CardContent>
                                 <Typography style={{ textAlign: "left" }} className={classes.title} color="textSecondary" gutterBottom>
                                     <h3>Rigester No:{user.userID}</h3>
@@ -60,7 +60,7 @@ function SimpleCard({ user }: any) {
 
                 <div>
                     <Rotate top left>
-                        <Card className={classes.root} style={{marginLeft: "0rem", height: "300px", width: "450px",marginTop:"2rem",backgroundColor:"#89CB48"}}>
+                        <Card className={classes.root} style={{marginLeft: "0rem", height: "300px", width: "450px",marginTop:"2rem",backgroundColor:"#89CB4840"}}>
                             <CardContent>
                                 <Typography style={{ textAlign: "left" }} className={classes.title} color="textSecondary" gutterBottom>
                                     <h3>Date Of Birth:<TextField style={{ width: "200px" }} /></h3>
