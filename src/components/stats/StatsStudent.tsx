@@ -9,11 +9,11 @@ function StatsStudent({ testdata, user, test, exams, userDetails }: any) {
   const [status, setStatus] = React.useState([]);
 
   React.useEffect(() => {
-    model([10, 10, 10, 10, 10], async (results: any) => {
+    model([10, 10, 10, 10, 10], (results: any) => {
       let res: any = [results.label, results.confidence];
-      await setStatus(res);
-      console.log("test", test, status, results);
+      setStatus(res);
     });
+    console.log("test", test, status);
   }, []);
 
   return (

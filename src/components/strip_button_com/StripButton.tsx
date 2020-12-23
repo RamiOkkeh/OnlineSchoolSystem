@@ -3,7 +3,7 @@ import StripeCheckout from "react-stripe-checkout";
 // import local_IP from '../../local_IP';
 var local_IP;
 try {
-  local_IP = require("../../local_IP");
+  local_IP = require("../../local_IP").default;
 } catch {
   local_IP = "";
 }

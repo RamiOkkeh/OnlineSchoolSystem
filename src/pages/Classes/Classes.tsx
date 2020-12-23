@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 var local_IP;
 try {
-  local_IP = require("../../local_IP");
+  local_IP = require("../../local_IP").default;
 } catch {
   local_IP = "";
 }

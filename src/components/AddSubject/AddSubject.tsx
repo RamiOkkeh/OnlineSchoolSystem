@@ -14,7 +14,7 @@ import { State } from "../../reducers/rootReducer";
 // import local_IP from "../../local_IP";
 var local_IP;
 try {
-  local_IP = require("../../local_IP");
+  local_IP = require("../../local_IP").default;
 } catch {
   local_IP = "";
 }
