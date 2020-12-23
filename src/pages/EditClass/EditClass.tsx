@@ -52,6 +52,7 @@ function EditClass({ user }: any) {
       .then((data) => data.json())
       .then((data) => {
         console.log(data[0]);
+        data.filter((elem) => elem.id === 666);
         setWaiting(data[0].students);
       });
   }, []);
