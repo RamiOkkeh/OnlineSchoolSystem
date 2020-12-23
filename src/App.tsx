@@ -135,10 +135,10 @@ const App = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useEffect(() => {}, [user]);
+  useEffect(() => { }, [user]);
 
   sketch([10, 10, 10, 10, 10, 10, 10, 10, 10]);
-  console.log("APP", user);
+  // console.log("APP", user);
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -158,8 +158,8 @@ const App = ({
                 localStorage.getItem("Authorization") ? (
                   <SchedulePage />
                 ) : (
-                  <Redirect to="/" />
-                )
+                    <Redirect to="/" />
+                  )
               }
             />
             <Route
@@ -168,8 +168,8 @@ const App = ({
                 localStorage.getItem("Authorization") ? (
                   <Classes />
                 ) : (
-                  <Redirect to="/" />
-                )
+                    <Redirect to="/" />
+                  )
               }
             />
             <Route
@@ -178,8 +178,8 @@ const App = ({
                 localStorage.getItem("Authorization") ? (
                   <EditClass />
                 ) : (
-                  <Redirect to="/" />
-                )
+                    <Redirect to="/" />
+                  )
               }
             />
             <Route
@@ -189,8 +189,8 @@ const App = ({
                 localStorage.getItem("Authorization") ? (
                   <Bills />
                 ) : (
-                  <Redirect to="/" />
-                )
+                    <Redirect to="/" />
+                  )
               }
             />
             <Route
@@ -200,8 +200,8 @@ const App = ({
                 localStorage.getItem("Authorization") ? (
                   <ProfilePage />
                 ) : (
-                  <Redirect to="/" />
-                )
+                    <Redirect to="/" />
+                  )
               }
             />
             <Route
@@ -211,8 +211,8 @@ const App = ({
                 localStorage.getItem("Authorization") ? (
                   <TestPage />
                 ) : (
-                  <Redirect to="/" />
-                )
+                    <Redirect to="/" />
+                  )
               }
             />
             <Route
@@ -222,8 +222,8 @@ const App = ({
                 localStorage.getItem("Authorization") ? (
                   <StatsPage />
                 ) : (
-                  <Redirect to="/" />
-                )
+                    <Redirect to="/" />
+                  )
               }
             />
             <Route
@@ -233,8 +233,8 @@ const App = ({
                 localStorage.getItem("Authorization") ? (
                   <Chat />
                 ) : (
-                  <Redirect to="/" />
-                )
+                    <Redirect to="/" />
+                  )
               }
             />
           </Switch>

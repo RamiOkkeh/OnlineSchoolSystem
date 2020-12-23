@@ -46,32 +46,32 @@ function Navbar({ user, userDetails }: any) {
     setNavItems(
       userDetails.role === "Student"
         ? [
-            { title: "DashBoard", path: "/dashboard" },
-            { title: "Classroom", path: "/classroom" },
-            { title: "Schedule", path: "/schedule" },
-            { title: "Stats", path: "/stats" },
-            { title: "Tests", path: "/tests" },
-            { title: "Bills", path: "/bills" },
-            // { title: "Options", path: "/options" },
-          ]
+          { title: "DashBoard", path: "/dashboard" },
+          { title: "Classroom", path: "/classroom" },
+          { title: "Schedule", path: "/schedule" },
+          { title: "Stats", path: "/stats" },
+          { title: "Tests", path: "/tests" },
+          { title: "Bills", path: "/bills" },
+          // { title: "Options", path: "/options" },
+        ]
         : userDetails.role === "Teacher"
-        ? [
+          ? [
             { title: "DashBoard", path: "/dashboard" },
             { title: "Tests", path: "/tests" },
             { title: "Classes", path: "/classes" },
             // { title: "Options", path: "/options" },
           ]
-        : userDetails.role === "Principal"
-        ? [
-            { title: "DashBoard", path: "/dashboard" },
-            { title: "Schedule", path: "/schedule" },
-            { title: "Bills", path: "/bills" },
-            { title: "Classes", path: "/classes" },
-            // { title: "Options", path: "/options" },
-          ]
-        : [{ title: "DashBoard", path: "/dashboard" }]
+          : userDetails.role === "Principal"
+            ? [
+              { title: "DashBoard", path: "/dashboard" },
+              { title: "Schedule", path: "/schedule" },
+              { title: "Bills", path: "/bills" },
+              { title: "Classes", path: "/classes" },
+              // { title: "Options", path: "/options" },
+            ]
+            : [{ title: "DashBoard", path: "/dashboard" }]
     );
-  }, [userDetails]);
+  }, [user, userDetails]);
 
   return (
     <div className={classes.root}>

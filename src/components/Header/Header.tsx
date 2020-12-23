@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { State } from "../../reducers/rootReducer";
@@ -26,16 +26,18 @@ const styles = makeStyles({
 });
 
 function Header({ user }: any) {
+  const [nav, setNav] = useState<any[]>([])
   const classes = styles();
-  const nav = user.userID
-    ? [{ title: "profile", path: "/profile" }]
-    : [
-      { title: "signup", path: "/signup" },
-      { title: "signin", path: "/signin" },
-    ];
-  // useEffect(() => {
+  useEffect(() => {
+    const userNav = localStorage.getItem('Authorization')
+      ? [{ title: "profile", path: "/profile" }]
+      : [
+        { title: "signup", path: "/signup" },
+        { title: "signin", path: "/signin" },
+      ];
+    setNav(userNav)
+  }, [user]);
   //   console.log(user);
-  // }, [user]);
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -60,7 +62,7 @@ function Header({ user }: any) {
               </Link>
             ))}
             {
-              user.userID ?
+              localStorage.getItem('Authorization') ?
                 <Link className={classes.links} to="/" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                   localStorage.removeItem("Authorization")
                   window.location.reload()

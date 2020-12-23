@@ -93,7 +93,7 @@ function CustomizedSelects({ schoolID, user }: any) {
     };
     let path =
       process.env.NODE_ENV === "production"
-        ? "/payment/"
+        ? "/classroom/getSchoolClasses"
         : `${local_IP}/classroom/getSchoolClasses`;
     fetch(path, options)
       .then((data) => data.json())
@@ -117,7 +117,7 @@ function CustomizedSelects({ schoolID, user }: any) {
     };
     let path =
       process.env.NODE_ENV === "production"
-        ? "/payment/"
+        ? "/payment/addPayment"
         : `${local_IP}/payment/addPayment`;
     fetch(path, options)
       .then((data) => {

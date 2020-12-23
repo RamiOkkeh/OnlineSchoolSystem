@@ -33,7 +33,7 @@ urlpatterns = [
     path("principal/", include("principals.urls")),
     path("parent/", include("parents.urls")),
     path("exam/", include("exams.urls")),
-    # re_path('.*', TemplateView.as_view(template_name='index.html'))
+    re_path(r'^.*', TemplateView.as_view(template_name='index.html'))
 ]
 
-urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
+# urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
