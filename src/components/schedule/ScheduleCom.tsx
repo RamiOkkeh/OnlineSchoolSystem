@@ -12,11 +12,11 @@ const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#4caf50",
     color: theme.palette.common.black,
-    textAlign: 'center'
+    textAlign: "center",
   },
   body: {
     fontSize: 14,
-    textAlign: 'center'
+    textAlign: "center",
   },
 }))(TableCell);
 
@@ -44,53 +44,53 @@ function createData(
 const rows = [
   createData(
     "Sunday",
-    "Arbic",
-    "English",
-    "Math",
-    "physics",
+    "React",
+    "Data Structure",
+    "Python",
+    "JavaScript",
     "Break",
-    "chimestery",
-    "religon"
+    "Break",
+    "Java"
   ),
   createData(
     "Mounday",
-    "English",
-    "chimestery",
-    "religon",
-    "physics",
+    "Data Structure",
     "Break",
-    "Arbic",
-    "sport"
+    "Java",
+    "JavaScript",
+    "Break",
+    "React",
+    "Angular"
   ),
   createData(
     "tuesday",
-    "Math",
-    "religon",
-    "English",
-    "chimestery",
+    "Python",
+    "Java",
+    "Data Structure",
     "Break",
-    "physics",
-    "Arbic"
+    "Break",
+    "JavaScript",
+    "React"
   ),
   createData(
     "wednesday",
-    "Arbic",
-    "physics",
-    "Math",
-    "religon",
+    "React",
+    "JavaScript",
+    "Python",
+    "Java",
     "Break",
-    "English",
-    "chimestery"
+    "Data Structure",
+    "Break"
   ),
   createData(
     "thursday",
-    "Arbic",
-    "Math",
-    "chimestery",
-    "physics",
+    "React",
+    "Python",
     "Break",
-    "religon",
-    "English"
+    "JavaScript",
+    "Break",
+    "Java",
+    "Data Structure"
   ),
 ];
 
@@ -107,7 +107,12 @@ export default function CustomizedTables() {
     <TableContainer>
       <Table
         className={classes.table}
-        style={{backgroundColor:"#A8E36D40", width: "800px", marginLeft: "20rem", marginTop: "12rem" }}
+        style={{
+          backgroundColor: "#A8E36D40",
+          width: "800px",
+          marginLeft: "20rem",
+          marginTop: "12rem",
+        }}
         aria-label="customized table"
       >
         <TableHead>

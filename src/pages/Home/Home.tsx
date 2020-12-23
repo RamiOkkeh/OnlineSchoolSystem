@@ -82,7 +82,7 @@ export default function Home() {
             />
           </h3>
         </div>
-        <div>
+        {/* <div>
           <h3>
             <img
               src="http://www.chuquxueba.com/wp-content/uploads/2020/01/trinity-grammar-school-027.jpg"
@@ -94,7 +94,7 @@ export default function Home() {
               }}
             />
           </h3>
-        </div>
+        </div> */}
         <div>
           <h3>
             <img
