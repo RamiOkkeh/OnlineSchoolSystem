@@ -12,7 +12,12 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 // import local_IP from "../../local_IP";
-const local_IP = require("../../local_IP") || "";
+var local_IP;
+try {
+  local_IP = require("../../local_IP");
+} catch {
+  local_IP = "";
+}
 
 const useStyles = makeStyles((theme) => ({
   paper: {

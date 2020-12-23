@@ -1,7 +1,12 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 // import local_IP from '../../local_IP';
-const local_IP = require("../../local_IP") || "";
+var local_IP;
+try {
+  local_IP = require("../../local_IP");
+} catch {
+  local_IP = "";
+}
 
 const StripButton = ({ semester, price, user }: any) => {
   const priceForStripe = price * 100;

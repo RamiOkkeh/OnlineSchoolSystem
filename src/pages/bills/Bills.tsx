@@ -5,7 +5,12 @@ import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 import AssignBills from "./AssignBills";
 // import local_IP from '../../local_IP';
-const local_IP = require("../../local_IP") || "";
+var local_IP;
+try {
+  local_IP = require("../../local_IP");
+} catch {
+  local_IP = "";
+}
 
 function Bills({ user, role }: any) {
   // console.log('whosme', user);

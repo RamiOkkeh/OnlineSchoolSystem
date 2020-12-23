@@ -3,7 +3,12 @@ import StatsStudent from "../../components/stats/StatsStudent";
 import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 // import local_IP from "../../local_IP";
-const local_IP = require("../../local_IP") || "";
+var local_IP;
+try {
+  local_IP = require("../../local_IP");
+} catch {
+  local_IP = "";
+}
 
 function Stats({ testdata, user, test }: any) {
   const [subjects, setSubjects] = React.useState([]);

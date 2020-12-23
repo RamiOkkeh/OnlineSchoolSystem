@@ -16,7 +16,12 @@ import { State } from "../../reducers/rootReducer";
 import CreateSchool from "../../components/CreateSchool/CreateSchool";
 import AddSubject from "../../components/AddSubject/AddSubject";
 // import local_IP from "../../local_IP";
-const local_IP = require("../../local_IP") || "";
+var local_IP;
+try {
+  local_IP = require("../../local_IP");
+} catch {
+  local_IP = "";
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {

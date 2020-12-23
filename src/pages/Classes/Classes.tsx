@@ -8,7 +8,12 @@ import { createClass } from "../../actions/actions";
 import CreateClassDialog from "../../components/CreateClass/CreateClass";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-const local_IP = require("../../local_IP") || "";
+var local_IP;
+try {
+  local_IP = require("../../local_IP");
+} catch {
+  local_IP = "";
+}
 
 const styles = makeStyles({
   flex: {

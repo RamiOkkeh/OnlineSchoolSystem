@@ -19,7 +19,12 @@ import { connect } from "react-redux";
 import { setUser, setRole, subjects } from "../../actions/actions";
 import { Redirect } from "react-router-dom";
 // import local_IP from "../../local_IP";
-const local_IP = require("../../local_IP") || "";
+var local_IP;
+try {
+  local_IP = require("../../local_IP");
+} catch {
+  local_IP = "";
+}
 
 function Copyright() {
   return (

@@ -4,7 +4,12 @@ import { connect } from "react-redux";
 import { State } from "../../reducers/rootReducer";
 import MediaCard from "./profileImg";
 // import local_IP from "../../local_IP";
-const local_IP = require("../../local_IP") || "";
+var local_IP;
+try {
+  local_IP = require("../../local_IP");
+} catch {
+  local_IP = "";
+}
 
 function ProfileTeacher({ userDetails, user, Classes }: any) {
   // console.log('ssssss', userDetails,'user',user,'classes',Classes);
