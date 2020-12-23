@@ -64,23 +64,6 @@ function Navbar({ user, userDetails }: any) {
         : userDetails.role === "Principal"
         ? [
             { title: "DashBoard", path: "/dashboard" },
-            { title: "Stats", path: "/stats" },
-            { title: "Schedule", path: "/schedule" },
-            { title: "Tests", path: "/tests" },
-            { title: "Bills", path: "/bills" },
-            // { title: "Options", path: "/options" },
-            // { title: "Classroom", path: "/classroom" }, //for chat page
-          ]
-        : userDetails.role === "Teacher"
-        ? [
-            { title: "DashBoard", path: "/dashboard" },
-            { title: "Tests", path: "/tests" },
-            { title: "Classes", path: "/classes" },
-            // { title: "Options", path: "/options" },
-          ]
-        : userDetails.role === "Principal"
-        ? [
-            { title: "DashBoard", path: "/dashboard" },
             { title: "Schedule", path: "/schedule" },
             { title: "Bills", path: "/bills" },
             { title: "Classes", path: "/classes" },
