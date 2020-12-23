@@ -28,19 +28,49 @@ const initState = {
   waiting: {},
   post: [
     {
-      username: "rami",
+      username: "maha",
       data: "December:12:2020",
-      messege: "lasjfksagfkkjdvfjhsad",
+      messege: `Evninig Hackers :clap:
+      hope all is going well with you :hugging_face:
+      invist your hacking time very well so you can enjoy the rest of the day
+      i trust you all are doing a wondrfull things now :heart:
+      have a blessed evning and as we always say >>> ENJOY IT :tada:
+      thumps up:+1: if your here and your hacking :wink:
+      `,
     },
     {
-      username: "ameed",
+      username: "mays",
       data: "December:5:2020",
-      messege: "lasjfksagfkkjdvfjhsad",
+      messege: `@channel
+      Hello Palestinians :flag-ps: :green_heart:
+      Remember >> “Invest in yourself.” :earth_africa:
+      Toy problem for the day >> tree :palm_tree:
+      Hend>> https://zoom.us/my/hend.isleem 
+      Mays>> https://zoom.us/j/5619186718 
+      :pushpin: NOTE "Push your code BEFORE 9:50"
+      `,
     },
     {
-      username: "asem",
+      username: "hend",
       data: "December:5:2020",
-      messege: "lasjfksagfkkjdvfjhsad",
+      messege: `Heeeey @channel
+      I'm sure you missed our word-y announcements :sunglasses::nerd_face:
+      Today marks the "starting of the end"!
+      Today is the first day of the last week of the project :sparkles::glitch_crab:
+      Someone: What's for this week?
+      Good question! You all know that we are done with adding features :hend: :hend:
+      So this week is for:
+      - No more features
+      - Testing
+      - Deployment
+      - remember Documentation?
+      - Enhancements if needed
+      - 5 minutes demo video for your webiste/application
+      - about us video
+      The same Someone: "about us video" ? That's new :face_with_rolling_eyes::confused:
+      Well yes, basically it's about introducing the team and selling your product! You have to be creative :sparkles:
+      Ps: there is NO constraints on this video, you can literally do ANYTHING :fire::fire: we could post some examples for it later in a thread :wink:
+      `,
     },
   ],
   test: [

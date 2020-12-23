@@ -81,17 +81,7 @@ export default function RecipeReviewCard({ data }: any) {
         </div>
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            Hey Hey Hackers It's time to write some blogging :grin: so today we
-            will ask you some questions <br /> "good ones " questions that need
-            deep thinking from you so grab your coffee and answer these
-            questions <br />
-            What are your current goals in life? How do you plan to reach your
-            goals? How often do you set goals for yourself?
-            <br />
-            What goals have you set and achieved in the past? How do you feel
-            when you reach your goals?
-            <br />
-            :pushpin:always remember to HAVE FUN and add your links here
+            {data.messege}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>

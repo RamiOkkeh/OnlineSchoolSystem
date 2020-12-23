@@ -119,7 +119,7 @@ function Test({ user, userDetails }: any) {
       .then((data) => {
         if (data[0]) {
           console.log(data[0].firstExam, subject);
-          setDataSet(data[0].firstExam);
+          setDataSet(JSON.parse(data[0].firstExam));
         } else {
           setDataSet([]);
         }
