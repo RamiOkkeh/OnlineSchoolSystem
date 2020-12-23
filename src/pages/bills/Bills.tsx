@@ -23,7 +23,7 @@ function Bills({ user, role }: any) {
     };
     let path =
       process.env.NODE_ENV === "production"
-        ? "/payment/"
+        ? "/payment/details"
         : `${local_IP}/payment/details`;
     fetch(path, options)
       .then((data) => data.json())
@@ -37,44 +37,44 @@ function Bills({ user, role }: any) {
       {role === "Principal" ? (
         <AssignBills />
       ) : (
-        <div>
-          <div className="Bills">
-            <div className="main">
-              <div className="firstBox"> date </div>
-              <div className="secondtBox"> semster</div>
-              <div className="thirdtBox"> total price</div>
-              <div className="thirdtBox"> Status </div>
-            </div>
-            {payments.length ? (
-              payments.map((el, key) => (
-                <div key={key}>
-                  <div className="main">
-                    <div className="firstBox"> {el["dueDate"]} </div>
-                    <div className="secondtBox"> {el["semester"]}</div>
-                    <div className="thirdtBox"> {el["amount"]}</div>
-                    {el["paid"] ? (
-                      <div className="thirdtBox"> Paid </div>
-                    ) : (
-                      <div className="fourthtBox">
-                        {" "}
-                        <StripButton
-                          price={el["amount"]}
-                          semester={el["semester"]}
-                          user={user}
-                        />{" "}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="empty">
-                <h4>No payments yet</h4>
+          <div>
+            <div className="Bills">
+              <div className="main">
+                <div className="firstBox"> date </div>
+                <div className="secondtBox"> semster</div>
+                <div className="thirdtBox"> total price</div>
+                <div className="thirdtBox"> Status </div>
               </div>
-            )}
+              {payments.length ? (
+                payments.map((el, key) => (
+                  <div key={key}>
+                    <div className="main">
+                      <div className="firstBox"> {el["dueDate"]} </div>
+                      <div className="secondtBox"> {el["semester"]}</div>
+                      <div className="thirdtBox"> {el["amount"]}</div>
+                      {el["paid"] ? (
+                        <div className="thirdtBox"> Paid </div>
+                      ) : (
+                          <div className="fourthtBox">
+                            {" "}
+                            <StripButton
+                              price={el["amount"]}
+                              semester={el["semester"]}
+                              user={user}
+                            />{" "}
+                          </div>
+                        )}
+                    </div>
+                  </div>
+                ))
+              ) : (
+                  <div className="empty">
+                    <h4>No payments yet</h4>
+                  </div>
+                )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 }

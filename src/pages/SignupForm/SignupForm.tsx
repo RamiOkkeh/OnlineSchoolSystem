@@ -15,6 +15,7 @@ import { State } from "../../reducers/rootReducer";
 // import { Redirect } from "react-router-dom";
 import CreateSchool from "../../components/CreateSchool/CreateSchool";
 import AddSubject from "../../components/AddSubject/AddSubject";
+import { Link } from "react-router-dom";
 // import local_IP from "../../local_IP";
 var local_IP;
 try {
@@ -140,27 +141,29 @@ function SignupForm({ importSchools, user, importSubjects }: any) {
             <Typography className={classes.instructions}>
               All steps completed
             </Typography>
-            <Button onClick={handleReset}>Reset</Button>
+            <Link to='/dashboard' >
+              <Button onClick={handleReset}>Done</Button>
+            </Link>
           </div>
         ) : (
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
             <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.backButton}
-              >
-                Back
+              <Typography className={classes.instructions}>
+                {getStepContent(activeStep)}
+              </Typography>
+              <div>
+                <Button
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  className={classes.backButton}
+                >
+                  Back
               </Button>
-              <Button variant="contained" color="primary" onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
+                <Button variant="contained" color="primary" onClick={handleNext}>
+                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                </Button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </div>
   );
