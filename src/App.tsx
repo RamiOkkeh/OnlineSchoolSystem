@@ -35,7 +35,12 @@ import {
 import sketch from "./ml5Training";
 import Chat from "./components/chat/chat";
 // import local_IP from "./local_IP";
-const local_IP = require("./local_IP") || "";
+var local_IP;
+try {
+  local_IP = require("./local_IP");
+} catch {
+  local_IP = "";
+}
 
 const theme = createMuiTheme({
   palette: {
