@@ -61,6 +61,6 @@ You need [Pyhton3](https://www.python.org/downloads/) and [Node](https://nodejs.
 5. [Frontend/src/ml5Training.js](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/Frontend/src/ml5Training.js)
 
    - Was used to train a machine learning modle (development only)
-   - Loads a pre-existing modle.
+   - Loads a pre-existing model.
 
 ## Deployed Link: [AlphaPlus](https://oss-0.herokuapp.com/)
