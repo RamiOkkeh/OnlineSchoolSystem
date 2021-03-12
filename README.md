@@ -2,7 +2,7 @@
 
 <div style="text-align:center">
     <a align="center" href="https://oss-0.herokuapp.com/">
-        <img src="header.png" width="500" style="margin-left:100px;" align="center" alt="AlphaPlus-perview"/>
+        <img src="header.png" style="margin-left:100px;" align="center" alt="AlphaPlus-perview"/>
     </a>
 </div>
 
