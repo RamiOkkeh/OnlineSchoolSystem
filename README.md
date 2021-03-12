@@ -1,8 +1,8 @@
 # AlphaPlus
 
 <div style="text-align:center">
-    <a align="center" href="https://oss-0.herokuapp.com/">
-        <img src="header.png" style="margin-left:100px;" align="center" alt="AlphaPlus-perview"/>
+    <a href="https://oss-0.herokuapp.com/">
+        <img src="header.png" alt="AlphaPlus-perview"/>
     </a>
 </div>
 
@@ -12,11 +12,19 @@ Full-Stack Application using Django and sqlite3 for backend, React typeScript wi
 
 ## Install
 
+You need [Pyhton3](https://www.python.org/downloads/) and [Node](https://nodejs.org/en/download/) to run this project.
+
 1. Clone this repo
-2. `npm i` to install dependancies
-3. `npm start` to run the server
-4. Open "localhost:3000" in your browser
-5. Enjoy :\)
+2. Run `cd Frontend` to navigate to the _Frontend_ directory
+3. Use `npm i` to install the required packages for react
+4. Use `npm run build` to create a production build of the website
+5. Copy the newly created folder _build_, and paste it into the _Backend_ directory
+6. `cd ..` and then `cd Backend` to navigate to the _Backend_ directory
+7. Run `pip install -r requirements.txt` to install the required packages for Django
+8. Now we need to set up our django, so we use `python manage.py makemigrations` and then `python manage.py migrate`
+9. Then we create an admin user by running `python manage.py createsuperuser` and filling in the needed info
+10. Finally we run the django server using this command `python manage.py runserver`, note: this will run on port 3000 by default, to use another port add it's number after the command, for example: `python manage.py runserver 3001`
+11. The server sould be running at this point, you just have to open "localhost:<3000 / the port you specified>"
 
 ## Technologies
 
