@@ -45,7 +45,7 @@ You need [Pyhton3](https://www.python.org/downloads/) and [Node](https://nodejs.
    - Connects to the Sqlite database.
    - Serves the React Front-end template.
 
-2. [Frontend/core/urls.py](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/Backend/core/urls.py)
+2. [Backend/core/urls.py](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/Backend/core/urls.py)
 
    - Manages all paths for the backend api.
 
