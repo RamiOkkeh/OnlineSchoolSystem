@@ -31,26 +31,26 @@ Full-Stack Application using Django and sqlite3 for backend, React typeScript wi
 
 ## Key Files
 
-1. [Backend/core/settings.py](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/core/settings.py)
+1. [Backend/core/settings.py](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/Backend/core/settings.py)
 
    - Manages installed Django apps.
    - Connects to the Sqlite database.
    - Serves the React Front-end template.
 
-2. [Frontend/core/urls.py](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/core/urls.py)
+2. [Frontend/core/urls.py](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/Backend/core/urls.py)
 
    - Manages all paths for the backend api.
 
-3. [Frontend/src/App.tsx]
+3. [Frontend/src/App.tsx](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/Frontend/src/App.tsx)
 
    - Main react Component.
    - Handles the Routing for the Front-end side.
 
-4. [Frontend/src/reducers/rootReducer.ts]
+4. [Frontend/src/reducers/rootReducer.ts](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/Frontend/src/reducers/rootReducer.ts)
 
    - Creates Redux state and manages it.
 
-5. [Frontend/src/ml5Training.js]
+5. [Frontend/src/ml5Training.js](https://github.com/RamiOkkeh/OnlineSchoolSystem/blob/master/Frontend/src/ml5Training.js)
 
    - Was used to train a machine learning modle (development only)
    - Loads a pre-existing modle.
